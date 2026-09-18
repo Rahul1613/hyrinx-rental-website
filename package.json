@@ -1,14 +1,16 @@
 {
-  "name": "workroom-prompt",
-  "version": "0.1.0",
+  "name": "hyrinx",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "prisma skills sync || exit 0",
-    "seed": "tsx prisma/seed.ts"
+    "lint": "next lint",
+    "seed": "tsx prisma/seed.ts",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset --force && npm run seed"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

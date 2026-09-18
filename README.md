@@ -1,174 +1,304 @@
-# Hyrinx - Rental Websites Platform
+# 🌐 Hyrinx — Website Rental Platform
 
-A production-ready website rental marketplace built with Next.js, TypeScript, Prisma, and Tailwind CSS.
+A full-stack, production-ready **website rental marketplace** built with **Next.js 16**, **TypeScript**, **Prisma ORM**, **SQLite**, and **Tailwind CSS**.
 
-## Overview
+Customers can browse, preview, and rent professionally-designed websites for events, businesses, and projects — without buying permanent solutions.
 
-Hyrinx allows customers to rent professionally designed, ready-made websites for events, businesses, celebrations, and projects instead of purchasing permanent websites. The platform features:
+---
 
-- **Public Website**: No login required for browsing, searching, and ordering websites
-- **Admin Panel**: Secure authentication for managing websites, orders, rentals, and pricing
-- **Flexible Pricing**: Multiple rental durations (1 day to 1 year) with dynamic pricing
-- **CMS Features**: Admin-controlled content management without code changes
-- **Order Flow**: Multi-step checkout with customization options
+## 🚀 Tech Stack
 
-## Tech Stack
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Database | SQLite via Prisma ORM |
+| Styling | Tailwind CSS v4 |
+| Auth | Custom session-based auth (bcrypt) |
+| Icons | Lucide React |
+| Validation | Zod + React Hook Form |
 
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Database**: SQLite with Prisma ORM
-- **Styling**: Tailwind CSS
-- **Authentication**: Custom session-based auth with bcrypt
-- **Icons**: Lucide React
+---
 
-## Getting Started
+## 📁 Project Structure
 
-### Prerequisites
+```
+hyrinx/
+│
+├── prisma/
+│   ├── schema.prisma              # Database schema (all models)
+│   ├── seed.ts                    # Seed: admins, categories, pricing, websites
+│   └── migrations/                # Prisma migration history
+│       ├── 20260915080237_init/
+│       └── 20260915080455_add_unique_pricing_plan_name/
+│
+├── public/
+│   └── logo.png                   # Site logo
+│
+├── src/
+│   ├── app/
+│   │   │
+│   │   ├── (public pages)
+│   │   ├── page.tsx               # Homepage (CMS-driven hero, featured sites)
+│   │   ├── layout.tsx             # Root layout
+│   │   ├── not-found.tsx          # 404 page
+│   │   ├── robots.ts              # SEO: robots.txt
+│   │   ├── sitemap.ts             # SEO: sitemap.xml
+│   │   │
+│   │   ├── websites/
+│   │   │   ├── page.tsx           # Website marketplace (browse & filter)
+│   │   │   ├── layout.tsx
+│   │   │   └── [slug]/
+│   │   │       ├── page.tsx       # Website detail & pricing
+│   │   │       └── layout.tsx
+│   │   │
+│   │   ├── checkout/
+│   │   │   └── page.tsx           # Multi-step checkout flow
+│   │   │
+│   │   ├── order/
+│   │   │   └── success/
+│   │   │       └── page.tsx       # Order confirmation
+│   │   │
+│   │   ├── pricing/
+│   │   │   ├── page.tsx           # Public pricing plans
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── contact/
+│   │   │   ├── page.tsx           # Contact form → custom requests
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── custom-website/
+│   │   │   ├── page.tsx           # Custom website request form
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── how-it-works/
+│   │   │   ├── page.tsx
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── use-cases/
+│   │   │   ├── page.tsx
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── faq/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── terms/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── privacy/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── admin/                 # ─── Admin Panel ───
+│   │   │   ├── layout.tsx         # Admin layout (no auth guard on shell)
+│   │   │   ├── page.tsx           # Dashboard (stats & quick actions)
+│   │   │   ├── login/
+│   │   │   │   └── page.tsx       # Admin login
+│   │   │   ├── websites/
+│   │   │   │   ├── page.tsx       # List / feature / publish websites
+│   │   │   │   ├── new/
+│   │   │   │   │   └── page.tsx   # Add new website
+│   │   │   │   └── [id]/
+│   │   │   │       └── edit/
+│   │   │   │           └── page.tsx  # Edit existing website
+│   │   │   ├── categories/
+│   │   │   │   └── page.tsx       # Category management
+│   │   │   ├── pricing/
+│   │   │   │   └── page.tsx       # Pricing plan management
+│   │   │   ├── orders/
+│   │   │   │   └── page.tsx       # Order management
+│   │   │   ├── rentals/
+│   │   │   │   └── page.tsx       # Active rental tracking
+│   │   │   ├── custom-requests/
+│   │   │   │   └── page.tsx       # Inbox for custom website requests
+│   │   │   ├── homepage/
+│   │   │   │   └── page.tsx       # Homepage CMS editor
+│   │   │   └── settings/
+│   │   │       └── page.tsx       # Platform settings
+│   │   │
+│   │   └── api/                   # ─── API Routes ───
+│   │       │
+│   │       ├── admin/             # Protected admin APIs
+│   │       │   ├── login/
+│   │       │   │   └── route.ts   # POST: admin login
+│   │       │   ├── logout/
+│   │       │   │   └── route.ts   # POST: admin logout
+│   │       │   ├── websites/
+│   │       │   │   ├── route.ts   # GET/POST websites
+│   │       │   │   └── [id]/
+│   │       │   │       └── route.ts  # GET/PUT/DELETE website
+│   │       │   ├── categories/
+│   │       │   │   └── route.ts   # GET/POST/PATCH/DELETE categories
+│   │       │   ├── pricing-plans/
+│   │       │   │   └── route.ts   # GET/POST/PATCH/DELETE pricing
+│   │       │   ├── custom-requests/
+│   │       │   │   └── route.ts   # GET/PATCH/DELETE requests
+│   │       │   ├── homepage/
+│   │       │   │   └── route.ts   # GET/POST homepage CMS content
+│   │       │   └── settings/
+│   │       │       └── route.ts   # GET/POST platform settings
+│   │       │
+│   │       └── (public APIs)
+│   │           ├── websites/
+│   │           │   ├── route.ts          # GET all websites (public)
+│   │           │   ├── [slug]/
+│   │           │   │   └── route.ts      # GET website by slug
+│   │           │   └── by-id/[id]/
+│   │           │       └── route.ts      # GET website by ID (checkout)
+│   │           ├── categories/
+│   │           │   └── route.ts          # GET categories
+│   │           ├── pricing-plans/
+│   │           │   └── route.ts          # GET pricing plans
+│   │           ├── orders/
+│   │           │   └── route.ts          # POST create order
+│   │           └── custom-requests/
+│   │               └── route.ts          # POST submit custom request
+│   │
+│   ├── components/
+│   │   ├── Navbar.tsx             # Top navigation (public + admin link)
+│   │   └── admin/
+│   │       ├── AdminShell.tsx     # Admin layout wrapper (sidebar + main)
+│   │       └── AdminSidebar.tsx   # Admin sidebar navigation
+│   │
+│   └── lib/
+│       ├── prisma.ts              # Prisma client singleton
+│       ├── auth.ts                # bcrypt password helpers
+│       ├── session.ts             # Cookie session management
+│       ├── security.ts            # Security helpers
+│       ├── validation.ts          # Zod schemas
+│       ├── rate-limit.ts          # API rate limiting
+│       └── utils.ts               # Shared utility functions
+│
+├── .env.example                   # Environment variable template
+├── .gitignore
+├── next.config.ts
+├── postcss.config.mjs
+├── tailwind.config (inline v4)
+├── tsconfig.json
+└── package.json
+```
 
-- Node.js 18+ installed
-- npm, yarn, or pnpm
+---
 
-### Installation
+## 🗄️ Database Schema
 
-1. Install dependencies:
+| Model | Purpose |
+|---|---|
+| `AdminUser` | Admin accounts with roles (`admin` / `super_admin`) |
+| `Website` | Website templates with features, pricing, categories |
+| `Category` | Website categories (Birthday, Wedding, Business…) |
+| `PricingPlan` | Rental duration plans (1 Day → 1 Year) |
+| `Order` | Customer orders with line items |
+| `Rental` | Active rentals with expiry tracking |
+| `CustomRequest` | Bespoke website requests from customers |
+| `Settings` | Key-value platform configuration |
+| `HomepageContent` | CMS-driven homepage hero, CTAs |
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-2. Set up the database:
+### 2. Set Up Environment
 ```bash
-npx prisma migrate dev
+cp .env.example .env
 ```
 
-3. Seed the database with initial data:
+### 3. Run Database Migrations
+```bash
+npm run db:migrate
+```
+
+### 4. Seed the Database
 ```bash
 npm run seed
 ```
 
-This creates:
-- Admin user (email: `admin@hyrinx.com`, password: `admin123`)
-- Categories (Birthday, Wedding, College, etc.)
-- Pricing plans (1 Day to 1 Year)
-- Sample websites
-- Default settings
+Creates admin accounts, categories, pricing plans, sample websites, and default settings.
 
-### Development
-
-Run the development server:
+### 5. Start Dev Server
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the public website.
+Open [http://localhost:3000](http://localhost:3000)
 
-### Admin Access
+---
+
+## 🔐 Admin Access
 
 Navigate to [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
-- Email: `admin@hyrinx.com`
-- Password: `admin123`
 
-## Project Structure
+| Email | Password | Role |
+|---|---|---|
+| `rahul@gmail.com` | `Rahul@9890` | super_admin |
+| `harshal@gmail.com` | `Harshal@9890` | super_admin |
+| `admin@hyrinx.com` | `admin123` | super_admin |
 
-```
-src/
-├── app/
-│   ├── admin/              # Admin panel pages
-│   │   ├── login/          # Admin login
-│   │   ├── page.tsx        # Admin dashboard
-│   │   ├── websites/       # Website management
-│   │   ├── orders/         # Order management
-│   │   ├── rentals/        # Rental tracking
-│   │   └── pricing/        # Pricing management
-│   ├── websites/           # Public website pages
-│   │   ├── page.tsx        # Website marketplace
-│   │   └── [slug]/         # Website detail pages
-│   ├── checkout/           # Order flow
-│   ├── custom-website/     # Custom request form
-│   ├── api/                # API routes
-│   └── layout.tsx          # Root layout
-├── components/
-│   └── Navbar.tsx          # Navigation component
-└── lib/
-    ├── prisma.ts           # Prisma client
-    ├── auth.ts             # Authentication utilities
-    ├── session.ts          # Session management
-    └── utils.ts            # Helper functions
-prisma/
-├── schema.prisma           # Database schema
-└── seed.ts                 # Database seeding
-```
+---
 
-## Key Features
+## 🛠️ Available Scripts
 
-### Public Website
-- **Hero Section**: Premium landing with browser mockups
-- **Website Marketplace**: Search, filter, and browse templates
-- **Live Demos**: Preview actual websites before renting
-- **Pricing Calculator**: Dynamic pricing based on duration
-- **Multi-step Checkout**: Review → Information → Customization → Payment
-- **Custom Requests**: Form for bespoke website requests
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm start` | Start production server |
+| `npm run seed` | Seed database with initial data |
+| `npm run db:migrate` | Run Prisma migrations |
+| `npm run db:studio` | Open Prisma Studio (DB GUI) |
+| `npm run db:reset` | Reset DB and re-seed |
+| `npm run lint` | Run ESLint |
 
-### Admin Panel
-- **Dashboard**: Analytics and quick actions
-- **Website Management**: Add, edit, publish websites without coding
-- **Order Management**: Track and process customer orders
-- **Rental Tracking**: Monitor active, expiring, and expired rentals
-- **Pricing Management**: Configure rental plans and pricing
-- **CMS**: Control homepage content, settings, and media
+---
 
-## Database Schema
+## 🔒 Security
 
-Core entities:
-- `AdminUser`: Admin accounts with role-based access
-- `Website`: Website templates with features and customization options
-- `Category`: Website categories
-- `PricingPlan`: Rental duration pricing
-- `Order`: Customer orders with items
-- `Rental`: Active website rentals with expiry tracking
-- `CustomRequest`: Custom website requests
-- `Settings`: Platform configuration
+- Passwords hashed with **bcrypt**
+- Session stored in **HTTP-only cookies** (base64-encoded JSON)
+- Admin routes protected via `requireAuth()` middleware
+- Input validated with **Zod** on all API routes
+- SQL injection prevented via **Prisma**
+- Rate limiting on sensitive endpoints
 
-## Security Features
+---
 
-- Password hashing with bcrypt
-- Secure session management
-- Admin-only protected routes
-- Input validation on forms
-- SQL injection prevention via Prisma
-- Order access tokens for customer tracking
+## 🚢 Deployment
 
-## Deployment
-
-### Build for Production
-
+### Build
 ```bash
 npm run build
 npm start
 ```
 
-### Environment Variables
-
-Create a `.env` file:
-
+### Environment Variables (`.env`)
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="file:./prisma/dev.db"
 NODE_ENV="production"
 ```
 
-## Future Enhancements
+---
 
-- Payment gateway integration (Razorpay, Stripe)
-- File upload system for media library
-- Email notifications for orders
-- Background job for rental expiry
-- Advanced analytics dashboard
-- Multi-language support
-- Customer account system (optional)
+## 📈 Future Enhancements
 
-## License
+- [ ] Payment gateway (Razorpay / Stripe)
+- [ ] Media library with file uploads
+- [ ] Email notifications for orders
+- [ ] Background job for rental expiry alerts
+- [ ] Advanced analytics dashboard
+- [ ] Customer account portal
+- [ ] Multi-language support
 
-This project is proprietary software for Hyrinx.
+---
 
-## Support
+## 📄 License
 
-For support, contact admin@hyrinx.com
+Proprietary — © Hyrinx. All rights reserved.
+
+## 📬 Support
+
+Contact: [admin@hyrinx.com](mailto:admin@hyrinx.com)
+
