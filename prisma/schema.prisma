@@ -1,0 +1,262 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("manager") // super_admin, manager, editor
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastLogin DateTime?
+  active    Boolean  @default(true)
+  
+  auditLogs AuditLog[]
+}
+
+model Website {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  category    String
+  description String
+  shortDesc   String
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  
+  thumbnail       String?
+  desktopScreenshot String?
+  mobileScreenshot String?
+  galleryImages    String? // JSON array
+  liveDemoUrl      String?
+  
+  startingPrice   Int?
+  customPricing   Boolean @default(false)
+  
+  features       String? // JSON array of features
+  customization  String? // JSON array of customization fields
+  
+  seoTitle       String?
+  seoDescription String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  orderItems OrderItem[]
+  rentals    Rental[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  order     Int      @default(0)
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PricingPlan {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  duration    String   // e.g., "1 Day", "7 Days", "1 Month"
+  durationDays Int
+  price       Int
+  description String?
+  popular     Boolean  @default(false)
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  orderItems OrderItem[]
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  companyEventName String?
+  websiteTitle    String?
+  preferredSubdomain String?
+  requiredLaunchDate DateTime?
+  
+  totalAmount     Int
+  status          String   @default("pending") // pending, paid, preparing, active, completed, expired, cancelled, refunded
+  
+  paymentId       String?
+  paymentStatus   String   @default("pending") // pending, verified, failed, refunded
+  paymentGateway  String?
+  
+  accessToken     String? // For secure order status access
+  customerId      String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  customer   Customer?   @relation(fields: [customerId], references: [id])
+  orderItems OrderItem[]
+  payments    Payment[]
+  rentals     Rental[]
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  websiteId   String
+  pricingPlanId String
+  price       Int
+  
+  customizationData String? // JSON object with customer's customization
+  
+  order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  website     Website     @relation(fields: [websiteId], references: [id])
+  pricingPlan PricingPlan @relation(fields: [pricingPlanId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  orders Order[]
+}
+
+model Rental {
+  id        String   @id @default(cuid())
+  orderId   String
+  websiteId String
+  customerId String?
+  
+  startTime DateTime
+  expiryTime DateTime
+  status    String   @default("pending") // pending, scheduled, active, expiring_soon, expired, cancelled
+  
+  subdomain String?
+  
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  website Website @relation(fields: [websiteId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id          String   @id @default(cuid())
+  orderId     String
+  paymentId   String
+  amount      Int
+  gateway     String
+  status      String   @default("pending") // pending, verified, failed, refunded
+  refundStatus String? @default("none") // none, requested, processing, completed
+  
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CustomRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  websiteType String
+  preferredDuration String
+  budget      String
+  description String
+  referenceWebsite String?
+  
+  status      String   @default("new") // new, contacted, quoted, approved, in_progress, completed, rejected
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  originalName String
+  mimeType  String
+  size      Int
+  url       String
+  type      String   // image, video, document, icon
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomepageContent {
+  id        String   @id @default(cuid())
+  section   String   @unique // hero, features, use_cases, testimonials, faq, footer
+  content   String   // JSON object with section content
+  enabled   Boolean  @default(true)
+  order     Int      @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  enabled   Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  customerName String
+  review    String
+  rating    Int
+  photo     String?
+  websiteRented String?
+  enabled   Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Settings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   // JSON string for complex values
+  category  String   // business, website, orders, rental, payment, security
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  adminId   String?
+  action    String
+  entity    String
+  entityId  String?
+  details   String? // JSON object
+  ipAddress String?
+  userAgent String?
+  
+  admin     AdminUser? @relation(fields: [adminId], references: [id])
+  
+  createdAt DateTime @default(now())
+}
