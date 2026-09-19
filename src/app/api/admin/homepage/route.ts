@@ -22,7 +22,7 @@ export async function GET() {
             primaryCtaLink: parsed.primaryCtaLink || parsed.ctaLink || '/websites',
             secondaryCtaText: parsed.secondaryCtaText || 'View Live Demos',
             secondaryCtaLink: parsed.secondaryCtaLink || '/websites',
-            badgeText: parsed.badgeText || 'Starting at ₹49 / day',
+            badgeText: parsed.badgeText || 'Starting at ₹149 / day',
           },
         })
       } catch {

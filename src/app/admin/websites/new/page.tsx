@@ -18,7 +18,7 @@ export default function NewWebsitePage() {
     shortDesc: '',
     featured: false,
     published: false,
-    startingPrice: 49,
+    startingPrice: 149,
     liveDemoUrl: '',
     thumbnail: '',
     features: [] as string[],
@@ -96,7 +96,7 @@ export default function NewWebsitePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          startingPrice: parseInt(formData.startingPrice as any) || 49,
+          startingPrice: parseInt(formData.startingPrice as any) || 149,
         }),
       })
 

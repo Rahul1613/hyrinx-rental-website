@@ -178,7 +178,7 @@ function WebsiteCard({ website }: { website: any }) {
 
         <div className="flex items-center justify-between mb-4">
           <span className="text-lg font-semibold text-slate-900">
-            From {formatPrice(website.startingPrice || 49)}/day
+            From {formatPrice(website.startingPrice || 149)}/day
           </span>
         </div>
 

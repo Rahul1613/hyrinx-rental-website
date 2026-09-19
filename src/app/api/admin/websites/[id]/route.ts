@@ -76,7 +76,7 @@ export async function PUT(
         shortDesc,
         featured: Boolean(featured),
         published: Boolean(published),
-        startingPrice: parseInt(startingPrice) || 49,
+        startingPrice: parseInt(startingPrice) || 149,
         liveDemoUrl: liveDemoUrl || '',
         thumbnail: thumbnail || '',
         features: typeof features === 'string' ? features : JSON.stringify(features || []),

@@ -15,7 +15,7 @@ export default function AdminHomepagePage() {
     primaryCtaLink: '/websites',
     secondaryCtaText: 'View Live Demos',
     secondaryCtaLink: '/websites',
-    badgeText: 'Starting at ₹49 / day',
+    badgeText: 'Starting at ₹149 / day',
   })
 
   useEffect(() => {

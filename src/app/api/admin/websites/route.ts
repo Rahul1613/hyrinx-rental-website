@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         shortDesc,
         featured: featured || false,
         published: published || false,
-        startingPrice: startingPrice || 49,
+        startingPrice: startingPrice || 149,
         liveDemoUrl,
         features: Array.isArray(features) ? JSON.stringify(features) : (features || null),
         customization: Array.isArray(customization) ? JSON.stringify(customization) : (customization || null),

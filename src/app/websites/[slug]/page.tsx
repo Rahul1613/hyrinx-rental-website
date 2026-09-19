@@ -183,7 +183,7 @@ export default function WebsiteDetailPage() {
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-slate-900 mb-4">Starting at</h3>
                 <p className="text-3xl font-bold text-slate-900">
-                  {formatPrice(website.startingPrice || 49)}/day
+                  {formatPrice(website.startingPrice || 149)}/day
                 </p>
               </div>
 
