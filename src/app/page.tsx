@@ -1,28 +1,30 @@
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
-import { 
-  ArrowRight, 
-  Check, 
-  Globe, 
-  Clock, 
-  Smartphone, 
-  Zap, 
-  Palette, 
-  Share, 
-  Calendar, 
-  Tag, 
-  Settings, 
-  GraduationCap, 
-  Heart, 
-  Star, 
-  Users, 
-  PartyPopper, 
+import {
+  ArrowRight,
+  Check,
+  Globe,
+  Clock,
+  Smartphone,
+  Zap,
+  Palette,
+  Share,
+  Calendar,
+  Tag,
+  Settings,
+  GraduationCap,
+  Heart,
+  Star,
+  Users,
+  PartyPopper,
   Building2,
   ExternalLink,
   ShieldCheck
 } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
+
+export const dynamic = 'force-dynamic'
 
 async function getHomepageData() {
   const [heroContentRaw, featuredWebsites, categories, lowestPlan, settingsList] = await Promise.all([

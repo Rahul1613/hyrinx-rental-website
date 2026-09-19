@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { HelpCircle, ArrowRight } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 async function getFAQs() {
   const faqs = await prisma.fAQ.findMany({
     where: { enabled: true },

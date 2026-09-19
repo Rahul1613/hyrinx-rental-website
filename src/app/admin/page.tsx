@@ -3,12 +3,12 @@ import { requireAuth } from '@/lib/session'
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
-import { 
-  ShoppingCart, 
-  Globe, 
-  Clock, 
-  TrendingUp, 
-  Users, 
+import {
+  ShoppingCart,
+  Globe,
+  Clock,
+  TrendingUp,
+  Users,
   AlertCircle,
   ArrowRight,
   LayoutDashboard,
@@ -18,6 +18,8 @@ import {
   LogOut,
 } from 'lucide-react'
 import AdminShell from '@/components/admin/AdminShell'
+
+export const dynamic = 'force-dynamic'
 
 async function getDashboardStats() {
   const today = new Date()

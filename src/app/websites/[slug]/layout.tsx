@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 interface WebsiteLayoutProps {
   params: Promise<{ slug: string }>
   children: React.ReactNode

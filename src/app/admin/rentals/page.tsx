@@ -5,6 +5,8 @@ import AdminShell from '@/components/admin/AdminShell'
 import Link from 'next/link'
 import { Clock, AlertCircle, CheckCircle2 } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 async function getRentals() {
   const rentals = await prisma.rental.findMany({
     orderBy: { createdAt: 'desc' },
