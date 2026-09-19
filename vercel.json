@@ -1,7 +1,4 @@
 {
-  "buildCommand": "prisma generate && next build",
-  "devCommand": "next dev",
-  "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["hkg1"]
+  "buildCommand": "prisma generate && next build --webpack"
 }
