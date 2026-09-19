@@ -23,10 +23,10 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "lucide-react": "^1.46.0",
-    "next": "15.0.3",
+    "next": "14.2.21",
     "prisma": "^5.22.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.88.0",
     "tailwind-merge": "^3.7.0",
     "zod": "^4.6.5"
@@ -38,7 +38,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^9",
-    "eslint-config-next": "15.0.3",
+    "eslint-config-next": "14.2.21",
     "tailwindcss": "^4",
     "tsx": "^4.23.13",
     "typescript": "^5"
