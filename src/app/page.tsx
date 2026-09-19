@@ -60,7 +60,7 @@ async function getHomepageData() {
         primaryCtaLink: parsed.primaryCtaLink || parsed.ctaLink || '/websites',
         secondaryCtaText: parsed.secondaryCtaText || 'View Live Demos',
         secondaryCtaLink: parsed.secondaryCtaLink || '/websites',
-        badgeText: parsed.badgeText || `Starting at ₹${lowestPlan?.price || 49} / day`,
+        badgeText: parsed.badgeText || `Starting at ₹${lowestPlan?.price || 149} / day`,
       }
     } catch {}
   }
@@ -78,11 +78,11 @@ async function getHomepageData() {
       primaryCtaLink: hero.primaryCtaLink || '/websites',
       secondaryCtaText: hero.secondaryCtaText || 'View Live Demos',
       secondaryCtaLink: hero.secondaryCtaLink || '/websites',
-      badgeText: hero.badgeText || `Starting at ₹${lowestPlan?.price || 49} / day`,
+      badgeText: hero.badgeText || `Starting at ₹${lowestPlan?.price || 149} / day`,
     },
     featuredWebsites,
     categories,
-    lowestPrice: lowestPlan?.price || 49,
+    lowestPrice: lowestPlan?.price || 149,
     settings: settingsMap,
   }
 }
@@ -100,30 +100,36 @@ export default async function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 sm:px-8 lg:px-12">
+      <section className="relative pt-32 pb-24 px-6 sm:px-8 lg:px-12 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 -z-10" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl -z-10 animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/30 to-indigo-100/30 rounded-full blur-3xl -z-10" />
+
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+          <div className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-500/30 animate-bounce">
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
               {hero.badgeText}
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent mb-8 leading-tight tracking-tight">
               {hero.headline}
             </h1>
-            <p className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
               {hero.subheadline}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <Link
                 href={hero.primaryCtaLink}
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors text-lg shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1"
               >
                 {hero.primaryCtaText}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href={hero.secondaryCtaLink}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 px-8 py-4 rounded-xl font-semibold transition-colors text-lg"
+                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
                 {hero.secondaryCtaText}
               </Link>
@@ -132,16 +138,16 @@ export default async function Home() {
 
           {/* Dynamic Categories Showcase */}
           {categories.length > 0 && (
-            <div className="mt-14 max-w-4xl mx-auto">
-              <div className="text-center mb-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <div className="mt-20 max-w-5xl mx-auto">
+              <div className="text-center mb-6 text-sm font-bold uppercase tracking-widest text-slate-400">
                 Explore Popular Categories
               </div>
-              <div className="flex flex-wrap gap-2.5 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {categories.map((cat) => (
                   <Link
                     key={cat.id}
                     href={`/websites?category=${cat.name}`}
-                    className="bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm"
+                    className="bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-slate-700 hover:text-blue-600 border-2 border-slate-200 hover:border-blue-300 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
                   >
                     {cat.name}
                   </Link>
@@ -153,23 +159,23 @@ export default async function Home() {
       </section>
 
       {/* Featured Websites Section (Managed via Admin) */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
-              <span className="text-blue-600 text-xs font-bold uppercase tracking-widest block mb-1">
+              <span className="text-blue-600 text-sm font-bold uppercase tracking-widest block mb-2">
                 Admin Curated Collection
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+              <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
                 Featured Ready-Made Websites
               </h2>
-              <p className="text-slate-600 mt-2 max-w-xl">
+              <p className="text-slate-600 mt-3 max-w-xl text-lg">
                 Choose a professionally created template, test the live demo, and launch in minutes.
               </p>
             </div>
             <Link
               href="/websites"
-              className="mt-4 md:mt-0 text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1.5"
+              className="mt-6 md:mt-0 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 text-sm flex items-center gap-2"
             >
               View All Websites ({featuredWebsites.length}+)
               <ArrowRight className="h-4 w-4" />
@@ -180,66 +186,67 @@ export default async function Home() {
             {featuredWebsites.map((website) => (
               <div
                 key={website.id}
-                className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                className="bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-300 transition-all duration-500 group flex flex-col justify-between hover:-translate-y-2"
               >
                 <div>
-                  <div className="relative aspect-video bg-slate-100 overflow-hidden">
+                  <div className="relative aspect-video bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
                     {website.thumbnail ? (
                       <img
                         src={website.thumbnail}
                         alt={website.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50">
-                        <Globe className="h-12 w-12 text-blue-300" />
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100">
+                        <Globe className="h-16 w-16 text-blue-400" />
                       </div>
                     )}
-                    <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-slate-800 shadow-sm">
+                    <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-slate-800 shadow-lg border border-slate-200">
                       {website.category}
                     </span>
                     {website.featured && (
-                      <span className="absolute top-3 right-3 bg-yellow-400 text-yellow-950 font-bold px-2.5 py-0.5 rounded-full text-xs shadow-sm flex items-center gap-1">
-                        <Star className="h-3 w-3 fill-yellow-950" />
+                      <span className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-bold px-3 py-1 rounded-full text-xs shadow-lg flex items-center gap-1">
+                        <Star className="h-3.5 w-3.5 fill-white" />
                         Featured
                       </span>
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  <div className="p-7">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                       {website.name}
                     </h3>
-                    <p className="text-slate-600 text-sm line-clamp-2 mb-4">
+                    <p className="text-slate-600 text-base line-clamp-2 mb-5 leading-relaxed">
                       {website.shortDesc || website.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between gap-3">
+                <div className="px-7 pb-7 pt-4 border-t-2 border-slate-100 flex items-center justify-between gap-4">
                   <div>
-                    <span className="text-xs text-slate-400 block">Starting from</span>
-                    <span className="text-lg font-bold text-slate-900">
+                    <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Starting from</span>
+                    <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
                       {formatPrice(website.startingPrice || lowestPrice)}
-                      <span className="text-xs font-normal text-slate-500">/day</span>
+                      <span className="text-sm font-normal text-slate-500">/day</span>
                     </span>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     {website.liveDemoUrl && (
                       <a
                         href={website.liveDemoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 border border-slate-200 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                        className="p-3 border-2 border-slate-200 rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
                         title="Live Demo"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <ExternalLink className="h-5 w-5" />
                       </a>
                     )}
                     <Link
                       href={`/websites/${website.slug}`}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-1.5 shadow-sm"
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-2"
                     >
                       Rent Now
                     </Link>
@@ -252,7 +259,7 @@ export default async function Home() {
       </section>
 
       {/* Trust Strip */}
-      <section className="bg-white py-12 border-y border-slate-200">
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 border-y border-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {[
@@ -263,9 +270,9 @@ export default async function Home() {
               { icon: Zap, text: 'Fast setup & launch' },
               { icon: Settings, text: 'Customisation included' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center space-x-3">
-                <item.icon className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-slate-700">{item.text}</span>
+              <div key={i} className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20">
+                <item.icon className="h-6 w-6 text-white flex-shrink-0" />
+                <span className="text-sm font-bold text-white">{item.text}</span>
               </div>
             ))}
           </div>
@@ -273,19 +280,22 @@ export default async function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-20">
+            <span className="text-blue-600 text-sm font-bold uppercase tracking-widest block mb-3">
+              Simple Process
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-5">
               How It Works
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
               Get your temporary website live in five simple steps
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
-            <div className="hidden md:block absolute top-8 left-[10%] right-[10%] h-0.5 bg-blue-200 -z-10" />
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-400 to-indigo-400 -z-10 rounded-full" />
             {[
               { step: '01', title: 'Choose', desc: 'Browse ready-made websites' },
               { step: '02', title: 'Preview', desc: 'Experience before renting' },
@@ -293,12 +303,12 @@ export default async function Home() {
               { step: '04', title: 'Rent', desc: 'Select rental period' },
               { step: '05', title: 'Go Live', desc: 'Your website goes live' },
             ].map((item, i) => (
-              <div key={i} className="text-center">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-lg">
+              <div key={i} className="text-center group">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-5 border-4 border-white shadow-xl shadow-blue-500/30 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-blue-500/40 transition-all duration-300">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600">{item.desc}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                <p className="text-sm text-slate-600 font-medium">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -306,13 +316,16 @@ export default async function Home() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <div className="text-center mb-16">
+            <span className="text-blue-400 text-sm font-bold uppercase tracking-widest block mb-3">
+              Versatile Solutions
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-5">
               Perfect For Every Occasion
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto font-medium">
               From college events to business launches, we've got you covered
             </p>
           </div>
@@ -328,10 +341,12 @@ export default async function Home() {
               { icon: Palette, title: 'Creators', desc: 'Personal portfolios and campaign websites' },
               { icon: Calendar, title: 'Celebrations', desc: 'Anniversaries, parties, and special moments' },
             ].map((item, i) => (
-              <div key={i} className="bg-slate-800 p-6 rounded-2xl border border-slate-700/60 hover:bg-slate-750 transition-colors">
-                <item.icon className="h-8 w-8 text-blue-400 mb-3" />
-                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-slate-400 text-sm">{item.desc}</p>
+              <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-700/50 hover:border-blue-500/50 hover:from-slate-750 hover:to-indigo-900 transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="h-7 w-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{item.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -339,25 +354,28 @@ export default async function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 -z-10" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -z-10" />
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-6">
             Need a Website Designed Specially For You?
           </h2>
-          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
             Can't find the exact template you want? Submit a custom website request and our team will build it.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-5 justify-center">
             <Link
               href="/custom-website"
-              className="inline-flex items-center bg-white text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-colors text-lg shadow-md"
+              className="inline-flex items-center bg-white text-blue-700 hover:bg-blue-50 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1"
             >
               Request Custom Website
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center bg-blue-800/60 hover:bg-blue-800 text-white border border-blue-400/40 px-8 py-4 rounded-xl font-semibold transition-colors text-lg"
+              className="inline-flex items-center bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 hover:border-white/50 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg backdrop-blur-sm hover:-translate-y-1"
             >
               View Pricing Plans
             </Link>
@@ -366,50 +384,54 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 py-16 px-4 sm:px-6 lg:px-8 text-slate-400 border-t border-slate-800">
+      <footer className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-20 px-4 sm:px-6 lg:px-8 text-slate-400 border-t border-slate-800">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div>
-              <h3 className="text-2xl font-black text-white mb-1 tracking-wider">{businessName}</h3>
-              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-3">Rental Websites</p>
-              <p className="text-slate-400 text-sm leading-relaxed mb-4">
+              <h3 className="text-3xl font-black text-white mb-2 tracking-wider">{businessName}</h3>
+              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">Rental Websites</p>
+              <p className="text-slate-400 text-base leading-relaxed mb-6">
                 {businessTagline}
               </p>
-              <div className="text-xs text-slate-500 space-y-1">
-                <p>Email: {businessEmail}</p>
-                <p>Phone: {businessPhone}</p>
+              <div className="text-sm text-slate-500 space-y-2">
+                <p className="flex items-center gap-2">
+                  <span className="text-blue-400">✉</span> {businessEmail}
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-blue-400">📞</span> {businessPhone}
+                </p>
               </div>
             </div>
 
             <div>
-              <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Explore</h4>
-              <ul className="space-y-2.5 text-sm">
-                <li><Link href="/websites" className="hover:text-white transition-colors">All Websites</Link></li>
-                <li><Link href="/pricing" className="hover:text-white transition-colors">Rental Pricing</Link></li>
-                <li><Link href="/how-it-works" className="hover:text-white transition-colors">How It Works</Link></li>
-                <li><Link href="/use-cases" className="hover:text-white transition-colors">Use Cases</Link></li>
+              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Explore</h4>
+              <ul className="space-y-3 text-base">
+                <li><Link href="/websites" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">All Websites</Link></li>
+                <li><Link href="/pricing" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Rental Pricing</Link></li>
+                <li><Link href="/how-it-works" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">How It Works</Link></li>
+                <li><Link href="/use-cases" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Use Cases</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Services</h4>
-              <ul className="space-y-2.5 text-sm">
-                <li><Link href="/custom-website" className="hover:text-white transition-colors">Custom Website Request</Link></li>
-                <li><Link href="/websites?category=College" className="hover:text-white transition-colors">College Fests & Tech</Link></li>
-                <li><Link href="/websites?category=Wedding" className="hover:text-white transition-colors">Wedding Celebrations</Link></li>
-                <li><Link href="/websites?category=Business" className="hover:text-white transition-colors">Business Campaigns</Link></li>
+              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Services</h4>
+              <ul className="space-y-3 text-base">
+                <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Custom Website Request</Link></li>
+                <li><Link href="/websites?category=College" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">College Fests & Tech</Link></li>
+                <li><Link href="/websites?category=Wedding" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Wedding Celebrations</Link></li>
+                <li><Link href="/websites?category=Business" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Business Campaigns</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Portal & Help</h4>
-              <ul className="space-y-2.5 text-sm">
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact Support</Link></li>
-                <li><Link href="/faq" className="hover:text-white transition-colors">Frequently Asked Questions</Link></li>
+              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Portal & Help</h4>
+              <ul className="space-y-3 text-base">
+                <li><Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Contact Support</Link></li>
+                <li><Link href="/faq" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Frequently Asked Questions</Link></li>
                 <li>
-                  <Link 
-                    href="/admin" 
-                    className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold transition-colors mt-2"
+                  <Link
+                    href="/admin"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold transition-all duration-300 mt-3 bg-blue-500/10 px-4 py-2 rounded-xl hover:bg-blue-500/20"
                   >
                     <ShieldCheck className="h-4 w-4" />
                     Admin Portal
@@ -419,12 +441,12 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="border-t border-slate-800 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-slate-500">
             <p>© {new Date().getFullYear()} {businessName}. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link href="/terms" className="hover:text-slate-400">Terms of Service</Link>
-              <Link href="/privacy" className="hover:text-slate-400">Privacy Policy</Link>
-              <Link href="/admin/login" className="text-slate-600 hover:text-slate-400">Admin Sign In</Link>
+            <div className="flex gap-8">
+              <Link href="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
+              <Link href="/admin/login" className="text-slate-600 hover:text-slate-400 transition-colors">Admin Sign In</Link>
             </div>
           </div>
         </div>

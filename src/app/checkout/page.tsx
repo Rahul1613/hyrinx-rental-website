@@ -106,84 +106,85 @@ function CheckoutContent() {
     { number: 1, title: 'Review', icon: FileText },
     { number: 2, title: 'Information', icon: User },
     { number: 3, title: 'Customization', icon: Calendar },
-    { number: 4, title: 'Payment', icon: CreditCard },
   ]
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <Navbar />
-      
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+
+      <div className="pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           {/* Progress Steps */}
-          <div className="mb-12">
+          <div className="mb-16">
             <div className="flex items-center justify-between">
               {steps.map((s, i) => (
                 <div key={s.number} className="flex items-center">
                   <div className="flex flex-col items-center">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center border-2 transition-all duration-300 ${
                         step >= s.number
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-slate-200 text-slate-600'
+                          ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white border-blue-500 shadow-lg shadow-blue-500/30'
+                          : 'bg-slate-100 text-slate-400 border-slate-200'
                       }`}
                     >
                       {step > s.number ? (
-                        <Check className="h-5 w-5" />
+                        <Check className="h-6 w-6" />
                       ) : (
-                        <s.icon className="h-5 w-5" />
+                        <s.icon className="h-6 w-6" />
                       )}
                     </div>
-                    <span className="text-xs mt-2 text-slate-600">{s.title}</span>
+                    <span className={`text-sm mt-3 font-bold transition-colors ${
+                      step >= s.number ? 'text-slate-900' : 'text-slate-400'
+                    }`}>{s.title}</span>
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="w-16 h-0.5 bg-slate-200 mx-2" />
+                    <div className="w-20 h-1 bg-slate-200 mx-3 rounded-full" />
                   )}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Main Content */}
             <div className="lg:col-span-2">
               {step === 1 && (
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Review Your Selection</h2>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-lg">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-8">Review Your Selection</h2>
+
+                  <div className="space-y-8">
+                    <div className="flex items-start gap-6 p-6 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-slate-200">
                       {website.thumbnail && (
                         <img
                           src={website.thumbnail}
                           alt={website.name}
-                          className="w-24 h-16 object-cover rounded-lg"
+                          className="w-32 h-24 object-cover rounded-xl shadow-md"
                         />
                       )}
                       <div>
-                        <h3 className="font-semibold text-slate-900">{website.name}</h3>
-                        <p className="text-sm text-slate-600">{website.category}</p>
-                        <p className="text-sm text-slate-600 mt-1">{website.shortDesc}</p>
+                        <h3 className="text-xl font-bold text-slate-900">{website.name}</h3>
+                        <p className="text-base text-slate-600 font-medium">{website.category}</p>
+                        <p className="text-base text-slate-600 mt-2">{website.shortDesc}</p>
                       </div>
                     </div>
 
-                    <div className="border-t border-slate-200 pt-6">
-                      <h3 className="font-semibold text-slate-900 mb-4">Rental Details</h3>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-slate-600">Duration</span>
-                          <span className="font-medium text-slate-900">{plan.name}</span>
+                    <div className="border-t-2 border-slate-200 pt-8">
+                      <h3 className="text-xl font-bold text-slate-900 mb-6">Rental Details</h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
+                          <span className="text-slate-600 font-medium">Duration</span>
+                          <span className="font-bold text-slate-900 text-lg">{plan.name}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-slate-600">Price</span>
-                          <span className="font-medium text-slate-900">{formatPrice(plan.price)}</span>
+                        <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl">
+                          <span className="text-slate-600 font-medium">Price</span>
+                          <span className="font-bold text-slate-900 text-lg">{formatPrice(plan.price)}</span>
                         </div>
                       </div>
                     </div>
 
                     <button
                       onClick={() => setStep(2)}
-                      className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 px-8 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1"
                     >
                       Continue
                       <ArrowRight className="h-5 w-5" />
@@ -193,58 +194,58 @@ function CheckoutContent() {
               )}
 
               {step === 2 && (
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Your Information</h2>
-                  
-                  <form onSubmit={(e) => { e.preventDefault(); setStep(3); }} className="space-y-4">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-8">Your Information</h2>
+
+                  <form onSubmit={(e) => { e.preventDefault(); setStep(3); }} className="space-y-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Full Name *
                       </label>
                       <input
                         type="text"
                         value={formData.fullName}
                         onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Email *
                       </label>
                       <input
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Phone *
                       </label>
                       <input
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Company/Event Name
                       </label>
                       <input
                         type="text"
                         value={formData.companyEventName}
                         onChange={(e) => setFormData(prev => ({ ...prev, companyEventName: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                       />
                     </div>
 
@@ -252,13 +253,13 @@ function CheckoutContent() {
                       <button
                         type="button"
                         onClick={() => setStep(1)}
-                        className="flex-1 bg-slate-100 text-slate-900 py-3 px-6 rounded-lg font-medium hover:bg-slate-200 transition-colors"
+                        className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-900 py-4 px-6 rounded-2xl font-bold transition-all duration-300"
                       >
                         Back
                       </button>
                       <button
                         type="submit"
-                        className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40"
                       >
                         Continue
                       </button>
@@ -268,112 +269,70 @@ function CheckoutContent() {
               )}
 
               {step === 3 && (
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Customization</h2>
-                  
-                  <form onSubmit={(e) => { e.preventDefault(); setStep(4); }} className="space-y-4">
+                <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-8">Customization</h2>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Website Title *
                       </label>
                       <input
                         type="text"
                         value={formData.websiteTitle}
                         onChange={(e) => setFormData(prev => ({ ...prev, websiteTitle: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Preferred Subdomain (Optional)
                       </label>
                       <input
                         type="text"
                         value={formData.preferredSubdomain}
                         onChange={(e) => setFormData(prev => ({ ...prev, preferredSubdomain: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         placeholder="myevent"
                       />
-                      <p className="text-sm text-slate-500 mt-1">Your website will be at: myevent.hyrinx.com</p>
+                      <p className="text-base text-slate-500 mt-2 font-medium">Your website will be at: myevent.hyrinx.com</p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label className="block text-sm font-bold text-slate-700 mb-3">
                         Required Launch Date *
                       </label>
                       <input
                         type="date"
                         value={formData.requiredLaunchDate}
                         onChange={(e) => setFormData(prev => ({ ...prev, requiredLaunchDate: e.target.value }))}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
                         required
                       />
                     </div>
 
-                    <div className="flex gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setStep(2)}
-                        className="flex-1 bg-slate-100 text-slate-900 py-3 px-6 rounded-lg font-medium hover:bg-slate-200 transition-colors"
-                      >
-                        Back
-                      </button>
-                      <button
-                        type="submit"
-                        className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                      >
-                        Continue to Payment
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              )}
-
-              {step === 4 && (
-                <div className="bg-white rounded-xl p-6 shadow-sm">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Payment</h2>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="bg-slate-50 p-6 rounded-lg">
-                      <h3 className="font-semibold text-slate-900 mb-4">Order Summary</h3>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-slate-600">Website</span>
-                          <span className="font-medium text-slate-900">{website.name}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-slate-600">Duration</span>
-                          <span className="font-medium text-slate-900">{plan.name}</span>
-                        </div>
-                        <div className="border-t border-slate-200 pt-3 flex justify-between">
-                          <span className="text-slate-600">Total</span>
-                          <span className="font-bold text-slate-900 text-xl">{formatPrice(plan.price)}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
-                      <p className="text-sm text-yellow-800">
-                        <strong>Note:</strong> This is a demo payment flow. In production, you would be redirected to a payment gateway like Razorpay, Stripe, or PayPal.
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 p-6 rounded-2xl">
+                      <p className="text-base text-blue-800 font-medium">
+                        <strong>Note:</strong> Your order will be created without payment. Payment will be collected later based on your preferences.
                       </p>
                     </div>
 
                     <div className="flex gap-4">
                       <button
                         type="button"
-                        onClick={() => setStep(3)}
-                        className="flex-1 bg-slate-100 text-slate-900 py-3 px-6 rounded-lg font-medium hover:bg-slate-200 transition-colors"
+                        onClick={() => setStep(2)}
+                        className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-900 py-4 px-6 rounded-2xl font-bold transition-all duration-300"
                       >
                         Back
                       </button>
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50"
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 disabled:opacity-50"
                       >
-                        {loading ? 'Processing...' : `Pay ${formatPrice(plan.price)}`}
+                        {loading ? 'Creating Order...' : 'Create Order'}
                       </button>
                     </div>
                   </form>
@@ -383,36 +342,36 @@ function CheckoutContent() {
 
             {/* Order Summary Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl p-6 shadow-sm sticky top-24">
-                <h3 className="font-semibold text-slate-900 mb-4">Order Summary</h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200 sticky top-28">
+                <h3 className="text-xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-6">Order Summary</h3>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 p-4 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-slate-200">
                     {website.thumbnail && (
                       <img
                         src={website.thumbnail}
                         alt={website.name}
-                        className="w-16 h-12 object-cover rounded-lg"
+                        className="w-20 h-16 object-cover rounded-xl shadow-md"
                       />
                     )}
                     <div>
-                      <p className="font-medium text-slate-900 text-sm">{website.name}</p>
-                      <p className="text-xs text-slate-600">{plan.name}</p>
+                      <p className="font-bold text-slate-900 text-base">{website.name}</p>
+                      <p className="text-sm text-slate-600 font-medium">{plan.name}</p>
                     </div>
                   </div>
 
-                  <div className="border-t border-slate-200 pt-4 space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-600">Website Rental</span>
-                      <span className="font-medium text-slate-900">{formatPrice(plan.price)}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-600">Add-ons</span>
-                      <span className="font-medium text-slate-900">₹0</span>
-                    </div>
-                    <div className="border-t border-slate-200 pt-2 flex justify-between">
-                      <span className="font-semibold text-slate-900">Total</span>
+                  <div className="border-t-2 border-slate-200 pt-6 space-y-4">
+                    <div className="flex justify-between text-base">
+                      <span className="text-slate-600 font-medium">Website Rental</span>
                       <span className="font-bold text-slate-900">{formatPrice(plan.price)}</span>
+                    </div>
+                    <div className="flex justify-between text-base">
+                      <span className="text-slate-600 font-medium">Add-ons</span>
+                      <span className="font-bold text-slate-900">₹0</span>
+                    </div>
+                    <div className="border-t-2 border-slate-200 pt-4 flex justify-between">
+                      <span className="font-bold text-slate-900 text-lg">Total</span>
+                      <span className="font-black text-slate-900 text-xl">{formatPrice(plan.price)}</span>
                     </div>
                   </div>
                 </div>
