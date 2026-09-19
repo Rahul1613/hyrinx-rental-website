@@ -1,4 +1,3 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "prisma generate && next build --webpack"
+  "framework": "nextjs"
 }
