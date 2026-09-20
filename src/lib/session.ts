@@ -1,5 +1,5 @@
+import { createHmac, timingSafeEqual } from 'node:crypto'
 import { cookies } from 'next/headers'
-import { prisma } from './prisma'
 
 const SESSION_COOKIE_NAME = 'hyrinx_admin_session'
 const SESSION_DURATION = 24 * 60 * 60 * 1000 // 24 hours
@@ -9,6 +9,54 @@ export interface SessionData {
   email: string
   name: string
   role: string
+  exp: number
+}
+
+function getSessionSecret() {
+  return process.env.ADMIN_ACCESS_KEY || 'hyrinx-local-dev-secret'
+}
+
+function encodeSessionPayload(payload: SessionData) {
+  const encoded = Buffer.from(JSON.stringify(payload)).toString('base64url')
+  const signature = createHmac('sha256', getSessionSecret())
+    .update(encoded)
+    .digest('base64url')
+
+  return `${encoded}.${signature}`
+}
+
+function decodeSessionPayload(token: string): SessionData | null {
+  try {
+    const [encodedPayload, signature] = token.split('.')
+    if (!encodedPayload || !signature) {
+      return null
+    }
+
+    const expectedSignature = createHmac('sha256', getSessionSecret())
+      .update(encodedPayload)
+      .digest('base64url')
+
+    if (
+      signature.length !== expectedSignature.length ||
+      !timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))
+    ) {
+      return null
+    }
+
+    const payload = JSON.parse(Buffer.from(encodedPayload, 'base64url').toString()) as SessionData
+
+    if (!payload.adminId || !payload.email || !payload.name || !payload.role || !payload.exp) {
+      return null
+    }
+
+    if (Date.now() > payload.exp) {
+      return null
+    }
+
+    return payload
+  } catch {
+    return null
+  }
 }
 
 export async function createSession(admin: any) {
@@ -17,10 +65,11 @@ export async function createSession(admin: any) {
     email: admin.email,
     name: admin.name,
     role: admin.role,
+    exp: Date.now() + SESSION_DURATION,
   }
-  
-  const sessionToken = Buffer.from(JSON.stringify(sessionData)).toString('base64')
-  
+
+  const sessionToken = encodeSessionPayload(sessionData)
+
   const cookieStore = await cookies()
   cookieStore.set(SESSION_COOKIE_NAME, sessionToken, {
     httpOnly: true,
@@ -29,36 +78,26 @@ export async function createSession(admin: any) {
     maxAge: SESSION_DURATION / 1000,
     path: '/',
   })
-  
+
   return sessionData
 }
 
 export async function getSession(): Promise<SessionData | null> {
   const cookieStore = await cookies()
   const sessionToken = cookieStore.get(SESSION_COOKIE_NAME)?.value
-  
+
   if (!sessionToken) {
     return null
   }
-  
-  try {
-    const sessionData = JSON.parse(Buffer.from(sessionToken, 'base64').toString())
-    
-    // Verify admin still exists and is active
-    const admin = await prisma.adminUser.findUnique({
-      where: { id: sessionData.adminId },
-    })
-    
-    if (!admin || !admin.active) {
-      await destroySession()
-      return null
-    }
-    
-    return sessionData
-  } catch {
+
+  const sessionData = decodeSessionPayload(sessionToken)
+
+  if (!sessionData) {
     await destroySession()
     return null
   }
+
+  return sessionData
 }
 
 export async function destroySession() {
@@ -68,20 +107,20 @@ export async function destroySession() {
 
 export async function requireAuth(): Promise<SessionData> {
   const session = await getSession()
-  
+
   if (!session) {
     throw new Error('Unauthorized')
   }
-  
+
   return session
 }
 
 export async function requireRole(role: string): Promise<SessionData> {
   const session = await requireAuth()
-  
+
   if (session.role !== role && session.role !== 'super_admin') {
     throw new Error('Forbidden')
   }
-  
+
   return session
 }

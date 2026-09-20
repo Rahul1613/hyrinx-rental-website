@@ -73,61 +73,61 @@ export default async function AdminRentalsPage() {
         </div>
 
         {/* Rentals Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
           <div className="overflow-x-auto">
-          <table className="min-w-[820px] w-full">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
-              <tr>
-                <th className="px-6 py-4 text-left">Website</th>
-                <th className="px-6 py-4 text-left">Customer</th>
-                <th className="px-6 py-4 text-left">Duration</th>
-                <th className="px-6 py-4 text-left">Start Date</th>
-                <th className="px-6 py-4 text-left">Expiry Date</th>
-                <th className="px-6 py-4 text-center">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 text-sm">
-              {rentals.map((rental) => {
-                const orderItem = rental.order?.orderItems[0]
-                const plan = orderItem?.pricingPlan
+            <table className="min-w-[680px] w-full">
+              <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-semibold uppercase tracking-wider text-slate-700 sm:text-xs">
+                <tr>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Website</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Customer</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Duration</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Start</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Expiry</th>
+                  <th className="px-3 py-3 text-center sm:px-5 sm:py-4">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-sm">
+                {rentals.map((rental) => {
+                  const orderItem = rental.order?.orderItems[0]
+                  const plan = orderItem?.pricingPlan
 
-                return (
-                  <tr key={rental.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4">
-                      <div className="font-semibold text-slate-900">{rental.website?.name}</div>
-                    </td>
-                    <td className="px-6 py-4 text-slate-600">
-                      {rental.order?.customerName || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 text-slate-600">
-                      {plan?.name || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 text-slate-600 text-xs">
-                      {new Date(rental.startTime).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 text-slate-600 text-xs">
-                      {new Date(rental.expiryTime).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span
-                        className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${
-                          rental.status === 'active'
-                            ? 'bg-green-100 text-green-700'
-                            : rental.status === 'expiring_soon'
-                            ? 'bg-yellow-100 text-yellow-700'
-                            : rental.status === 'expired'
-                            ? 'bg-red-100 text-red-700'
-                            : 'bg-slate-100 text-slate-700'
-                        }`}
-                      >
-                        {rental.status.replace('_', ' ')}
-                      </span>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+                  return (
+                    <tr key={rental.id} className="hover:bg-slate-50">
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">
+                        <div className="font-semibold text-slate-900">{rental.website?.name}</div>
+                      </td>
+                      <td className="px-3 py-3 text-slate-600 sm:px-5 sm:py-4">
+                        {rental.order?.customerName || 'N/A'}
+                      </td>
+                      <td className="px-3 py-3 text-slate-600 sm:px-5 sm:py-4">
+                        {plan?.name || 'N/A'}
+                      </td>
+                      <td className="px-3 py-3 text-[11px] text-slate-600 sm:px-5 sm:py-4 sm:text-xs">
+                        {new Date(rental.startTime).toLocaleDateString()}
+                      </td>
+                      <td className="px-3 py-3 text-[11px] text-slate-600 sm:px-5 sm:py-4 sm:text-xs">
+                        {new Date(rental.expiryTime).toLocaleDateString()}
+                      </td>
+                      <td className="px-3 py-3 text-center sm:px-5 sm:py-4">
+                        <span
+                          className={`inline-block rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-wider sm:text-xs ${
+                            rental.status === 'active'
+                              ? 'bg-green-100 text-green-700'
+                              : rental.status === 'expiring_soon'
+                              ? 'bg-yellow-100 text-yellow-700'
+                              : rental.status === 'expired'
+                              ? 'bg-red-100 text-red-700'
+                              : 'bg-slate-100 text-slate-700'
+                          }`}
+                        >
+                          {rental.status.replace('_', ' ')}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
 
           {rentals.length === 0 && (

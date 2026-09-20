@@ -81,114 +81,114 @@ export default function AdminWebsitesPage() {
         </Link>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-        <table className="min-w-[900px] w-full">
-          <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
-            <tr>
-              <th className="px-6 py-4 text-left">Website Template</th>
-              <th className="px-6 py-4 text-left">Category</th>
-              <th className="px-6 py-4 text-left">Starting Price</th>
-              <th className="px-6 py-4 text-center">Featured</th>
-              <th className="px-6 py-4 text-center">Status</th>
-              <th className="px-6 py-4 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-200 text-sm">
-            {websites.map((website) => (
-              <tr key={website.id} className="hover:bg-slate-50 transition-colors">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    {website.thumbnail ? (
-                      <img
-                        src={website.thumbnail}
-                        alt={website.name}
-                        className="w-12 h-9 rounded-md object-cover border border-slate-200"
-                      />
-                    ) : (
-                      <div className="w-12 h-9 rounded-md bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">
-                        {website.name[0]}
-                      </div>
-                    )}
-                    <div>
-                      <div className="font-semibold text-slate-900 flex items-center gap-2">
-                        {website.name}
-                        {website.featured && (
-                          <span className="bg-yellow-100 text-yellow-800 text-[10px] font-bold px-1.5 py-0.5 rounded">
-                            Featured
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-xs text-slate-500 font-mono">/{website.slug}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <span className="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md text-xs font-medium">
-                    {website.category}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-slate-900 font-semibold">
-                  {formatPrice(website.startingPrice || 0)}
-                  <span className="text-xs font-normal text-slate-500">/day</span>
-                </td>
-                <td className="px-6 py-4 text-center">
-                  <button
-                    onClick={() => toggleStatus(website, 'featured')}
-                    title={website.featured ? 'Remove from Featured' : 'Feature on Homepage'}
-                    className="p-1 rounded-full hover:bg-slate-100 transition-colors"
-                  >
-                    <Star
-                      className={`h-5 w-5 ${
-                        website.featured
-                          ? 'text-yellow-500 fill-yellow-500'
-                          : 'text-slate-300 hover:text-slate-400'
-                      }`}
-                    />
-                  </button>
-                </td>
-                <td className="px-6 py-4 text-center">
-                  <button
-                    onClick={() => toggleStatus(website, 'published')}
-                    className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-colors ${
-                      website.published
-                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    {website.published ? 'Published' : 'Draft'}
-                  </button>
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-1.5">
-                    <Link
-                      href={`/websites/${website.slug}`}
-                      target="_blank"
-                      className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
-                      title="Preview on site"
-                    >
-                      <Eye className="h-4 w-4" />
-                    </Link>
-                    <Link
-                      href={`/admin/websites/${website.id}/edit`}
-                      className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      title="Edit template"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(website)}
-                      className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      title="Delete template"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                </td>
+          <table className="min-w-[700px] w-full">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-semibold uppercase tracking-wider text-slate-700 sm:text-xs">
+              <tr>
+                <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Website</th>
+                <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Category</th>
+                <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Price</th>
+                <th className="px-3 py-3 text-center sm:px-5 sm:py-4">Featured</th>
+                <th className="px-3 py-3 text-center sm:px-5 sm:py-4">Status</th>
+                <th className="px-3 py-3 text-right sm:px-5 sm:py-4">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-200 text-sm">
+              {websites.map((website) => (
+                <tr key={website.id} className="hover:bg-slate-50 transition-colors">
+                  <td className="px-3 py-3 sm:px-5 sm:py-4">
+                    <div className="flex items-center gap-3">
+                      {website.thumbnail ? (
+                        <img
+                          src={website.thumbnail}
+                          alt={website.name}
+                          className="h-9 w-12 rounded-md border border-slate-200 object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-9 w-12 items-center justify-center rounded-md bg-blue-100 text-[10px] font-bold text-blue-600">
+                          {website.name[0]}
+                        </div>
+                      )}
+                      <div>
+                        <div className="flex items-center gap-2 font-semibold text-slate-900">
+                          <span className="truncate max-w-[140px] sm:max-w-none">{website.name}</span>
+                          {website.featured && (
+                            <span className="rounded bg-yellow-100 px-1.5 py-0.5 text-[9px] font-bold text-yellow-800">
+                              Featured
+                            </span>
+                          )}
+                        </div>
+                        <div className="font-mono text-[10px] text-slate-500">/{website.slug}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-3 py-3 sm:px-5 sm:py-4">
+                    <span className="rounded-md bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-700 sm:text-xs">
+                      {website.category}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 font-semibold text-slate-900 sm:px-5 sm:py-4">
+                    {formatPrice(website.startingPrice || 0)}
+                    <span className="ml-1 text-[10px] font-normal text-slate-500 sm:text-xs">/day</span>
+                  </td>
+                  <td className="px-3 py-3 text-center sm:px-5 sm:py-4">
+                    <button
+                      onClick={() => toggleStatus(website, 'featured')}
+                      title={website.featured ? 'Remove from Featured' : 'Feature on Homepage'}
+                      className="rounded-full p-1 transition-colors hover:bg-slate-100"
+                    >
+                      <Star
+                        className={`h-4 w-4 sm:h-5 sm:w-5 ${
+                          website.featured
+                            ? 'fill-yellow-500 text-yellow-500'
+                            : 'text-slate-300 hover:text-slate-400'
+                        }`}
+                      />
+                    </button>
+                  </td>
+                  <td className="px-3 py-3 text-center sm:px-5 sm:py-4">
+                    <button
+                      onClick={() => toggleStatus(website, 'published')}
+                      className={`rounded-full px-2 py-1 text-[10px] font-semibold transition-colors sm:text-xs ${
+                        website.published
+                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {website.published ? 'Published' : 'Draft'}
+                    </button>
+                  </td>
+                  <td className="px-3 py-3 text-right sm:px-5 sm:py-4">
+                    <div className="flex items-center justify-end gap-1">
+                      <Link
+                        href={`/websites/${website.slug}`}
+                        target="_blank"
+                        className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                        title="Preview on site"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Link>
+                      <Link
+                        href={`/admin/websites/${website.id}/edit`}
+                        className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                        title="Edit template"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(website)}
+                        className="rounded-lg p-2 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600"
+                        title="Delete template"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         {websites.length === 0 && !loading && (

@@ -68,13 +68,13 @@ export default function AdminSettingsPage() {
   return (
     <AdminShell>
       <div className="max-w-4xl">
-        <div className="flex items-center justify-between mb-8">
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-1">Platform Settings</h1>
-            <p className="text-slate-600">Configure business information, contact details, and platform defaults</p>
+            <h1 className="mb-1 text-2xl font-bold text-slate-900 sm:text-3xl">Platform Settings</h1>
+            <p className="text-sm text-slate-600 sm:text-base">Configure business information, contact details, and platform defaults</p>
           </div>
           {saved && (
-            <div className="flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-lg text-sm font-semibold animate-fade-in">
+            <div className="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 text-sm font-semibold text-green-800 sm:px-4">
               <Check className="h-4 w-4" />
               Settings saved successfully
             </div>
@@ -88,35 +88,35 @@ export default function AdminSettingsPage() {
               <Building2 className="h-5 w-5 text-blue-600" />
               Business & Brand Info
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Business Name</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Business Name</label>
                 <input
                   type="text"
                   value={formData.business_name}
                   onChange={(e) => setFormData({ ...formData, business_name: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Tagline / Slogan</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Tagline / Slogan</label>
                 <input
                   type="text"
                   value={formData.business_tagline}
                   onChange={(e) => setFormData({ ...formData, business_tagline: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">Office / Base Location</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Office / Base Location</label>
                 <input
                   type="text"
                   value={formData.business_location}
                   onChange={(e) => setFormData({ ...formData, business_location: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -128,36 +128,36 @@ export default function AdminSettingsPage() {
               <Phone className="h-5 w-5 text-blue-600" />
               Customer Contact & Support
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Support Email</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Support Email</label>
                 <input
                   type="email"
                   value={formData.business_email}
                   onChange={(e) => setFormData({ ...formData, business_email: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Phone Number</label>
                 <input
                   type="text"
                   value={formData.business_phone}
                   onChange={(e) => setFormData({ ...formData, business_phone: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">WhatsApp Number</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">WhatsApp Number</label>
                 <input
                   type="text"
                   value={formData.business_whatsapp}
                   onChange={(e) => setFormData({ ...formData, business_whatsapp: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -169,25 +169,25 @@ export default function AdminSettingsPage() {
               <DollarSign className="h-5 w-5 text-blue-600" />
               Ordering & Financial Defaults
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Platform Currency Code</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Platform Currency Code</label>
                 <input
                   type="text"
                   value={formData.currency}
                   onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Order ID Prefix</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Order ID Prefix</label>
                 <input
                   type="text"
                   value={formData.order_prefix}
                   onChange={(e) => setFormData({ ...formData, order_prefix: e.target.value })}
-                  className="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>

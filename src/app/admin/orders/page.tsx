@@ -35,75 +35,75 @@ export default async function AdminOrdersPage() {
           <p className="text-sm text-slate-600 sm:text-base">Track orders, customer details, and rental status</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
           <div className="overflow-x-auto">
-          <table className="min-w-[900px] w-full">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
-              <tr>
-                <th className="px-6 py-4 text-left">Order #</th>
-                <th className="px-6 py-4 text-left">Customer</th>
-                <th className="px-6 py-4 text-left">Website & Duration</th>
-                <th className="px-6 py-4 text-left">Amount</th>
-                <th className="px-6 py-4 text-center">Status</th>
-                <th className="px-6 py-4 text-right">Date</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 text-sm">
-              {orders.map((order) => {
-                const orderItem = order.orderItems[0]
-                const website = orderItem?.website
-                const plan = orderItem?.pricingPlan
+            <table className="min-w-[680px] w-full">
+              <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-semibold uppercase tracking-wider text-slate-700 sm:text-xs">
+                <tr>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Order #</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Customer</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Website</th>
+                  <th className="px-3 py-3 text-left sm:px-5 sm:py-4">Amount</th>
+                  <th className="px-3 py-3 text-center sm:px-5 sm:py-4">Status</th>
+                  <th className="px-3 py-3 text-right sm:px-5 sm:py-4">Date</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-sm">
+                {orders.map((order) => {
+                  const orderItem = order.orderItems[0]
+                  const website = orderItem?.website
+                  const plan = orderItem?.pricingPlan
 
-                return (
-                  <tr key={order.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4 font-mono font-bold text-blue-600">
-                      {order.orderNumber}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div>
-                        <div className="font-semibold text-slate-900">{order.customerName}</div>
-                        <div className="text-xs text-slate-500 flex items-center gap-3 mt-0.5">
-                          <a href={`mailto:${order.customerEmail}`} className="hover:underline flex items-center gap-1">
-                            <Mail className="h-3 w-3" />
-                            {order.customerEmail}
-                          </a>
-                          <a href={`tel:${order.customerPhone}`} className="hover:underline flex items-center gap-1">
-                            <Phone className="h-3 w-3" />
-                            {order.customerPhone}
-                          </a>
+                  return (
+                    <tr key={order.id} className="hover:bg-slate-50">
+                      <td className="px-3 py-3 font-mono text-xs font-bold text-blue-600 sm:px-5 sm:py-4 sm:text-sm">
+                        {order.orderNumber}
+                      </td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">
+                        <div>
+                          <div className="font-semibold text-slate-900">{order.customerName}</div>
+                          <div className="mt-0.5 flex flex-col gap-1 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:gap-3">
+                            <a href={`mailto:${order.customerEmail}`} className="flex items-center gap-1 hover:underline">
+                              <Mail className="h-3 w-3" />
+                              {order.customerEmail}
+                            </a>
+                            <a href={`tel:${order.customerPhone}`} className="flex items-center gap-1 hover:underline">
+                              <Phone className="h-3 w-3" />
+                              {order.customerPhone}
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-slate-900">{website?.name || 'N/A'}</div>
-                      <div className="text-xs text-slate-500">{plan?.name || 'Plan'}</div>
-                    </td>
-                    <td className="px-6 py-4 text-slate-900 font-bold">
-                      {formatPrice(order.totalAmount)}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span
-                        className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${
-                          order.status === 'paid' || order.status === 'active'
-                            ? 'bg-green-100 text-green-700'
-                            : order.status === 'pending'
-                            ? 'bg-yellow-100 text-yellow-700'
-                            : order.status === 'completed'
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-slate-100 text-slate-700'
-                        }`}
-                      >
-                        {order.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-slate-500 text-xs text-right">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+                      </td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">
+                        <div className="font-medium text-slate-900">{website?.name || 'N/A'}</div>
+                        <div className="text-[11px] text-slate-500">{plan?.name || 'Plan'}</div>
+                      </td>
+                      <td className="px-3 py-3 font-bold text-slate-900 sm:px-5 sm:py-4">
+                        {formatPrice(order.totalAmount)}
+                      </td>
+                      <td className="px-3 py-3 text-center sm:px-5 sm:py-4">
+                        <span
+                          className={`inline-block rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-wider sm:text-xs ${
+                            order.status === 'paid' || order.status === 'active'
+                              ? 'bg-green-100 text-green-700'
+                              : order.status === 'pending'
+                              ? 'bg-yellow-100 text-yellow-700'
+                              : order.status === 'completed'
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-slate-100 text-slate-700'
+                          }`}
+                        >
+                          {order.status}
+                        </span>
+                      </td>
+                      <td className="px-3 py-3 text-right text-[11px] text-slate-500 sm:px-5 sm:py-4 sm:text-xs">
+                        {new Date(order.createdAt).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
 
           {orders.length === 0 && (
