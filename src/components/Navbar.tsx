@@ -22,6 +22,7 @@ export default function Navbar() {
     { name: 'Websites', href: '/websites' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'How It Works', href: '/how-it-works' },
+    { name: 'Founders', href: '/founders' },
     { name: 'Custom Website', href: '/custom-website' },
     { name: 'Contact', href: '/contact' },
   ]
