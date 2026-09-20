@@ -26,7 +26,7 @@ const founders = [
     quote:
       'We build experiences that feel as premium as the moments they represent.',
     image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80',
+      '/rahul.png',
     accent: 'from-blue-600 via-indigo-600 to-violet-600',
   },
   {
@@ -40,7 +40,7 @@ const founders = [
     quote:
       'The best digital experiences feel effortless, emotional, and unforgettable.',
     image:
-      'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80',
+      '/harshal.jpeg',
     accent: 'from-pink-500 via-rose-500 to-orange-500',
   },
 ]
