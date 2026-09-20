@@ -20,12 +20,6 @@ async function main() {
       name: 'Harshal',
       role: 'super_admin',
     },
-    {
-      email: 'admin@hyrinx.com',
-      passwordRaw: 'admin123',
-      name: 'Super Admin',
-      role: 'super_admin',
-    },
   ]
 
   for (const user of adminUsers) {

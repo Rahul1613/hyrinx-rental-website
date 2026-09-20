@@ -430,13 +430,13 @@ export default async function Home() {
               <ul className="space-y-3 text-base">
                 <li><Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Contact Support</Link></li>
                 <li><Link href="/faq" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Frequently Asked Questions</Link></li>
-                <li>
+                <li className="pt-2">
                   <Link
-                    href="/admin"
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold transition-all duration-300 mt-3 bg-blue-500/10 px-4 py-2 rounded-xl hover:bg-blue-500/20"
+                    href="/admin/login"
+                    className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-slate-400 hover:text-slate-200 transition-all duration-300 opacity-80 hover:opacity-100"
                   >
-                    <ShieldCheck className="h-4 w-4" />
-                    Admin Portal
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    Staff Access
                   </Link>
                 </li>
               </ul>
@@ -448,7 +448,7 @@ export default async function Home() {
             <div className="flex gap-8">
               <Link href="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
-              <Link href="/admin/login" className="text-slate-600 hover:text-slate-400 transition-colors">Admin Sign In</Link>
+              <Link href="/admin/login" className="text-[10px] uppercase tracking-[0.22em] text-slate-500 hover:text-slate-300 transition-colors">Staff Access</Link>
             </div>
           </div>
         </div>
