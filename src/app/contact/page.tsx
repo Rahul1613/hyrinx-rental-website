@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
-import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle2, Camera } from 'lucide-react'
 
 export default function ContactPage() {
   const [settings, setSettings] = useState({
-    business_email: 'contact@hyrinx.com',
-    business_phone: '+91 98765 43210',
-    business_whatsapp: '+91 98765 43210',
+    business_email: 'hyrinxofficial@gmail.com',
+    business_phone: '+91 9730213645',
+    business_whatsapp: '+91 9730213645',
     business_location: 'India',
   })
 
@@ -121,9 +121,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2 text-lg">Phone</h3>
-                    <a href={`tel:${settings.business_phone}`} className="text-blue-600 hover:text-blue-700 hover:underline text-base font-medium transition-colors">
-                      {settings.business_phone}
-                    </a>
+                    <div className="space-y-2">
+                      <a href="tel:+919730213645" className="block text-blue-600 hover:text-blue-700 hover:underline text-base font-medium transition-colors">
+                        +91 9730213645
+                      </a>
+                      <a href="tel:+917020072239" className="block text-blue-600 hover:text-blue-700 hover:underline text-base font-medium transition-colors">
+                        +91 7020072239
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -133,14 +138,51 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2 text-lg">WhatsApp</h3>
-                    <a
-                      href={`https://wa.me/${settings.business_whatsapp.replace(/[^0-9]/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
-                    >
-                      {settings.business_whatsapp}
-                    </a>
+                    <div className="space-y-2">
+                      <a
+                        href="https://wa.me/919730213645"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
+                      >
+                        +91 9730213645
+                      </a>
+                      <a
+                        href="https://wa.me/917020072239"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
+                      >
+                        +91 7020072239
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-5 group">
+                  <div className="w-16 h-16 bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Camera className="h-7 w-7 text-pink-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-2 text-lg">Instagram</h3>
+                    <div className="space-y-2">
+                      <a
+                        href="https://www.instagram.com/_rahulsisode/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-pink-600 hover:text-pink-700 hover:underline text-base font-medium transition-colors"
+                      >
+                        @_rahulsisode
+                      </a>
+                      <a
+                        href="https://www.instagram.com/hxrshxl_07/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-pink-600 hover:text-pink-700 hover:underline text-base font-medium transition-colors"
+                      >
+                        @hxrshxl_07
+                      </a>
+                    </div>
                   </div>
                 </div>
 

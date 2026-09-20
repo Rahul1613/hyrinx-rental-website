@@ -43,12 +43,12 @@ export default async function AdminRentalsPage() {
     return (
       <AdminShell>
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-1">Rentals Tracking</h1>
-          <p className="text-slate-600">Monitor live deployments, scheduled rentals, and expiry deadlines</p>
+          <h1 className="text-2xl font-bold text-slate-900 mb-1 sm:text-3xl">Rentals Tracking</h1>
+          <p className="text-sm text-slate-600 sm:text-base">Monitor live deployments, scheduled rentals, and expiry deadlines</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
             <div className="flex items-center gap-3 mb-2">
               <Clock className="h-5 w-5 text-green-600" />
@@ -74,7 +74,8 @@ export default async function AdminRentalsPage() {
 
         {/* Rentals Table */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <table className="w-full">
+          <div className="overflow-x-auto">
+          <table className="min-w-[820px] w-full">
             <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
               <tr>
                 <th className="px-6 py-4 text-left">Website</th>
@@ -127,6 +128,7 @@ export default async function AdminRentalsPage() {
               })}
             </tbody>
           </table>
+          </div>
 
           {rentals.length === 0 && (
             <div className="text-center py-12">

@@ -11,9 +11,9 @@ export default function AdminSettingsPage() {
   const [formData, setFormData] = useState({
     business_name: 'Hyrinx',
     business_tagline: 'Rental Websites — Ideas Online. Moments Forever.',
-    business_email: 'contact@hyrinx.com',
-    business_phone: '+91 98765 43210',
-    business_whatsapp: '+91 98765 43210',
+    business_email: 'hyrinxofficial@gmail.com',
+    business_phone: '+91 9730213645',
+    business_whatsapp: '+91 9730213645',
     business_location: 'India',
     currency: 'INR',
     order_prefix: 'HYX',

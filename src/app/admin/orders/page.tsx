@@ -31,12 +31,13 @@ export default async function AdminOrdersPage() {
     return (
       <AdminShell>
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-1">Customer Orders</h1>
-          <p className="text-slate-600">Track orders, customer details, and rental status</p>
+          <h1 className="text-2xl font-bold text-slate-900 mb-1 sm:text-3xl">Customer Orders</h1>
+          <p className="text-sm text-slate-600 sm:text-base">Track orders, customer details, and rental status</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <table className="w-full">
+          <div className="overflow-x-auto">
+          <table className="min-w-[900px] w-full">
             <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
               <tr>
                 <th className="px-6 py-4 text-left">Order #</th>
@@ -103,6 +104,7 @@ export default async function AdminOrdersPage() {
               })}
             </tbody>
           </table>
+          </div>
 
           {orders.length === 0 && (
             <div className="text-center py-12">

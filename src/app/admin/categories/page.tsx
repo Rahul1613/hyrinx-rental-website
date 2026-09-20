@@ -94,17 +94,17 @@ export default function AdminCategoriesPage() {
   return (
     <AdminShell>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-1">Categories</h1>
-        <p className="text-slate-600">Organize and manage website categories shown on the main marketplace</p>
+        <h1 className="text-2xl font-bold text-slate-900 mb-1 sm:text-3xl">Categories</h1>
+        <p className="text-sm text-slate-600 sm:text-base">Organize and manage website categories shown on the main marketplace</p>
       </div>
 
       {/* Add Category Form */}
-      <div className="bg-white rounded-xl p-6 shadow-sm mb-8 border border-slate-200">
+      <div className="bg-white rounded-xl p-4 shadow-sm mb-8 border border-slate-200 sm:p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <Plus className="h-5 w-5 text-blue-600" />
           Add New Category
         </h2>
-        <form onSubmit={handleAddCategory} className="flex gap-4 items-start">
+        <form onSubmit={handleAddCategory} className="flex flex-col gap-3 sm:flex-row sm:items-start">
           <div className="flex-1">
             <input
               type="text"
@@ -119,7 +119,7 @@ export default function AdminCategoriesPage() {
           <button
             type="submit"
             disabled={adding}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 flex items-center justify-center gap-2 sm:w-auto"
           >
             <Plus className="h-4 w-4" />
             {adding ? 'Adding...' : 'Add Category'}
@@ -129,7 +129,8 @@ export default function AdminCategoriesPage() {
 
       {/* Categories List */}
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <table className="w-full">
+        <div className="overflow-x-auto">
+        <table className="min-w-[720px] w-full">
           <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
             <tr>
               <th className="px-6 py-3.5 text-left">Category Name</th>
@@ -181,6 +182,7 @@ export default function AdminCategoriesPage() {
             ))}
           </tbody>
         </table>
+        </div>
 
         {categories.length === 0 && !loading && (
           <div className="text-center py-12">

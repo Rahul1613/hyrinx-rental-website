@@ -67,14 +67,14 @@ export default function AdminWebsitesPage() {
 
   return (
     <AdminShell>
-      <div className="flex items-center justify-between mb-8">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-1">Websites</h1>
-          <p className="text-slate-600">Manage templates, featured items, and pricing in the marketplace</p>
+          <h1 className="text-2xl font-bold text-slate-900 mb-1 sm:text-3xl">Websites</h1>
+          <p className="text-sm text-slate-600 sm:text-base">Manage templates, featured items, and pricing in the marketplace</p>
         </div>
         <Link
           href="/admin/websites/new"
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm"
+          className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm"
         >
           <Plus className="h-4 w-4" />
           Add Website
@@ -82,7 +82,8 @@ export default function AdminWebsitesPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <table className="w-full">
+        <div className="overflow-x-auto">
+        <table className="min-w-[900px] w-full">
           <thead className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-700 uppercase tracking-wider">
             <tr>
               <th className="px-6 py-4 text-left">Website Template</th>
@@ -188,6 +189,7 @@ export default function AdminWebsitesPage() {
             ))}
           </tbody>
         </table>
+        </div>
 
         {websites.length === 0 && !loading && (
           <div className="text-center py-12">
