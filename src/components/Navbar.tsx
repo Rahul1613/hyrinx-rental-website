@@ -2,23 +2,17 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, ArrowRight, ShieldCheck } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
-
-    // Check if admin session cookie exists
-    if (typeof document !== 'undefined') {
-      setIsAdminLoggedIn(document.cookie.includes('hyrinx_admin_session='))
-    }
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -66,17 +60,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {isAdminLoggedIn && (
-              <Link
-                href="/admin"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border-2 border-blue-200 hover:from-blue-100 hover:to-indigo-100 hover:shadow-lg"
-                title="Admin Portal"
-              >
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
-                <span>Dashboard</span>
-              </Link>
-            )}
-
             <Link
               href="/websites"
               className="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 text-sm shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
@@ -113,17 +96,6 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-
-              {isAdminLoggedIn && (
-                <Link
-                  href="/admin"
-                  className="flex items-center gap-3 text-blue-700 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 rounded-xl font-bold text-sm border-2 border-blue-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <ShieldCheck className="h-5 w-5 text-blue-600" />
-                  Dashboard
-                </Link>
-              )}
 
               <Link
                 href="/websites"
