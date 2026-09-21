@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,6 +13,7 @@ export default function TermsGate() {
   const [checked, setChecked] = useState(false)
   const [declined, setDeclined] = useState(false)
   const [visible, setVisible] = useState(false)
+  const dialogRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     try {
@@ -25,12 +26,50 @@ export default function TermsGate() {
   const exempt = EXEMPT_PREFIXES.some((prefix) => pathname?.startsWith(prefix))
 
   useEffect(() => {
-    if (visible && !exempt) {
-      const previous = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-      return () => {
-        document.body.style.overflow = previous
+    if (!visible || exempt) return
+
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const focusables = () =>
+      Array.from(
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled])'
+        ) ?? []
+      )
+
+    const focusFirst = () => (focusables()[0] ?? dialogRef.current)?.focus()
+    focusFirst()
+
+    const onFocusIn = (event: FocusEvent) => {
+      if (!dialogRef.current?.contains(event.target as Node)) focusFirst()
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return
+      const items = focusables()
+      if (items.length === 0) return
+      const first = items[0]
+      const last = items[items.length - 1]
+      const active = document.activeElement
+      if (!dialogRef.current?.contains(active)) {
+        event.preventDefault()
+        first.focus()
+      } else if (event.shiftKey && active === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
       }
+    }
+
+    document.addEventListener('focusin', onFocusIn)
+    document.addEventListener('keydown', onKeyDown, true)
+    return () => {
+      document.body.style.overflow = previous
+      document.removeEventListener('focusin', onFocusIn)
+      document.removeEventListener('keydown', onKeyDown, true)
     }
   }, [visible, exempt])
 
@@ -47,9 +86,16 @@ export default function TermsGate() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm px-4 py-6">
-      <div className="w-full max-w-2xl max-h-full overflow-hidden rounded-2xl bg-white shadow-2xl flex flex-col">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="terms-gate-title"
+        tabIndex={-1}
+        className="w-full max-w-2xl max-h-full overflow-hidden rounded-2xl bg-white shadow-2xl flex flex-col"
+      >
         <div className="px-6 py-5 border-b border-slate-200">
-          <h2 className="text-xl font-extrabold text-slate-900">Terms &amp; Conditions</h2>
+          <h2 id="terms-gate-title" className="text-xl font-extrabold text-slate-900">Terms &amp; Conditions</h2>
           <p className="text-sm text-slate-500 mt-1">
             Please read and accept before using the Hyrinx website.
           </p>
