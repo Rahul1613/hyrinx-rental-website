@@ -25,7 +25,8 @@ const founders = [
       'Rahul leads the vision behind Hyrinx with a sharp focus on bold branding, scalable product thinking, and a premium customer experience that turns ideas into unforgettable digital moments.',
     quote:
       'We build experiences that feel as premium as the moments they represent.',
-    image: '/rahul.png',
+    image:
+      '/rahul.png',
     accent: 'from-blue-600 via-indigo-600 to-violet-600',
   },
   {
@@ -38,21 +39,9 @@ const founders = [
       'Harshal brings artistic direction, communication energy, and product instinct to every launch, crafting experiences that feel more human, more premium, and unmistakably memorable.',
     quote:
       'The best digital experiences feel effortless, emotional, and unforgettable.',
-    image: '/harshal.png',
+    image:
+      '/harshal.png',
     accent: 'from-pink-500 via-rose-500 to-orange-500',
-  },
-  {
-    name: 'Co-Founder',
-    title: 'Co-Founder',
-    handle: '@hyrinx_team',
-    instagram: 'https://www.instagram.com/',
-    location: 'India',
-    summary:
-      'Our co-founder helps shape the product vision, partnerships, and growth strategy, bringing a calm, strategic lens to every big move we make.',
-    quote:
-      'Great brands grow with clarity, trust, and momentum behind every experience.',
-    image: '/logo.png',
-    accent: 'from-emerald-500 via-teal-500 to-cyan-500',
   },
 ]
 
@@ -126,7 +115,7 @@ export default function FoundersPage() {
         </section>
 
         <section className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 xl:grid-cols-3">
+          <div className="grid gap-8 lg:grid-cols-2">
             {founders.map((founder) => (
               <div
                 key={founder.name}
