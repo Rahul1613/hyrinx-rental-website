@@ -40,7 +40,7 @@ const founders = [
     quote:
       'The best digital experiences feel effortless, emotional, and unforgettable.',
     image:
-      '/harshal.jpeg',
+      '/harshal.png',
     accent: 'from-pink-500 via-rose-500 to-orange-500',
   },
 ]

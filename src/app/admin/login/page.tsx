@@ -7,9 +7,9 @@ export default function AdminLoginPage({
   searchParams?: { key?: string }
 }) {
   const providedKey = searchParams?.key ?? ''
-  const requiredKey = process.env.ADMIN_ACCESS_KEY || ''
+  const requiredKey = process.env.ADMIN_ACCESS_KEY
 
-  if (!requiredKey || providedKey !== requiredKey) {
+  if (requiredKey && providedKey !== requiredKey) {
     notFound()
   }
 
