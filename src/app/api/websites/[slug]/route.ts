@@ -48,8 +48,14 @@ export async function GET(
       )
     }
 
+    // Always merge static plans with DB — never show partial list
+    const staticPlans = DEFAULT_PRICING_PLANS.filter(p => p.active)
     if (!pricingPlans || pricingPlans.length === 0) {
-      pricingPlans = DEFAULT_PRICING_PLANS.filter(p => p.active)
+      pricingPlans = staticPlans
+    } else {
+      const dbNames = new Set(pricingPlans.map((p: any) => p.name.toLowerCase()))
+      const staticOnly = staticPlans.filter(p => !dbNames.has(p.name.toLowerCase()))
+      pricingPlans = [...pricingPlans, ...staticOnly].sort((a: any, b: any) => (a.durationDays ?? 0) - (b.durationDays ?? 0))
     }
 
     return NextResponse.json({ website, pricingPlans })
