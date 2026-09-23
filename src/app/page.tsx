@@ -25,7 +25,12 @@ import {
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
 
+import { DEFAULT_WEBSITES, DEFAULT_CATEGORIES, DEFAULT_PRICING_PLANS } from '@/lib/templates-data'
+
 export const dynamic = 'force-dynamic'
+
+// Static featured websites — always the guaranteed base
+const STATIC_FEATURED = DEFAULT_WEBSITES.filter(w => w.featured && w.published).slice(0, 6)
 
 async function getHomepageData() {
   let heroContentRaw: any = null
@@ -41,10 +46,7 @@ async function getHomepageData() {
       }),
       prisma.website.findMany({
         where: { published: true },
-        orderBy: [
-          { featured: 'desc' },
-          { createdAt: 'desc' },
-        ],
+        orderBy: [{ featured: 'desc' }, { createdAt: 'desc' }],
         take: 6,
       }),
       prisma.category.findMany({
@@ -59,90 +61,46 @@ async function getHomepageData() {
       prisma.settings.findMany(),
     ])
     heroContentRaw = results[0]
-    featuredWebsites = results[1]
-    categories = results[2]
+    const dbWebsites: any[] = results[1] || []
+    categories = results[2] || []
     lowestPlan = results[3]
     settingsList = results[4]
+
+    // Always merge: static featured is the base, DB overrides matching slugs
+    const dbSlugs = new Set(dbWebsites.map((w: any) => w.slug))
+    const staticOnly = STATIC_FEATURED.filter(w => !dbSlugs.has(w.slug))
+    featuredWebsites = [...dbWebsites, ...staticOnly.map(w => ({
+      ...w,
+      features: JSON.stringify(w.features),
+      customization: JSON.stringify(w.customization),
+    }))].slice(0, 6)
+
   } catch (error) {
-    console.warn('Failed to load DB data on homepage, using default fallback data:', error)
+    console.warn('Failed to load DB data on homepage, using static fallback:', error)
   }
 
+  // Guarantee at least 6 featured websites from static data
   if (!featuredWebsites || featuredWebsites.length === 0) {
-    featuredWebsites = [
-      {
-        id: 'web-eternal-moments',
-        name: 'Eternal Moments',
-        slug: 'eternal-moments',
-        category: 'Wedding',
-        description: 'Elegant luxury wedding website featuring couple love story, ceremony itinerary, RSVP form, and interactive location map.',
-        shortDesc: 'Luxury wedding celebration website with story, venue details, and RSVP.',
-        featured: true,
-        startingPrice: 149,
-      },
-      {
-        id: 'web-birthday-bash',
-        name: 'Birthday Bash',
-        slug: 'birthday-bash',
-        category: 'Birthday',
-        description: 'Vibrant and joyful birthday celebration website with live party countdown, wish board, venue map, and RSVP.',
-        shortDesc: 'Joyful birthday party site with live countdown, wish wall, and party details.',
-        featured: true,
-        startingPrice: 149,
-      },
-      {
-        id: 'web-college-fest-pro',
-        name: 'College Fest Pro',
-        slug: 'college-fest-pro',
-        category: 'College',
-        description: 'Comprehensive college festival website featuring dynamic event schedules, rulebooks, sponsor tiers, and registrations.',
-        shortDesc: 'All-in-one college cultural & sports fest portal with online registration.',
-        featured: true,
-        startingPrice: 199,
-      },
-      {
-        id: 'web-gourmet-bistro-cafe',
-        name: 'Gourmet Bistro & Cafe',
-        slug: 'gourmet-bistro-cafe',
-        category: 'Business',
-        description: 'Delectable restaurant and café website featuring online visual food menu, chef specials, opening hours, and table reservations.',
-        shortDesc: 'Stylish café & restaurant website with menu showcase and table reservation.',
-        featured: true,
-        startingPrice: 199,
-      },
-      {
-        id: 'web-shuttercraft-studio',
-        name: 'ShutterCraft Studio',
-        slug: 'shuttercraft-studio',
-        category: 'Portfolio',
-        description: 'Clean, full-bleed photography portfolio featuring wedding, portrait, and commercial shoots with package booking inquiry.',
-        shortDesc: 'Visual photo gallery portfolio for professional photographers.',
-        featured: true,
-        startingPrice: 179,
-      },
-      {
-        id: 'web-startup-launchpad',
-        name: 'Startup Launchpad',
-        slug: 'startup-launchpad',
-        category: 'Startup',
-        description: 'High-converting SaaS landing page with product mockups, benefit breakdown, customer proof, and early-access CTA.',
-        shortDesc: 'SaaS & startup landing page with product mockups and lead capture.',
-        featured: true,
-        startingPrice: 299,
-      },
-    ]
+    featuredWebsites = STATIC_FEATURED.map(w => ({
+      ...w,
+      features: JSON.stringify(w.features),
+      customization: JSON.stringify(w.customization),
+    }))
   }
 
+  // Always merge categories: static is base, DB overrides by name
+  const staticCats = DEFAULT_CATEGORIES.filter(c => c.enabled)
   if (!categories || categories.length === 0) {
-    categories = [
-      { id: 'cat-wedding', name: 'Wedding', slug: 'wedding' },
-      { id: 'cat-birthday', name: 'Birthday', slug: 'birthday' },
-      { id: 'cat-invitation', name: 'Invitation', slug: 'invitation' },
-      { id: 'cat-college', name: 'College', slug: 'college' },
-      { id: 'cat-business', name: 'Business', slug: 'business' },
-      { id: 'cat-portfolio', name: 'Portfolio', slug: 'portfolio' },
-      { id: 'cat-startup', name: 'Startup', slug: 'startup' },
-      { id: 'cat-events', name: 'Events', slug: 'events' },
-    ]
+    categories = staticCats
+  } else {
+    const dbCatNames = new Set(categories.map((c: any) => c.name.toLowerCase()))
+    const staticOnly = staticCats.filter(c => !dbCatNames.has(c.name.toLowerCase()))
+    categories = [...categories, ...staticOnly]
+  }
+
+  // Fallback lowestPlan to static pricing if DB returned nothing
+  if (!lowestPlan) {
+    lowestPlan = DEFAULT_PRICING_PLANS.filter(p => p.active).sort((a, b) => a.price - b.price)[0]
   }
 
   let hero: any = {}
@@ -273,7 +231,7 @@ export default async function Home() {
               href="/websites"
               className="mt-6 md:mt-0 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 text-sm flex items-center gap-2"
             >
-              View All Websites ({featuredWebsites.length}+)
+              View All Websites ({DEFAULT_WEBSITES.filter(w => w.published).length}+)
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
