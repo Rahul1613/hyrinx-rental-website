@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://hyrinx.in',
   },
+  verification: {
+    google: '9K0fkU1vwbqIAbGqoTVeZUjFn_wVGpZagpS58UhhLLA',
+  },
 };
 
 export default function RootLayout({
