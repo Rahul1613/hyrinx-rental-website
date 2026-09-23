@@ -85,7 +85,16 @@ function OrderSuccessContent() {
                 className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-colors"
               >
                 <MessageCircle className="h-5 w-5" />
-                WhatsApp Hyrinx
+                WhatsApp Rahul
+              </a>
+              <a
+                href="https://wa.me/917020072239"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              >
+                <MessageCircle className="h-5 w-5" />
+                WhatsApp Support
               </a>
             </div>
           </div>
