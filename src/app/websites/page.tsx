@@ -359,7 +359,82 @@ function WebsiteCardMockup({ website }: { website: any }) {
     )
   }
 
-  // Startup, Product Launch, Invitation, Events, Project
+  if (cat === 'Projects for College Students' || cat === 'Project') {
+    const isPhish = website.slug.includes('phishing')
+    const isPass = website.slug.includes('securepass')
+    const isVoice = website.slug.includes('voice')
+    const isStego = website.slug.includes('steganography')
+    const isApt = website.slug.includes('aptitude')
+    const isScalnex = website.slug.includes('scalnex')
+
+    return (
+      <div className="w-full h-full bg-[#0a0f1d] text-slate-100 p-4 flex flex-col justify-between border-b border-indigo-900/60 font-mono">
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+          <span className="text-[10px] font-bold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/40">
+            {isPhish ? '🛡️ Cyber ML' : isPass ? '🔒 Crypto AI' : isVoice ? '🎙️ Speech NLP' : isStego ? '🔐 Steganography' : isApt ? '📝 Exam Platform' : '🚀 SaaS Capstone'}
+          </span>
+          <span className="text-[9px] text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+            ● Live Source
+          </span>
+        </div>
+
+        <div className="text-center my-auto py-2">
+          <h4 className="text-sm font-bold text-white tracking-tight leading-tight font-sans">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5 font-sans">
+            {website.shortDesc}
+          </p>
+
+          <div className="mt-2 flex justify-center gap-1.5 text-[9px] text-slate-300">
+            {isPhish && (
+              <>
+                <span className="bg-red-950/80 border border-red-800/60 text-red-300 px-1.5 py-0.5 rounded">URL Heuristic</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">NLP Classifier</span>
+              </>
+            )}
+            {isPass && (
+              <>
+                <span className="bg-indigo-950 border border-indigo-800/60 text-indigo-300 px-1.5 py-0.5 rounded">Shannon Entropy</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">Brute Force Test</span>
+              </>
+            )}
+            {isVoice && (
+              <>
+                <span className="bg-cyan-950 border border-cyan-800/60 text-cyan-300 px-1.5 py-0.5 rounded">Speech-to-Text</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">Intent Parser</span>
+              </>
+            )}
+            {isStego && (
+              <>
+                <span className="bg-purple-950 border border-purple-800/60 text-purple-300 px-1.5 py-0.5 rounded">LSB Encoding</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">AES-256 Payload</span>
+              </>
+            )}
+            {isApt && (
+              <>
+                <span className="bg-blue-950 border border-blue-800/60 text-blue-300 px-1.5 py-0.5 rounded">Proctor Timer</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">Auto Analytics</span>
+              </>
+            )}
+            {isScalnex && (
+              <>
+                <span className="bg-emerald-950 border border-emerald-800/60 text-emerald-300 px-1.5 py-0.5 rounded">AI Matching</span>
+                <span className="bg-slate-900 border border-slate-700 px-1.5 py-0.5 rounded">Full-Stack SaaS</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center text-[9px] text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded border border-slate-800">
+          <span>Final Year Capstone</span>
+          <span className="text-indigo-300 font-bold">GitHub + PPT Included</span>
+        </div>
+      </div>
+    )
+  }
+
+  // Startup, Product Launch, Invitation, Events
   return (
     <div className="w-full h-full bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white p-4 flex flex-col justify-between border-b border-indigo-800">
       <div className="flex items-center justify-between">

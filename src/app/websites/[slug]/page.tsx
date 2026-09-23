@@ -330,6 +330,40 @@ function DetailMockup({ website }: { website: any }) {
     )
   }
 
+  if (cat === 'Projects for College Students' || cat === 'Project') {
+    return (
+      <div className="w-full h-full bg-[#0a0f1d] text-slate-100 p-8 flex flex-col justify-between font-mono">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <span className="text-xs font-bold text-indigo-400 bg-indigo-950 px-3 py-1 rounded border border-indigo-800/40">
+            College Capstone &bull; Final Year Engineering Project
+          </span>
+          <span className="text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-1 rounded border border-emerald-800/40">
+            ● Full Working Code Included
+          </span>
+        </div>
+        <div className="text-center py-4 font-sans">
+          <h2 className="text-3xl font-black text-white tracking-tight">
+            {website.name}
+          </h2>
+          <p className="text-sm text-slate-400 mt-1 max-w-lg mx-auto">
+            {website.shortDesc || website.description}
+          </p>
+          <div className="mt-4 inline-flex items-center gap-3 bg-slate-900 border border-slate-800 text-xs text-indigo-300 font-mono px-4 py-1.5 rounded-full">
+            <span>Verified System Architecture</span>
+            <span>&bull;</span>
+            <span>Viva &amp; PPT Guide</span>
+            <span>&bull;</span>
+            <span>Complete GitHub Code</span>
+          </div>
+        </div>
+        <div className="flex justify-between items-center pt-3 border-t border-slate-800 text-xs text-slate-400">
+          <span>Ready for Semester / Examiner Submission</span>
+          <span className="text-indigo-300 font-bold">Rent for Your Viva Demo</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-8 flex flex-col justify-between">
       <div className="flex items-center justify-between">
