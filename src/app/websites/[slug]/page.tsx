@@ -123,17 +123,19 @@ export default function WebsiteDetailPage() {
                   </div>
                 )}
 
-                <div className="p-4 border-t border-slate-200">
-                  <Link
-                    href={`/demo/${website.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    <ExternalLink className="h-5 w-5" />
-                    View Live Demo
-                  </Link>
-                </div>
+                {website.liveDemoUrl && (
+                  <div className="p-4 border-t border-slate-200">
+                    <a
+                      href={website.liveDemoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                      View Live Demo
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Gallery */}

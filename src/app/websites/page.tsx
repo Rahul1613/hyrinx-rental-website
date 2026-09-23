@@ -150,10 +150,12 @@ function WebsiteCard({ website }: { website: any }) {
         )}
         
         {/* Live Demo Badge */}
-        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-blue-700 shadow-sm border border-slate-200 flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Live Demo
-        </div>
+        {website.liveDemoUrl && (
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-blue-700 shadow-sm border border-slate-200 flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Live Demo
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -176,18 +178,20 @@ function WebsiteCard({ website }: { website: any }) {
         </div>
 
         <div className="flex gap-2">
-          <Link
-            href={`/demo/${website.slug}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 bg-white border-2 border-slate-200 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-slate-50 transition-colors text-sm flex items-center justify-center gap-2"
-          >
-            <ExternalLink className="h-4 w-4" />
-            Live Demo
-          </Link>
+          {website.liveDemoUrl && (
+            <a
+              href={website.liveDemoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-white border-2 border-slate-200 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-slate-50 transition-colors text-sm flex items-center justify-center gap-2"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Live Demo
+            </a>
+          )}
           <Link
             href={`/websites/${website.slug}`}
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm text-center"
+            className={`bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm text-center ${website.liveDemoUrl ? 'flex-1' : 'w-full'}`}
           >
             Rent Now
           </Link>

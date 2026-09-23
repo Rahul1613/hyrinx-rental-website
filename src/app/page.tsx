@@ -396,8 +396,8 @@ export default async function Home() {
                       slug: 'scalnex-business-saas',
                       desc: 'Full-stack AI business growth & talent matching recruitment engine.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: 'https://scalnex-businessgrowthplatform.netlify.app',
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                     {
@@ -406,8 +406,8 @@ export default async function Home() {
                       slug: 'ai-phishing-detection-engine',
                       desc: 'Real-time cybersecurity ML engine for detecting phishing URLs & email threats.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: 'https://phishing-detection-ai-powered.netlify.app',
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                     {
@@ -416,8 +416,8 @@ export default async function Home() {
                       slug: 'securepass-ai-analyzer',
                       desc: 'Entropy calculation engine and AI credential vulnerability analyzer.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: 'https://securepass-ai.netlify.app',
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                     {
@@ -426,8 +426,8 @@ export default async function Home() {
                       slug: 'aptitude-assessment-platform',
                       desc: 'Campus placement examination portal with timer & analytics dashboard.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: null,
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                     {
@@ -436,8 +436,8 @@ export default async function Home() {
                       slug: 'ai-voice-assistant',
                       desc: 'Voice-controlled desktop & web assistant with NLP intent recognition.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: null,
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                     {
@@ -446,8 +446,8 @@ export default async function Home() {
                       slug: 'image-steganography-tool',
                       desc: 'LSB image steganography and AES-256 encrypted payload concealing application.',
                       status: 'Live',
-                      liveDemo: true,
-                      github: true,
+                      liveDemoUrl: null,
+                      github: 'https://github.com/Rahul1613',
                       price: 199,
                     },
                   ].map((proj) => (
@@ -464,25 +464,31 @@ export default async function Home() {
                         </span>
                       </td>
                       <td className="py-4 px-6 text-center">
-                        <Link
-                          href={`/demo/${proj.slug}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-blue-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs"
-                        >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                          ✅ Live Demo
-                        </Link>
+                        {proj.liveDemoUrl ? (
+                          <a
+                            href={proj.liveDemoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs"
+                          >
+                            <ExternalLink className="h-3.5 w-3.5" />
+                            ✅ Yes (Live Demo)
+                          </a>
+                        ) : (
+                          <span className="text-xs text-slate-500 font-medium italic">
+                            ❌ No live link shown
+                          </span>
+                        )}
                       </td>
                       <td className="py-4 px-6 text-center">
                         <a
-                          href="https://github.com/Rahul1613"
+                          href={proj.github}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
                         >
                           <Code className="h-3.5 w-3.5 text-indigo-400" />
-                          ✅ GitHub
+                          ✅ Yes
                         </a>
                       </td>
                       <td className="py-4 px-6 text-right">

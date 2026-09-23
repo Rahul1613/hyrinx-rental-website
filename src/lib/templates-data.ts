@@ -451,7 +451,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Live Demo Running', 'GitHub Source Code Included', 'System Architecture Diagram', 'Project Viva & PPT Ready', 'REST API Documentation'],
     customization: ['Student / Team Name', 'College Name', 'Academic Guide Name', 'Custom Dataset / API Keys', 'Branding & Theme'],
-    liveDemoUrl: '/demo/scalnex-business-saas',
+    liveDemoUrl: 'https://scalnex-businessgrowthplatform.netlify.app',
   },
   {
     id: 'web-ai-phishing-detection-engine',
@@ -465,7 +465,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Live Demo Running', 'GitHub Source Code Included', 'Confusion Matrix & ROC Curves', 'Pre-trained ML Models', 'FastAPI Backend & Next.js UI'],
     customization: ['Team Name & Roll Numbers', 'College Department', 'Model Hyperparameters', 'Custom Threat Datasets'],
-    liveDemoUrl: '/demo/ai-phishing-detection-engine',
+    liveDemoUrl: 'https://phishing-detection-ai-powered.netlify.app',
   },
   {
     id: 'web-securepass-ai-analyzer',
@@ -479,7 +479,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Live Demo Running', 'GitHub Source Code Included', 'Entropy Calculation Engine', 'Pwned Passwords API Integration', 'Security Report Export'],
     customization: ['Student Team Details', 'College Name & Logo', 'Custom Password Rules', 'Report Header'],
-    liveDemoUrl: '/demo/securepass-ai-analyzer',
+    liveDemoUrl: 'https://securepass-ai.netlify.app',
   },
   {
     id: 'web-aptitude-assessment-platform',
@@ -491,9 +491,8 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     featured: true,
     published: true,
     startingPrice: 199,
-    features: ['Live Demo Running', 'GitHub Source Code Included', 'Timer & Anti-Tab Switch', 'Detailed Performance Graphs', 'Question Bank Manager'],
+    features: ['GitHub Source Code Included', 'Timer & Anti-Tab Switch', 'Detailed Performance Graphs', 'Question Bank Manager', 'Viva & Report Included'],
     customization: ['College / Department Name', 'Exam Subjects & Questions', 'Marking Scheme', 'Faculty Sign-off'],
-    liveDemoUrl: '/demo/aptitude-assessment-platform',
   },
   {
     id: 'web-ai-voice-assistant',
@@ -505,9 +504,8 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     featured: true,
     published: true,
     startingPrice: 199,
-    features: ['Full Working Frontend & UI Demo', 'GitHub Source Code Included', 'SpeechSynthesis & WebSpeech API', 'Custom Skill Actions', 'Complete Project Report'],
+    features: ['GitHub Source Code Included', 'SpeechSynthesis & WebSpeech API', 'Custom Skill Actions', 'Complete Project Report', 'Architecture Diagram'],
     customization: ['Student Name & PRN', 'College Name', 'Voice Trigger Keyword', 'Custom Voice Actions'],
-    liveDemoUrl: '/demo/ai-voice-assistant',
   },
   {
     id: 'web-image-steganography-tool',
@@ -519,8 +517,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     featured: true,
     published: true,
     startingPrice: 199,
-    features: ['Full Working Frontend & Encoder UI', 'GitHub Source Code Included', 'LSB Pixel Manipulation Canvas', 'AES-256 Encryption & Decryption', 'PSNR/MSE Image Quality Metrics'],
+    features: ['GitHub Source Code Included', 'LSB Pixel Manipulation Canvas', 'AES-256 Encryption & Decryption', 'PSNR/MSE Image Quality Metrics', 'Project Documentation'],
     customization: ['Author / Submitter Names', 'College / University Info', 'Cipher Key Presets', 'Steganography Algorithms'],
-    liveDemoUrl: '/demo/image-steganography-tool',
   },
 ]
