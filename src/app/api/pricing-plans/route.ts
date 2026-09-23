@@ -2,16 +2,27 @@ export const dynamic = 'force-dynamic'
 
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { DEFAULT_PRICING_PLANS } from '@/lib/templates-data'
 
 export async function GET() {
   try {
-    const plans = await prisma.pricingPlan.findMany({
-      where: { active: true },
-      orderBy: [
-        { order: 'asc' },
-        { durationDays: 'asc' },
-      ],
-    })
+    let plans: any[] = []
+
+    try {
+      plans = await prisma.pricingPlan.findMany({
+        where: { active: true },
+        orderBy: [
+          { order: 'asc' },
+          { durationDays: 'asc' },
+        ],
+      })
+    } catch (dbError) {
+      console.warn('Database query failed in api/pricing-plans, using default plans:', dbError)
+    }
+
+    if (!plans || plans.length === 0) {
+      plans = DEFAULT_PRICING_PLANS.filter(p => p.active)
+    }
 
     return NextResponse.json({ plans })
   } catch (error) {

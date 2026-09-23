@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { DEFAULT_WEBSITES, DEFAULT_PRICING_PLANS } from '@/lib/templates-data'
 
 export async function GET(
   request: NextRequest,
@@ -7,14 +8,38 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
-    const website = await prisma.website.findUnique({
-      where: { slug },
-      include: {
-        _count: {
-          select: { orderItems: true },
+    let website: any = null
+    let pricingPlans: any[] = []
+
+    try {
+      website = await prisma.website.findUnique({
+        where: { slug },
+        include: {
+          _count: {
+            select: { orderItems: true },
+          },
         },
-      },
-    })
+      })
+
+      pricingPlans = await prisma.pricingPlan.findMany({
+        where: { active: true },
+        orderBy: { order: 'asc' },
+      })
+    } catch (dbError) {
+      console.warn('Database query failed in api/websites/[slug], using static data:', dbError)
+    }
+
+    if (!website) {
+      const template = DEFAULT_WEBSITES.find(w => w.slug === slug)
+      if (template) {
+        website = {
+          ...template,
+          features: JSON.stringify(template.features),
+          customization: JSON.stringify(template.customization),
+          _count: { orderItems: 0 },
+        }
+      }
+    }
 
     if (!website) {
       return NextResponse.json(
@@ -23,11 +48,9 @@ export async function GET(
       )
     }
 
-    // Get available pricing plans
-    const pricingPlans = await prisma.pricingPlan.findMany({
-      where: { active: true },
-      orderBy: { order: 'asc' },
-    })
+    if (!pricingPlans || pricingPlans.length === 0) {
+      pricingPlans = DEFAULT_PRICING_PLANS.filter(p => p.active)
+    }
 
     return NextResponse.json({ website, pricingPlans })
   } catch (error) {

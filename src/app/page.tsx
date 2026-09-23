@@ -27,29 +27,122 @@ import { formatPrice } from '@/lib/utils'
 export const dynamic = 'force-dynamic'
 
 async function getHomepageData() {
-  const [heroContentRaw, featuredWebsites, categories, lowestPlan, settingsList] = await Promise.all([
-    prisma.homepageContent.findFirst({
-      where: { section: 'hero', enabled: true },
-    }),
-    prisma.website.findMany({
-      where: { published: true },
-      orderBy: [
-        { featured: 'desc' },
-        { createdAt: 'desc' },
-      ],
-      take: 6,
-    }),
-    prisma.category.findMany({
-      where: { enabled: true },
-      orderBy: { order: 'asc' },
-      take: 8,
-    }),
-    prisma.pricingPlan.findFirst({
-      where: { active: true },
-      orderBy: { price: 'asc' },
-    }),
-    prisma.settings.findMany(),
-  ])
+  let heroContentRaw: any = null
+  let featuredWebsites: any[] = []
+  let categories: any[] = []
+  let lowestPlan: any = null
+  let settingsList: any[] = []
+
+  try {
+    const results = await Promise.all([
+      prisma.homepageContent.findFirst({
+        where: { section: 'hero', enabled: true },
+      }),
+      prisma.website.findMany({
+        where: { published: true },
+        orderBy: [
+          { featured: 'desc' },
+          { createdAt: 'desc' },
+        ],
+        take: 6,
+      }),
+      prisma.category.findMany({
+        where: { enabled: true },
+        orderBy: { order: 'asc' },
+        take: 8,
+      }),
+      prisma.pricingPlan.findFirst({
+        where: { active: true },
+        orderBy: { price: 'asc' },
+      }),
+      prisma.settings.findMany(),
+    ])
+    heroContentRaw = results[0]
+    featuredWebsites = results[1]
+    categories = results[2]
+    lowestPlan = results[3]
+    settingsList = results[4]
+  } catch (error) {
+    console.warn('Failed to load DB data on homepage, using default fallback data:', error)
+  }
+
+  if (!featuredWebsites || featuredWebsites.length === 0) {
+    featuredWebsites = [
+      {
+        id: 'web-eternal-moments',
+        name: 'Eternal Moments',
+        slug: 'eternal-moments',
+        category: 'Wedding',
+        description: 'Elegant luxury wedding website featuring couple love story, ceremony itinerary, RSVP form, and interactive location map.',
+        shortDesc: 'Luxury wedding celebration website with story, venue details, and RSVP.',
+        featured: true,
+        startingPrice: 149,
+      },
+      {
+        id: 'web-birthday-bash',
+        name: 'Birthday Bash',
+        slug: 'birthday-bash',
+        category: 'Birthday',
+        description: 'Vibrant and joyful birthday celebration website with live party countdown, wish board, venue map, and RSVP.',
+        shortDesc: 'Joyful birthday party site with live countdown, wish wall, and party details.',
+        featured: true,
+        startingPrice: 149,
+      },
+      {
+        id: 'web-college-fest-pro',
+        name: 'College Fest Pro',
+        slug: 'college-fest-pro',
+        category: 'College',
+        description: 'Comprehensive college festival website featuring dynamic event schedules, rulebooks, sponsor tiers, and registrations.',
+        shortDesc: 'All-in-one college cultural & sports fest portal with online registration.',
+        featured: true,
+        startingPrice: 199,
+      },
+      {
+        id: 'web-gourmet-bistro-cafe',
+        name: 'Gourmet Bistro & Cafe',
+        slug: 'gourmet-bistro-cafe',
+        category: 'Business',
+        description: 'Delectable restaurant and café website featuring online visual food menu, chef specials, opening hours, and table reservations.',
+        shortDesc: 'Stylish café & restaurant website with menu showcase and table reservation.',
+        featured: true,
+        startingPrice: 199,
+      },
+      {
+        id: 'web-shuttercraft-studio',
+        name: 'ShutterCraft Studio',
+        slug: 'shuttercraft-studio',
+        category: 'Portfolio',
+        description: 'Clean, full-bleed photography portfolio featuring wedding, portrait, and commercial shoots with package booking inquiry.',
+        shortDesc: 'Visual photo gallery portfolio for professional photographers.',
+        featured: true,
+        startingPrice: 179,
+      },
+      {
+        id: 'web-startup-launchpad',
+        name: 'Startup Launchpad',
+        slug: 'startup-launchpad',
+        category: 'Startup',
+        description: 'High-converting SaaS landing page with product mockups, benefit breakdown, customer proof, and early-access CTA.',
+        shortDesc: 'SaaS & startup landing page with product mockups and lead capture.',
+        featured: true,
+        startingPrice: 299,
+      },
+    ]
+  }
+
+  if (!categories || categories.length === 0) {
+    categories = [
+      { id: 'cat-wedding', name: 'Wedding', slug: 'wedding' },
+      { id: 'cat-birthday', name: 'Birthday', slug: 'birthday' },
+      { id: 'cat-invitation', name: 'Invitation', slug: 'invitation' },
+      { id: 'cat-college', name: 'College', slug: 'college' },
+      { id: 'cat-business', name: 'Business', slug: 'business' },
+      { id: 'cat-portfolio', name: 'Portfolio', slug: 'portfolio' },
+      { id: 'cat-startup', name: 'Startup', slug: 'startup' },
+      { id: 'cat-events', name: 'Events', slug: 'events' },
+    ]
+  }
 
   let hero: any = {}
   if (heroContentRaw?.content) {
