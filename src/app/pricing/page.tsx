@@ -5,26 +5,35 @@ import Navbar from '@/components/Navbar'
 import Link from 'next/link'
 import { Check, Star } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
+import { DEFAULT_PRICING_PLANS } from '@/lib/templates-data'
+
+// Static plans are always the guaranteed base
+const STATIC_PLANS = DEFAULT_PRICING_PLANS.filter(p => p.active).sort((a, b) => a.durationDays - b.durationDays)
 
 export default function PricingPage() {
-  const [plans, setPlans] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+  const [plans, setPlans] = useState<any[]>(STATIC_PLANS) // start with static immediately
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchPricingPlans()
+    // Try to fetch from API and merge — but static plans are already shown
+    fetch('/api/pricing-plans')
+      .then(r => r.json())
+      .then(data => {
+        const apiPlans: any[] = data.plans || []
+        if (apiPlans.length >= STATIC_PLANS.length) {
+          // API returned full or more data — use it
+          setPlans(apiPlans.sort((a: any, b: any) => (a.durationDays ?? 0) - (b.durationDays ?? 0)))
+        } else {
+          // API returned partial — merge with static to fill gaps
+          const apiNames = new Set(apiPlans.map((p: any) => p.name.toLowerCase()))
+          const staticOnly = STATIC_PLANS.filter(p => !apiNames.has(p.name.toLowerCase()))
+          setPlans([...apiPlans, ...staticOnly].sort((a: any, b: any) => (a.durationDays ?? 0) - (b.durationDays ?? 0)))
+        }
+      })
+      .catch(() => {
+        // API failed — static plans already shown, nothing to do
+      })
   }, [])
-
-  const fetchPricingPlans = async () => {
-    try {
-      const response = await fetch('/api/pricing-plans')
-      const data = await response.json()
-      setPlans(data.plans || [])
-    } catch (error) {
-      console.error('Error fetching pricing plans:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -43,25 +52,11 @@ export default function PricingPage() {
           </div>
 
           {/* Pricing Cards */}
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-white rounded-xl border border-slate-200 p-6 animate-pulse">
-                  <div className="h-6 bg-slate-200 rounded w-1/2 mb-4" />
-                  <div className="h-8 bg-slate-200 rounded w-3/4 mb-4" />
-                  <div className="h-4 bg-slate-200 rounded w-full mb-2" />
-                  <div className="h-4 bg-slate-200 rounded w-2/3 mb-6" />
-                  <div className="h-10 bg-slate-200 rounded" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {plans.map((plan) => (
-                <PricingCard key={plan.id} plan={plan} />
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {plans.map((plan) => (
+              <PricingCard key={plan.id} plan={plan} />
+            ))}
+          </div>
 
           {/* Features Comparison */}
           <div className="mt-20">
@@ -120,8 +115,8 @@ function PricingCard({ plan }: { plan: any }) {
     >
       {plan.popular && (
         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-          <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
-            Most Popular
+          <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+            <Star className="h-3 w-3 fill-white" /> Most Popular
           </span>
         </div>
       )}

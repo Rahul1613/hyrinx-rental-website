@@ -5,40 +5,47 @@ import Navbar from '@/components/Navbar'
 import { Search, Filter, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
+import { DEFAULT_WEBSITES, DEFAULT_CATEGORIES } from '@/lib/templates-data'
+
+const STATIC_WEBSITES = DEFAULT_WEBSITES.filter(w => w.published).map(w => ({
+  ...w,
+  features: JSON.stringify(w.features),
+  customization: JSON.stringify(w.customization),
+}))
+const STATIC_CATEGORIES = ['All', ...DEFAULT_CATEGORIES.filter(c => c.enabled).map(c => c.name)]
 
 export default function WebsitesPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [websites, setWebsites] = useState<any[]>([])
-  const [categories, setCategories] = useState<string[]>(['All'])
-  const [loading, setLoading] = useState(true)
+  const [websites, setWebsites] = useState<any[]>(STATIC_WEBSITES)
+  const [categories, setCategories] = useState<string[]>(STATIC_CATEGORIES)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchWebsites()
-    fetchCategories()
+    fetch('/api/websites')
+      .then(r => r.json())
+      .then(data => {
+        const apiSites: any[] = data.websites || []
+        if (apiSites.length >= STATIC_WEBSITES.length) {
+          setWebsites(apiSites)
+        } else if (apiSites.length > 0) {
+          const apiSlugs = new Set(apiSites.map((w: any) => w.slug))
+          const staticOnly = STATIC_WEBSITES.filter(w => !apiSlugs.has(w.slug))
+          setWebsites([...apiSites, ...staticOnly])
+        }
+      })
+      .catch(() => {})
+
+    fetch('/api/categories')
+      .then(r => r.json())
+      .then(data => {
+        const apiCats: string[] = (data.categories || []).map((c: any) => c.name)
+        if (apiCats.length >= STATIC_CATEGORIES.length - 1) {
+          setCategories(['All', ...apiCats])
+        }
+      })
+      .catch(() => {})
   }, [])
-
-  const fetchWebsites = async () => {
-    try {
-      const response = await fetch('/api/websites')
-      const data = await response.json()
-      setWebsites(data.websites || [])
-    } catch (error) {
-      console.error('Error fetching websites:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch('/api/categories')
-      const data = await response.json()
-      setCategories(['All', ...(data.categories || []).map((c: any) => c.name)])
-    } catch (error) {
-      console.error('Error fetching categories:', error)
-    }
-  }
 
   const filteredWebsites = websites.filter(website => {
     const matchesSearch = website.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
