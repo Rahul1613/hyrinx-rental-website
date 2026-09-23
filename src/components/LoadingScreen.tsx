@@ -72,19 +72,19 @@ const CSS_STYLES = `
 }
 
 @keyframes hyrinxScaleOut {
-  0%, 75% { transform: scale(1); }
+  0%, 85% { transform: scale(1); }
   100% { transform: scale(1.04); }
 }
 .hx-scale-out {
-  animation: hyrinxScaleOut 0.7s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
+  animation: hyrinxScaleOut 1s cubic-bezier(0.16, 1, 0.3, 1) 5s forwards;
 }
 
 @keyframes hyrinxScreenExit {
-  0%, 78% { opacity: 1; pointer-events: auto; }
+  0%, 83% { opacity: 1; pointer-events: auto; }
   100% { opacity: 0; pointer-events: none; }
 }
 .hx-screen-exit {
-  animation: hyrinxScreenExit 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: hyrinxScreenExit 6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes hyrinxQuickFade {
@@ -118,7 +118,7 @@ export default function LoadingScreen() {
 
     const timer = setTimeout(() => {
       setVisible(false);
-    }, isReduced ? 350 : 3200);
+    }, isReduced ? 350 : 6000);
 
     return () => clearTimeout(timer);
   }, []);
