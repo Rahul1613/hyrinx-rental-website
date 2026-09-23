@@ -19,7 +19,8 @@ import {
   PartyPopper,
   Building2,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Code
 } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
@@ -345,6 +346,158 @@ export default async function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects for College Students Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white border-t border-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span className="bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-fit mb-3">
+                Academic &amp; Final Year Capstones
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Projects for College Students
+              </h2>
+              <p className="text-slate-400 text-base mt-2 max-w-2xl">
+                Verified, working full-stack and AI final-year projects with live web demo, complete GitHub source code, architecture diagrams, and viva presentations. Rent for semester submissions.
+              </p>
+            </div>
+            <Link
+              href="/websites?category=Projects+for+College+Students"
+              className="mt-6 md:mt-0 inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-blue-500/20"
+            >
+              Browse All Student Projects
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Structured Projects Table & Cards */}
+          <div className="bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm text-slate-300">
+                <thead className="bg-slate-900/80 text-xs uppercase font-bold text-slate-400 border-b border-slate-800">
+                  <tr>
+                    <th className="py-4 px-6">#</th>
+                    <th className="py-4 px-6">Project Name &amp; Description</th>
+                    <th className="py-4 px-6">Status</th>
+                    <th className="py-4 px-6 text-center">Live Demo</th>
+                    <th className="py-4 px-6 text-center">GitHub Code</th>
+                    <th className="py-4 px-6 text-right">Rent Project</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/80">
+                  {[
+                    {
+                      id: 1,
+                      name: 'Scalnex — Business Growth & Job SaaS',
+                      slug: 'scalnex-business-saas',
+                      desc: 'Full-stack AI business growth & talent matching recruitment engine.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                    {
+                      id: 2,
+                      name: 'AI Phishing Detection Engine',
+                      slug: 'ai-phishing-detection-engine',
+                      desc: 'Real-time cybersecurity ML engine for detecting phishing URLs & email threats.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                    {
+                      id: 3,
+                      name: 'SecurePass AI — Password Security Analyzer',
+                      slug: 'securepass-ai-analyzer',
+                      desc: 'Entropy calculation engine and AI credential vulnerability analyzer.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                    {
+                      id: 4,
+                      name: 'Aptitude Assessment Platform',
+                      slug: 'aptitude-assessment-platform',
+                      desc: 'Campus placement examination portal with timer & analytics dashboard.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                    {
+                      id: 5,
+                      name: 'AI Voice Assistant',
+                      slug: 'ai-voice-assistant',
+                      desc: 'Voice-controlled desktop & web assistant with NLP intent recognition.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                    {
+                      id: 6,
+                      name: 'Image Steganography Tool',
+                      slug: 'image-steganography-tool',
+                      desc: 'LSB image steganography and AES-256 encrypted payload concealing application.',
+                      status: 'Live',
+                      liveDemo: true,
+                      github: true,
+                      price: 199,
+                    },
+                  ].map((proj) => (
+                    <tr key={proj.id} className="hover:bg-slate-900/40 transition-colors">
+                      <td className="py-4 px-6 font-mono text-xs text-slate-500">{proj.id}</td>
+                      <td className="py-4 px-6">
+                        <span className="font-bold text-white block text-base">{proj.name}</span>
+                        <span className="text-xs text-slate-400 mt-0.5 block">{proj.desc}</span>
+                      </td>
+                      <td className="py-4 px-6">
+                        <span className="inline-flex items-center gap-1.5 bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2.5 py-1 rounded-full text-xs font-bold">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                          ● {proj.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-6 text-center">
+                        <Link
+                          href={`/demo/${proj.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-blue-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          ✅ Live Demo
+                        </Link>
+                      </td>
+                      <td className="py-4 px-6 text-center">
+                        <a
+                          href="https://github.com/Rahul1613"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
+                        >
+                          <Code className="h-3.5 w-3.5 text-indigo-400" />
+                          ✅ GitHub
+                        </a>
+                      </td>
+                      <td className="py-4 px-6 text-right">
+                        <Link
+                          href={`/websites/${proj.slug}`}
+                          className="inline-flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-blue-500/20"
+                        >
+                          Rent ₹{proj.price}/day
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
