@@ -122,14 +122,23 @@ function OrderSuccessContent() {
             </ol>
           </div>
 
-          {/* Back to Home */}
-          <div className="text-center">
+          {/* Back to Home & Track Order */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+            {orderId && (
+              <Link
+                href={`/order/track?id=${orderId}`}
+                className="inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm"
+              >
+                Track Order Status
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm"
             >
               Back to Hyrinx
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -24,6 +24,7 @@ export default function Navbar() {
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Founders', href: '/founders' },
     { name: 'Custom Website', href: '/custom-website' },
+    { name: 'Track Order', href: '/order/track' },
     { name: 'Contact', href: '/contact' },
   ]
 

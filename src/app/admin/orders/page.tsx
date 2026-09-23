@@ -52,11 +52,29 @@ export default function AdminOrdersPage() {
     }
   }
 
+  async function handleStatusChange(id: string, newStatus: string) {
+    try {
+      const res = await fetch(`/api/admin/orders/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      })
+      if (res.ok) {
+        setOrders((prev) =>
+          prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
+        )
+      }
+    } catch (err) {
+      console.error('Failed to change status:', err)
+    }
+  }
+
   const statusColor = (s: string) => {
-    if (s === 'paid' || s === 'active') return 'bg-green-100 text-green-700'
-    if (s === 'pending') return 'bg-yellow-100 text-yellow-700'
-    if (s === 'completed') return 'bg-blue-100 text-blue-700'
-    return 'bg-slate-100 text-slate-700'
+    if (s === 'paid' || s === 'active') return 'bg-green-100 text-green-700 border-green-200'
+    if (s === 'pending') return 'bg-yellow-100 text-yellow-700 border-yellow-200'
+    if (s === 'completed') return 'bg-blue-100 text-blue-700 border-blue-200'
+    if (s === 'cancelled') return 'bg-red-100 text-red-700 border-red-200'
+    return 'bg-slate-100 text-slate-700 border-slate-200'
   }
 
   return (
@@ -159,9 +177,20 @@ export default function AdminOrdersPage() {
                         {formatPrice(order.totalAmount)}
                       </td>
                       <td className="px-3 py-3 text-center sm:px-5 sm:py-4">
-                        <span className={`inline-block rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-wider sm:text-xs ${statusColor(order.status)}`}>
-                          {order.status}
-                        </span>
+                        <select
+                          value={order.status}
+                          onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                          disabled={deletingId === order.id}
+                          className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider sm:text-xs border cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${statusColor(
+                            order.status
+                          )}`}
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="paid">Paid</option>
+                          <option value="active">Active</option>
+                          <option value="completed">Completed</option>
+                          <option value="cancelled">Cancelled</option>
+                        </select>
                       </td>
                       <td className="px-3 py-3 text-center text-[11px] text-slate-500 sm:px-5 sm:py-4 sm:text-xs whitespace-nowrap">
                         {new Date(order.createdAt).toLocaleDateString('en-IN', {

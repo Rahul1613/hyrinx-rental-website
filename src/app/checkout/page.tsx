@@ -104,10 +104,7 @@ function CheckoutContent() {
 
       if (response.ok) {
         const data = await response.json()
-
-        router.push(
-          `/order/success?orderId=${data.order.orderNumber}`
-        )
+        router.push(`/order/success?orderId=${data.order.orderNumber}`)
       } else {
         const error = await response.json()
         alert(error.error || 'Failed to create order')
