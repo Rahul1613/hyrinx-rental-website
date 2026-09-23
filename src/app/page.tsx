@@ -491,12 +491,12 @@ export default async function Home() {
                           ✅ Yes
                         </a>
                       </td>
-                      <td className="py-4 px-6 text-right">
+                      <td className="py-4 px-6 text-right whitespace-nowrap">
                         <Link
                           href={`/websites/${proj.slug}`}
-                          className="inline-flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-blue-500/20"
+                          className="inline-flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-blue-500/20 whitespace-nowrap"
                         >
-                          Rent ₹{proj.price}/day
+                          Rent · ₹{proj.price}/day
                         </Link>
                       </td>
                     </tr>
