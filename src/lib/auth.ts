@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import { prisma } from './prisma'
 
 export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 12)
+  return bcrypt.hash(password, 8)
 }
 
 export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
@@ -35,11 +35,11 @@ export async function verifyAdminCredentials(email: string, password: string) {
     return null
   }
 
-  // Update last login
-  await prisma.adminUser.update({
+  // Run lastLogin update in background — don't await it on the critical path
+  prisma.adminUser.update({
     where: { id: admin.id },
     data: { lastLogin: new Date() },
-  })
+  }).catch(() => {})
 
   return admin
 }

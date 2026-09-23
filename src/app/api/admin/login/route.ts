@@ -28,7 +28,8 @@ export async function POST(request: NextRequest) {
     }
 
     await createSession(admin)
-    await createAuditLog(admin.id, 'login', 'AdminUser', admin.id)
+    // Fire audit log without blocking the response
+    createAuditLog(admin.id, 'login', 'AdminUser', admin.id).catch(() => {})
 
     return NextResponse.json({
       success: true,
