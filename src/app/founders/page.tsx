@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import {
@@ -13,6 +14,30 @@ import {
   Users,
   Zap,
 } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Meet the Founders — Rahul Sisode & Harshal | Hyrinx',
+  description:
+    'Meet Rahul Sisode (Founder & CEO) and Harshal (Founder & Creative Strategist), the team behind Hyrinx Rental Websites. Built for premium digital experiences across India.',
+  keywords: [
+    'Rahul Sisode',
+    'Rahul Sisode Hyrinx',
+    'Harshal Hyrinx',
+    'Hyrinx Founders',
+    'Hyrinx CEO',
+    'Hyrinx Rental Websites Founders',
+  ],
+  alternates: {
+    canonical: 'https://hyrinx.in/founders',
+  },
+  openGraph: {
+    title: 'Meet the Founders: Rahul Sisode & Harshal | Hyrinx',
+    description:
+      'The visionaries behind Hyrinx Rental Websites — making temporary website rentals seamless, modern, and accessible.',
+    url: 'https://hyrinx.in/founders',
+    siteName: 'Hyrinx',
+  },
+}
 
 const founders = [
   {
