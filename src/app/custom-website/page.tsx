@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
+import Link from 'next/link'
 import { Send, Check } from 'lucide-react'
 
 export default function CustomWebsitePage() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,6 +22,12 @@ export default function CustomWebsitePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!agreedToTerms) {
+      alert('Please agree to the Terms & Conditions and Privacy Policy before submitting your request.')
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -222,10 +230,42 @@ export default function CustomWebsitePage() {
                 />
               </div>
 
+              {/* TERMS & CONDITIONS AGREEMENT */}
+              <div className="rounded-2xl border-2 border-slate-200 bg-slate-50 p-5">
+                <label className="flex cursor-pointer items-start gap-4">
+                  <input
+                    type="checkbox"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="mt-1 h-5 w-5 shrink-0 cursor-pointer rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                  <span className="text-sm leading-6 text-slate-600">
+                    I have read and agree to the{' '}
+                    <Link
+                      href="/terms"
+                      target="_blank"
+                      className="font-semibold text-blue-600 underline hover:text-blue-700"
+                    >
+                      Terms & Conditions, User Agreement & Rules of Usage
+                    </Link>{' '}
+                    and{' '}
+                    <Link
+                      href="/privacy"
+                      target="_blank"
+                      className="font-semibold text-blue-600 underline hover:text-blue-700"
+                    >
+                      Privacy Policy
+                    </Link>
+                    . I understand that websites are provided under a temporary rental model and confirm that my intended use is lawful.
+                  </span>
+                </label>
+              </div>
+
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-5 px-8 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1 disabled:opacity-50"
+                disabled={loading || !agreedToTerms}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-5 px-8 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-5 w-5" />
                 {loading ? 'Submitting...' : 'Submit Request'}

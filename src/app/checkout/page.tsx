@@ -486,17 +486,17 @@ function CheckoutContent() {
                             target="_blank"
                             className="font-semibold text-blue-600 underline hover:text-blue-700"
                           >
-                            Terms & Conditions
+                            Terms & Conditions, User Agreement & Rules of Usage
                           </Link>{' '}
                           and{' '}
                           <Link
-                            href="/privacy-policy"
+                            href="/privacy"
                             target="_blank"
                             className="font-semibold text-blue-600 underline hover:text-blue-700"
                           >
                             Privacy Policy
                           </Link>
-                          . I understand the website rental terms and agree
+                          . I understand the website rental terms, temporary usage model, and agree
                           to provide accurate information for my order.
                         </span>
                       </label>
