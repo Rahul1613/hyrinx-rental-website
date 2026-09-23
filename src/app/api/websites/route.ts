@@ -11,71 +11,54 @@ export async function GET(request: Request) {
     const featured = searchParams.get('featured')
     const search = searchParams.get('search')
 
-    let websites: any[] = []
+    // Always start with ALL static templates as the base
+    let allWebsites: any[] = DEFAULT_WEBSITES.filter(w => w.published).map(w => ({
+      ...w,
+      features: JSON.stringify(w.features),
+      customization: JSON.stringify(w.customization),
+      _source: 'static',
+    }))
 
+    // Merge in any DB websites (admin-created ones), overriding static if same slug
     try {
-      const where: any = {
-        published: true,
-      }
-
-      if (category && category !== 'All') {
-        where.category = category
-      }
-
-      if (featured === 'true') {
-        where.featured = true
-      }
-
-      if (search) {
-        where.OR = [
-          { name: { contains: search, mode: 'insensitive' } },
-          { description: { contains: search, mode: 'insensitive' } },
-          { shortDesc: { contains: search, mode: 'insensitive' } },
-        ]
-      }
-
-      websites = await prisma.website.findMany({
-        where,
+      const dbWebsites = await prisma.website.findMany({
+        where: { published: true },
         orderBy: { createdAt: 'desc' },
-        include: {
-          _count: {
-            select: { orderItems: true },
-          },
-        },
+        include: { _count: { select: { orderItems: true } } },
       })
+
+      if (dbWebsites.length > 0) {
+        // Build a set of slugs from DB
+        const dbSlugs = new Set(dbWebsites.map((w: any) => w.slug))
+        // Keep static entries whose slug is NOT in DB (i.e. not overridden)
+        const staticOnly = allWebsites.filter(w => !dbSlugs.has(w.slug))
+        allWebsites = [...dbWebsites.map((w: any) => ({ ...w, _source: 'db' })), ...staticOnly]
+      }
     } catch (dbError) {
-      console.warn('Database query failed in api/websites, falling back to static templates:', dbError)
+      console.warn('DB query failed, using static templates only:', dbError)
     }
 
-    // If database returned 0 websites, use default templates catalog
-    if (!websites || websites.length === 0) {
-      let filtered = DEFAULT_WEBSITES.filter(w => w.published)
+    // Apply filters
+    let filtered = allWebsites
 
-      if (category && category !== 'All') {
-        filtered = filtered.filter(w => w.category.toLowerCase() === category.toLowerCase())
-      }
-
-      if (featured === 'true') {
-        filtered = filtered.filter(w => w.featured)
-      }
-
-      if (search) {
-        const s = search.toLowerCase()
-        filtered = filtered.filter(w =>
-          w.name.toLowerCase().includes(s) ||
-          w.description.toLowerCase().includes(s) ||
-          w.shortDesc.toLowerCase().includes(s)
-        )
-      }
-
-      websites = filtered.map(w => ({
-        ...w,
-        features: JSON.stringify(w.features),
-        customization: JSON.stringify(w.customization),
-      }))
+    if (category && category !== 'All') {
+      filtered = filtered.filter(w => w.category.toLowerCase() === category.toLowerCase())
     }
 
-    return NextResponse.json({ websites })
+    if (featured === 'true') {
+      filtered = filtered.filter(w => w.featured)
+    }
+
+    if (search) {
+      const s = search.toLowerCase()
+      filtered = filtered.filter(w =>
+        w.name?.toLowerCase().includes(s) ||
+        w.description?.toLowerCase().includes(s) ||
+        w.shortDesc?.toLowerCase().includes(s)
+      )
+    }
+
+    return NextResponse.json({ websites: filtered })
   } catch (error) {
     console.error('Error fetching websites:', error)
     return NextResponse.json(
