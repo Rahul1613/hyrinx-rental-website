@@ -146,21 +146,14 @@ function WebsiteCard({ website }: { website: any }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-200 rounded-full mx-auto mb-3" />
-              <div className="h-4 bg-slate-200 rounded w-32 mx-auto mb-2" />
-              <div className="h-3 bg-slate-100 rounded w-24 mx-auto" />
-            </div>
-          </div>
+          <WebsiteCardMockup website={website} />
         )}
         
         {/* Live Demo Badge */}
-        {website.liveDemoUrl && (
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-slate-700">
-            Live Demo
-          </div>
-        )}
+        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-blue-700 shadow-sm border border-slate-200 flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Live Demo
+        </div>
       </div>
 
       {/* Content */}
@@ -199,6 +192,193 @@ function WebsiteCard({ website }: { website: any }) {
             Rent Now
           </Link>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function WebsiteCardMockup({ website }: { website: any }) {
+  const cat = website.category || ''
+
+  if (cat === 'Wedding') {
+    return (
+      <div className="w-full h-full bg-[#FAF5EE] text-stone-800 p-4 flex flex-col justify-between border-b border-stone-200">
+        <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
+          <span className="text-[10px] font-serif font-bold uppercase tracking-widest text-amber-900">
+            Royal Wedding
+          </span>
+          <span className="text-[9px] text-stone-500 font-serif">Dec 2026</span>
+        </div>
+        <div className="text-center my-auto py-2">
+          <h4 className="font-serif text-lg font-bold text-stone-900 leading-tight">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-stone-600 font-serif italic mt-0.5">
+            Celebrate Our Union &bull; Udaipur Palace
+          </p>
+          <div className="mt-2 inline-block bg-amber-900/10 text-amber-900 border border-amber-900/20 text-[9px] font-serif px-2.5 py-0.5 rounded-full">
+            RSVP &bull; Photo Story &bull; Itinerary
+          </div>
+        </div>
+        <div className="flex gap-1.5 justify-center pt-1 border-t border-stone-200/60 text-[9px] text-stone-500 font-serif">
+          <span>💍 Ceremony</span>
+          <span>&bull;</span>
+          <span>🥂 Reception</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Birthday' || cat === 'Celebration') {
+    return (
+      <div className="w-full h-full bg-gradient-to-br from-pink-50 via-purple-50 to-amber-50 text-slate-800 p-4 flex flex-col justify-between border-b border-pink-200/60">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-pink-600 bg-pink-100/80 px-2 py-0.5 rounded-md">
+            Party Live
+          </span>
+          <span className="text-[10px] text-purple-600 font-bold">🎉 Countdown</span>
+        </div>
+        <div className="text-center my-auto py-2">
+          <h4 className="text-base font-extrabold text-slate-900 tracking-tight">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-slate-600 font-medium mt-0.5">
+            Music &bull; Cake Cutting &bull; Games
+          </p>
+          <div className="mt-2 flex justify-center gap-1.5 text-[9px] font-bold text-slate-700">
+            <span className="bg-white shadow-xs px-2 py-0.5 rounded border border-pink-200">08d</span>
+            <span className="bg-white shadow-xs px-2 py-0.5 rounded border border-pink-200">14h</span>
+            <span className="bg-white shadow-xs px-2 py-0.5 rounded border border-pink-200">30m</span>
+          </div>
+        </div>
+        <div className="text-[9px] text-center text-pink-700 font-semibold bg-white/70 py-1 rounded-lg border border-pink-100">
+          Skyline Rooftop &bull; Confirm Attendance
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'College') {
+    return (
+      <div className="w-full h-full bg-slate-950 text-slate-100 p-4 flex flex-col justify-between border-b border-slate-800">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400">
+            Campus Fest &bull; 2026
+          </span>
+          <span className="text-[9px] bg-indigo-900/60 text-indigo-300 px-2 py-0.5 rounded border border-indigo-700/50">
+            ₹5L Prizes
+          </span>
+        </div>
+        <div className="text-center my-auto py-2">
+          <h4 className="text-base font-black text-white tracking-tight">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-slate-400 mt-0.5">
+            30+ Events &bull; 80 Colleges &bull; Hackathons
+          </p>
+          <div className="mt-2 inline-flex items-center gap-2 text-[9px] bg-slate-900 text-slate-300 px-2.5 py-1 rounded-full border border-slate-800">
+            <span>💻 Tech</span>
+            <span>&bull;</span>
+            <span>🎭 Cultural</span>
+            <span>&bull;</span>
+            <span>🏆 Sports</span>
+          </div>
+        </div>
+        <div className="text-[9px] text-center text-indigo-300 bg-indigo-950/80 py-1 rounded border border-indigo-800/40">
+          Registration Portal Active
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Business') {
+    return (
+      <div className="w-full h-full bg-slate-50 text-slate-900 p-4 flex flex-col justify-between border-b border-slate-200">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700">
+            {cat} Portal
+          </span>
+          <span className="text-[9px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+            &bull; Open Today
+          </span>
+        </div>
+        <div className="text-center my-auto py-2">
+          <h4 className="text-base font-bold text-slate-900 leading-tight">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-slate-600 line-clamp-1 mt-0.5">
+            {website.shortDesc}
+          </p>
+          <div className="mt-2 inline-flex gap-1.5 text-[9px] text-slate-700 font-medium">
+            <span className="bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">Services</span>
+            <span className="bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">Pricing</span>
+            <span className="bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">Booking</span>
+          </div>
+        </div>
+        <div className="text-[9px] text-center text-slate-500 bg-white py-1 rounded-lg border border-slate-200">
+          Direct Customer Appointments &amp; Inquiries
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Portfolio' || cat === 'Personal') {
+    return (
+      <div className="w-full h-full bg-slate-900 text-slate-100 p-4 flex flex-col justify-between border-b border-slate-800">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400">
+            Portfolio Showcase
+          </span>
+          <span className="text-[9px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-800/40">
+            Available for Hire
+          </span>
+        </div>
+        <div className="text-center my-auto py-2">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 mx-auto mb-1 flex items-center justify-center font-bold text-xs text-white shadow-xs">
+            {website.name.charAt(0)}
+          </div>
+          <h4 className="text-sm font-bold text-white leading-tight">
+            {website.name}
+          </h4>
+          <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">
+            {website.shortDesc}
+          </p>
+        </div>
+        <div className="flex justify-center gap-2 text-[9px] text-slate-400 border-t border-slate-800/80 pt-1.5">
+          <span>45+ Projects</span>
+          <span>&bull;</span>
+          <span>Case Studies</span>
+          <span>&bull;</span>
+          <span>Resume</span>
+        </div>
+      </div>
+    )
+  }
+
+  // Startup, Product Launch, Invitation, Events, Project
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white p-4 flex flex-col justify-between border-b border-indigo-800">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+          {cat}
+        </span>
+        <span className="text-[9px] text-blue-200">🚀 Ready Template</span>
+      </div>
+      <div className="text-center my-auto py-2">
+        <h4 className="text-base font-black text-white tracking-tight leading-tight">
+          {website.name}
+        </h4>
+        <p className="text-[10px] text-blue-200 line-clamp-1 mt-0.5">
+          {website.shortDesc}
+        </p>
+        <div className="mt-2 inline-flex gap-1.5 text-[9px] bg-white/10 px-2.5 py-0.5 rounded-full text-white backdrop-blur-xs border border-white/10">
+          <span>High Conversion</span>
+          <span>&bull;</span>
+          <span>Instant Launch</span>
+        </div>
+      </div>
+      <div className="text-[9px] text-center text-cyan-200 bg-white/5 py-1 rounded border border-white/10">
+        Fully Mobile &amp; Desktop Responsive
       </div>
     </div>
   )

@@ -284,7 +284,7 @@ export default async function Home() {
                 className="bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-300 transition-all duration-500 group flex flex-col justify-between hover:-translate-y-2"
               >
                 <div>
-                  <div className="relative aspect-video bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden">
                     {website.thumbnail ? (
                       <img
                         src={website.thumbnail}
@@ -292,9 +292,7 @@ export default async function Home() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100">
-                        <Globe className="h-16 w-16 text-blue-400" />
-                      </div>
+                      <HomepageCardMockup website={website} />
                     )}
                     <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-slate-800 shadow-lg border border-slate-200">
                       {website.category}
@@ -534,6 +532,82 @@ export default async function Home() {
           </div>
         </div>
       </footer>
+    </div>
+  )
+}
+
+function HomepageCardMockup({ website }: { website: any }) {
+  const cat = website.category || ''
+
+  if (cat === 'Wedding') {
+    return (
+      <div className="w-full h-full bg-[#FAF5EE] text-stone-800 p-6 flex flex-col justify-between">
+        <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
+          <span className="text-[11px] font-serif font-bold uppercase tracking-widest text-amber-900">
+            Royal Wedding
+          </span>
+          <span className="text-[10px] text-stone-500 font-serif">Dec 2026</span>
+        </div>
+        <div className="text-center my-auto py-3">
+          <h4 className="font-serif text-xl font-bold text-stone-900 leading-tight">
+            {website.name}
+          </h4>
+          <p className="text-[11px] text-stone-600 font-serif italic mt-1">
+            Celebrate Our Union &bull; Udaipur Palace
+          </p>
+        </div>
+        <div className="flex gap-2 justify-center pt-2 border-t border-stone-200/60 text-[10px] text-stone-500 font-serif">
+          <span>💍 Ceremony</span>
+          <span>&bull;</span>
+          <span>🥂 Reception</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Birthday' || cat === 'Celebration') {
+    return (
+      <div className="w-full h-full bg-gradient-to-br from-pink-50 via-purple-50 to-amber-50 text-slate-800 p-6 flex flex-col justify-between">
+        <div className="flex items-center justify-between">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-pink-600 bg-pink-100/80 px-2 py-0.5 rounded-md">
+            Party Live
+          </span>
+          <span className="text-[11px] text-purple-600 font-bold">🎉 Countdown</span>
+        </div>
+        <div className="text-center my-auto py-3">
+          <h4 className="text-lg font-extrabold text-slate-900 tracking-tight">
+            {website.name}
+          </h4>
+          <p className="text-[11px] text-slate-600 font-medium mt-1">
+            Music &bull; Cake Cutting &bull; Games
+          </p>
+        </div>
+        <div className="text-[10px] text-center text-pink-700 font-semibold bg-white/70 py-1 rounded-lg border border-pink-100">
+          Skyline Rooftop &bull; Confirm Attendance
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white p-6 flex flex-col justify-between">
+      <div className="flex items-center justify-between">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+          {cat} Edition
+        </span>
+        <span className="text-[10px] text-blue-200">🚀 Template</span>
+      </div>
+      <div className="text-center my-auto py-3">
+        <h4 className="text-lg font-black text-white tracking-tight leading-tight">
+          {website.name}
+        </h4>
+        <p className="text-[11px] text-blue-200 line-clamp-1 mt-1">
+          {website.shortDesc}
+        </p>
+      </div>
+      <div className="text-[10px] text-center text-cyan-200 bg-white/10 py-1 rounded border border-white/10">
+        Interactive Live Demo Available
+      </div>
     </div>
   )
 }
