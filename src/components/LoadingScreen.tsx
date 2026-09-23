@@ -22,29 +22,28 @@ const CSS_STYLES = `
 }
 
 @keyframes hyrinxBarDraw {
-  0% { transform: scaleX(0); opacity: 0; }
-  100% { transform: scaleX(1); opacity: 1; }
+  0% { opacity: 0; transform: scaleX(0.7); }
+  100% { opacity: 1; transform: scaleX(1); }
 }
 .hx-bar-draw {
-  transform-origin: left;
   animation: hyrinxBarDraw 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
 @keyframes hyrinxSkelFade {
-  0% { opacity: 0; transform: translateY(8px) scale(0.97); }
+  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-.hx-skel-1 { animation: hyrinxSkelFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
-.hx-skel-2 { animation: hyrinxSkelFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both; }
-.hx-skel-3 { animation: hyrinxSkelFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both; }
+.hx-skel-1 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+.hx-skel-2 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+.hx-skel-3 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
 
-@keyframes hyrinxBadgeSlide {
-  0% { opacity: 0; transform: translate(24px, -12px) scale(0.7); }
-  70% { transform: translate(0, 0) scale(1.08); }
-  100% { opacity: 1; transform: translate(0, 0) scale(1); }
+@keyframes hyrinxRentalBadge {
+  0% { opacity: 0; transform: scale(0.7) translateY(-10px); }
+  70% { transform: scale(1.08) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
-.hx-badge-flow {
-  animation: hyrinxBadgeSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
+.hx-rental-badge {
+  animation: hyrinxRentalBadge 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s both;
 }
 
 @keyframes hyrinxTagFlip {
@@ -74,14 +73,14 @@ const CSS_STYLES = `
 
 @keyframes hyrinxScaleOut {
   0%, 70% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+  100% { transform: scale(1.04); }
 }
 .hx-scale-out {
   animation: hyrinxScaleOut 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
 }
 
 @keyframes hyrinxScreenExit {
-  0%, 72% { opacity: 1; pointer-events: auto; }
+  0%, 75% { opacity: 1; pointer-events: auto; }
   100% { opacity: 0; pointer-events: none; }
 }
 .hx-screen-exit {
@@ -131,24 +130,27 @@ export default function LoadingScreen() {
       <style dangerouslySetInnerHTML={{ __html: CSS_STYLES }} />
       <div
         aria-hidden="true"
-        className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#070b14] select-none pointer-events-none ${
+        className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#060913] select-none pointer-events-none px-4 ${
           reduced ? "hx-quick-fade" : "hx-screen-exit"
         }`}
       >
-        <div className="relative w-full max-w-[320px] sm:max-w-[420px] px-4 hx-scale-out">
+        <div className="relative w-full max-w-[340px] sm:max-w-[430px] hx-scale-out">
           {/* Ambient Glow */}
-          <div className="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-3xl hx-glow-pulse" />
+          <div className="absolute inset-0 bg-indigo-600/25 blur-3xl rounded-3xl hx-glow-pulse" />
 
           {/* Browser Window Frame */}
-          <div className="relative rounded-2xl bg-[#0d1424] border border-slate-700/60 shadow-2xl overflow-hidden p-4 sm:p-5">
-            {/* Top Bar */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+          <div className="relative rounded-2xl bg-[#0d1424] border border-slate-700/70 shadow-2xl overflow-hidden p-4 sm:p-5">
+            {/* Top Bar with URL */}
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90 hx-dot-in" style={{ animationDelay: "0.15s" }} />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90 hx-dot-in" style={{ animationDelay: "0.25s" }} />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90 hx-dot-in" style={{ animationDelay: "0.35s" }} />
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90 hx-dot-in" style={{ animationDelay: "0.1s" }} />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90 hx-dot-in" style={{ animationDelay: "0.2s" }} />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90 hx-dot-in" style={{ animationDelay: "0.3s" }} />
               </div>
-              <div className="h-4 w-28 sm:w-36 rounded-md bg-slate-800/80 border border-slate-700/50 hx-bar-draw" />
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/90 border border-slate-700/60 text-[11px] text-slate-400 font-mono hx-bar-draw">
+                <span className="text-emerald-400 text-[10px]">🔒</span>
+                <span>hyrinx.com/rentals</span>
+              </div>
               <div className="w-6" />
             </div>
 
@@ -166,40 +168,61 @@ export default function LoadingScreen() {
               />
             </svg>
 
-            {/* Wireframe Skeleton Content */}
-            <div className="pt-4 space-y-3">
+            {/* Website Rental Mockup Content */}
+            <div className="pt-3.5 space-y-2.5">
+              {/* Category & Rental Rate */}
               <div className="flex items-center justify-between hx-skel-1">
-                <div className="h-4 w-24 rounded bg-indigo-400/40" />
-                <div className="h-3 w-14 rounded bg-slate-700/60" />
+                <span className="text-[10px] font-bold text-indigo-300 bg-indigo-950/80 border border-indigo-800/60 px-2 py-0.5 rounded">
+                  ⚡ SELECT WEBSITE TEMPLATE
+                </span>
+                <span className="text-[11px] font-mono font-bold text-amber-300">
+                  ₹149<span className="text-[9px] text-slate-400 font-sans">/day</span>
+                </span>
               </div>
 
-              <div className="h-16 sm:h-20 rounded-xl bg-gradient-to-r from-indigo-950/60 via-slate-800/60 to-indigo-950/60 border border-slate-800 flex flex-col justify-center px-3 gap-2 hx-skel-2">
-                <div className="h-3 w-3/4 rounded bg-slate-600/60" />
-                <div className="h-2 w-1/2 rounded bg-slate-700/60" />
+              {/* Website Preview Box */}
+              <div className="rounded-xl bg-slate-900/80 border border-slate-800 p-3 hx-skel-2">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-800/60">
+                  <div className="h-3 w-28 rounded bg-slate-700/70" />
+                  <div className="h-2.5 w-12 rounded bg-indigo-500/40" />
+                </div>
+                <div className="grid grid-cols-3 gap-1.5 pt-2">
+                  <div className="h-6 rounded bg-slate-800/80 border border-slate-700/40 flex items-center justify-center text-[9px] text-slate-400">
+                    3 Days
+                  </div>
+                  <div className="h-6 rounded bg-indigo-600/30 border border-indigo-500/60 flex items-center justify-center text-[9px] font-bold text-indigo-200">
+                    7 Days ✓
+                  </div>
+                  <div className="h-6 rounded bg-slate-800/80 border border-slate-700/40 flex items-center justify-center text-[9px] text-slate-400">
+                    1 Month
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2.5 pt-1 hx-skel-3">
-                <div className="h-12 rounded-lg bg-slate-800/40 border border-slate-800/60 p-2 flex flex-col justify-between">
-                  <div className="h-2 w-10 rounded bg-slate-600/50" />
-                  <div className="h-2 w-14 rounded bg-indigo-400/40" />
-                </div>
-                <div className="h-12 rounded-lg bg-slate-800/40 border border-slate-800/60 p-2 flex flex-col justify-between">
-                  <div className="h-2 w-12 rounded bg-slate-600/50" />
-                  <div className="h-2 w-10 rounded bg-emerald-400/40" />
-                </div>
+              {/* Instant Deployment Status Bar */}
+              <div className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-slate-950/80 border border-slate-800 text-[10px] text-slate-400 font-mono hx-skel-3">
+                <span>Domain & Hosting: <strong className="text-slate-200">Included</strong></span>
+                <span className="text-indigo-400">Ready in 60s</span>
               </div>
             </div>
 
-            {/* Morphing "FOR RENT" -> "LIVE" Badge */}
-            <div className="absolute top-2.5 right-3 hx-badge-flow flex items-center">
-              <div className="hx-tag-flip flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-600 text-[10px] font-bold tracking-wider text-white shadow-lg shadow-indigo-600/40 border border-indigo-400/40 uppercase">
-                <span>FOR RENT</span>
+            {/* Morphing "RENTING NOW" -> "● LIVE ACTIVE" Badge */}
+            <div className="absolute top-2.5 right-3 hx-rental-badge flex items-center">
+              <div className="hx-tag-flip flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-600 text-[10px] font-bold tracking-wider text-white shadow-lg shadow-indigo-600/40 border border-indigo-400/40 uppercase">
+                <span>🏷️ RENT NOW</span>
               </div>
               <div className="hx-live-morph absolute inset-0 flex items-center justify-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/95 text-[10px] font-bold text-emerald-300 border border-emerald-500/50 shadow-lg shadow-emerald-500/30">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                <span>LIVE</span>
+                <span>RENTED &bull; LIVE</span>
               </div>
             </div>
+          </div>
+
+          {/* Subtitle Branding */}
+          <div className="mt-4 text-center">
+            <p className="text-xs font-semibold tracking-wide text-slate-300">
+              Why buy a website? <span className="text-indigo-400 font-bold">Rent one instead.</span>
+            </p>
           </div>
         </div>
       </div>
