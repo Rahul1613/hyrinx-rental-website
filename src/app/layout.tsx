@@ -47,8 +47,60 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://hyrinx.in/#organization',
+        name: 'Hyrinx',
+        url: 'https://hyrinx.in',
+        logo: 'https://hyrinx.in/favicon.ico',
+        description: 'Why Buy a Website? Rent One Instead. Temporary website rentals for weddings, businesses, celebrations, and college projects.',
+        founder: [
+          {
+            '@type': 'Person',
+            name: 'Rahul Sisode',
+            jobTitle: 'Founder & CEO',
+            sameAs: ['https://www.instagram.com/_rahulsisode/'],
+          },
+          {
+            '@type': 'Person',
+            name: 'Harshal',
+            jobTitle: 'Founder & Creative Strategist',
+            sameAs: ['https://www.instagram.com/hxrshxl_07/'],
+          },
+        ],
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            telephone: '+91-9730213645',
+            contactType: 'customer service',
+            areaServed: 'IN',
+            availableLanguage: ['English', 'Hindi'],
+          },
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://hyrinx.in/#website',
+        url: 'https://hyrinx.in',
+        name: 'Hyrinx Rental Websites',
+        publisher: {
+          '@id': 'https://hyrinx.in/#organization',
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <LoadingScreen />
         {children}
