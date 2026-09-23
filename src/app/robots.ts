@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/'],
       },
     ],
-    sitemap: 'https://hyrinx.com/sitemap.xml',
+    sitemap: 'https://hyrinx.in/sitemap.xml',
   }
 }
