@@ -143,17 +143,19 @@ export default function ContactPage() {
                         href="https://wa.me/919730213645"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
+                        className="flex items-center gap-2 text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
                       >
-                        +91 9730213645
+                        <span>+91 9730213645</span>
+                        <span className="text-xs bg-green-100 text-green-800 font-semibold px-2 py-0.5 rounded-full">Rahul</span>
                       </a>
                       <a
                         href="https://wa.me/917020072239"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
+                        className="flex items-center gap-2 text-green-700 hover:text-green-800 hover:underline text-base font-medium transition-colors"
                       >
-                        +91 7020072239
+                        <span>+91 7020072239</span>
+                        <span className="text-xs bg-green-100 text-green-800 font-semibold px-2 py-0.5 rounded-full">Harshal</span>
                       </a>
                     </div>
                   </div>

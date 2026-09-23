@@ -276,7 +276,7 @@ function TrackContent() {
                       className="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs py-3 px-4 rounded-xl transition-all shadow-md shadow-emerald-600/20"
                     >
                       <MessageCircle className="h-4 w-4" />
-                      Chat with Support
+                      Chat with Harshal
                     </a>
                   </div>
                 </div>
