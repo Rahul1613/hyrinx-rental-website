@@ -35,11 +35,13 @@ export const orderSchema = z.object({
     phone: z.string().min(10, 'Phone number must be at least 10 characters').max(15),
     companyEventName: z.string().max(100).optional(),
     websiteTitle: z.string().min(2, 'Website title must be at least 2 characters').max(100),
-    preferredSubdomain: z.string()
-      .min(3, 'Subdomain must be at least 3 characters')
-      .max(50)
-      .regex(/^[a-z0-9-]+$/, 'Subdomain can only contain lowercase letters, numbers, and hyphens')
-      .optional(),
+    preferredSubdomain: z.union([
+      z.string()
+        .min(3, 'Subdomain must be at least 3 characters')
+        .max(50)
+        .regex(/^[a-z0-9-]+$/, 'Only lowercase letters, numbers and hyphens allowed'),
+      z.literal(''),
+    ]).optional(),
     requiredLaunchDate: z.string().optional(),
   }),
   totalAmount: z.number().min(0, 'Amount must be non-negative'),

@@ -419,7 +419,7 @@ function CheckoutContent() {
 
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-3">
-                        Preferred Subdomain (Optional)
+                        Preferred Subdomain <span className="text-slate-400 font-normal">(Optional — leave blank to skip)</span>
                       </label>
 
                       <input
@@ -428,15 +428,17 @@ function CheckoutContent() {
                         onChange={(e) =>
                           setFormData((prev) => ({
                             ...prev,
-                            preferredSubdomain: e.target.value,
+                            preferredSubdomain: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''),
                           }))
                         }
                         className="w-full px-5 py-4 border-2 border-slate-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 transition-all duration-300"
-                        placeholder="myevent"
+                        placeholder="e.g. myevent (leave empty if not needed)"
                       />
 
-                      <p className="text-base text-slate-500 mt-2 font-medium">
-                        Your website will be at: myevent.hyrinx.com
+                      <p className="text-sm text-slate-500 mt-2">
+                        {formData.preferredSubdomain
+                          ? <>Your site will be at: <span className="font-semibold text-blue-600">{formData.preferredSubdomain}.hyrinx.com</span></>
+                          : 'We will assign a subdomain automatically if left blank.'}
                       </p>
                     </div>
 
