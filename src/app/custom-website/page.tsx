@@ -286,10 +286,10 @@ export default function CustomWebsitePage() {
                 contact@hyrinx.com
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+919730213645"
                 className="text-blue-600 hover:text-blue-700 text-lg font-bold transition-colors"
               >
-                +91 98765 43210
+                +91 97302 13645
               </a>
             </div>
           </div>
