@@ -183,17 +183,15 @@ function WebsiteCard({ website }: { website: any }) {
         </div>
 
         <div className="flex gap-2">
-          {website.liveDemoUrl && (
-            <a
-              href={website.liveDemoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-white border-2 border-slate-200 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-slate-50 transition-colors text-sm flex items-center justify-center gap-2"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Live Demo
-            </a>
-          )}
+          <Link
+            href={`/demo/${website.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-white border-2 border-slate-200 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-slate-50 transition-colors text-sm flex items-center justify-center gap-2"
+          >
+            <ExternalLink className="h-4 w-4" />
+            Live Demo
+          </Link>
           <Link
             href={`/websites/${website.slug}`}
             className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm text-center"

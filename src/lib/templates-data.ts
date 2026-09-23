@@ -55,7 +55,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Love Story Timeline', 'Digital RSVP', 'Venue Directions', 'Event Schedule', 'Photo Gallery'],
     customization: ['Couple Names', 'Wedding Date', 'Venue Address', 'Photo Album', 'Contact Details'],
-    liveDemoUrl: 'https://example.com/demo/wedding',
+    liveDemoUrl: '/demo/eternal-moments',
   },
   {
     id: 'web-royal-union',
@@ -69,7 +69,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Sangeet & Reception Schedule', 'Family Tree', 'Blessings Guestbook', 'Digital Map'],
     customization: ['Couple Names', 'Function Dates', 'Hotel Venue', 'RSVP WhatsApp'],
-    liveDemoUrl: 'https://example.com/demo/royal-union',
+    liveDemoUrl: '/demo/royal-union',
   },
   {
     id: 'web-soulmates-forever',
@@ -83,7 +83,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Photo Wall', 'Dietary Preference RSVP', 'Music Player', 'Live Stream Link'],
     customization: ['Names', 'Dates', 'Live Stream URL', 'Photos'],
-    liveDemoUrl: 'https://example.com/demo/soulmates',
+    liveDemoUrl: '/demo/soulmates-forever',
   },
 
   // Birthday & Celebration
@@ -99,7 +99,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Party Countdown', 'Guest Wish Wall', 'Location Map', 'Dress Code Details'],
     customization: ['Birthday Star Name', 'Age/Milestone', 'Party Venue', 'Date & Time'],
-    liveDemoUrl: 'https://example.com/demo/birthday',
+    liveDemoUrl: '/demo/birthday-bash',
   },
   {
     id: 'web-silver-jubilee',
@@ -113,7 +113,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Journey Timeline', 'Memory Slideshow', 'Dinner RSVP', 'Venue Guide'],
     customization: ['Couple Names', 'Years of Marriage', 'Venue', 'Photos'],
-    liveDemoUrl: 'https://example.com/demo/anniversary',
+    liveDemoUrl: '/demo/silver-jubilee',
   },
   {
     id: 'web-baby-shower-miracle',
@@ -127,7 +127,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Baby Shower Countdown', 'Gift Registry', 'Baby Games Schedule', 'RSVP'],
     customization: ['Parents Names', 'Baby Due Date', 'Event Venue', 'Gift Links'],
-    liveDemoUrl: 'https://example.com/demo/baby-shower',
+    liveDemoUrl: '/demo/baby-shower-miracle',
   },
 
   // Invitation
@@ -143,7 +143,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['1-Click RSVP', 'Add to Google Calendar', 'Apple Maps / Google Maps', 'Host Contact'],
     customization: ['Event Title', 'Date & Time', 'Location', 'Host Mobile'],
-    liveDemoUrl: 'https://example.com/demo/invite',
+    liveDemoUrl: '/demo/quickinvite-rsvp',
   },
 
   // College & Campus Events
@@ -159,7 +159,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Inter-College Registration', 'Rulebooks PDF', 'Sponsor Tiers', 'Live Leaderboard'],
     customization: ['Fest Name', 'College Name', 'Event Schedule', 'Sponsor Logos'],
-    liveDemoUrl: 'https://example.com/demo/college',
+    liveDemoUrl: '/demo/college-fest-pro',
   },
   {
     id: 'web-hacksprint-techfest',
@@ -173,7 +173,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Team Registration', 'Tracks & Prizes', 'Mentor Profiles', 'Discord Community'],
     customization: ['Hackathon Name', 'Prize Pool', 'Tracks', 'Sponsors'],
-    liveDemoUrl: 'https://example.com/demo/hackathon',
+    liveDemoUrl: '/demo/hacksprint-techfest',
   },
   {
     id: 'web-national-research-symposium',
@@ -187,7 +187,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Call for Papers', 'Speaker Lineup', 'Conference Schedule', 'Certificate Info'],
     customization: ['Department Name', 'Conference Theme', 'Important Dates', 'Contact Email'],
-    liveDemoUrl: 'https://example.com/demo/symposium',
+    liveDemoUrl: '/demo/national-research-symposium',
   },
 
   // Business & Local Services
@@ -203,7 +203,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Digital Menu', 'Table Booking Form', 'Opening Hours', 'Google Reviews'],
     customization: ['Restaurant Name', 'Menu Items', 'Pricing', 'Phone / Zomato Links'],
-    liveDemoUrl: 'https://example.com/demo/cafe',
+    liveDemoUrl: '/demo/gourmet-bistro-cafe',
   },
   {
     id: 'web-luxe-salon-spa',
@@ -217,7 +217,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Service Price List', 'Stylist Profiles', 'Appointment Inquiry', 'Customer Testimonials'],
     customization: ['Salon Name', 'Services Offered', 'Price Sheet', 'WhatsApp Booking'],
-    liveDemoUrl: 'https://example.com/demo/salon',
+    liveDemoUrl: '/demo/luxe-salon-spa',
   },
   {
     id: 'web-ironpulse-fitness-gym',
@@ -231,7 +231,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Class Schedule', 'Membership Tiers', 'Trainer Bios', 'Free Trial Pass'],
     customization: ['Gym Name', 'Batch Timings', 'Membership Fees', 'Address'],
-    liveDemoUrl: 'https://example.com/demo/gym',
+    liveDemoUrl: '/demo/ironpulse-fitness-gym',
   },
   {
     id: 'web-prime-estates-realty',
@@ -245,7 +245,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 249,
     features: ['Property Cards', 'Floor Plans', 'Amenities Grid', 'Schedule Site Visit'],
     customization: ['Builder/Agent Name', 'Property List', 'Price Ranges', 'Brochure PDF'],
-    liveDemoUrl: 'https://example.com/demo/real-estate',
+    liveDemoUrl: '/demo/prime-estates-realty',
   },
   {
     id: 'web-apex-buildcon',
@@ -259,7 +259,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 249,
     features: ['Completed Projects Grid', 'Service Offerings', 'Client Logos', 'Request a Quote'],
     customization: ['Company Name', 'Projects Gallery', 'Client List', 'Phone & Email'],
-    liveDemoUrl: 'https://example.com/demo/construction',
+    liveDemoUrl: '/demo/apex-buildcon',
   },
   {
     id: 'web-nexus-corporate-consult',
@@ -273,7 +273,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 249,
     features: ['Leadership Bios', 'Corporate Solutions', 'Client Case Studies', 'Inquiry Form'],
     customization: ['Firm Name', 'Services', 'Partner Profiles', 'Office Location'],
-    liveDemoUrl: 'https://example.com/demo/corporate',
+    liveDemoUrl: '/demo/nexus-corporate-consult',
   },
   {
     id: 'web-brightminds-academy',
@@ -287,7 +287,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 199,
     features: ['Course Catalog', 'Topper Hall of Fame', 'Batch Schedules', 'Demo Class Registration'],
     customization: ['Institute Name', 'Exams Covered', 'Faculty List', 'Phone & Address'],
-    liveDemoUrl: 'https://example.com/demo/coaching',
+    liveDemoUrl: '/demo/brightminds-academy',
   },
 
   // Portfolios
@@ -303,7 +303,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 179,
     features: ['Full-Width Gallery', 'Shoot Packages', 'Gear Specs', 'Direct Booking Inquiry'],
     customization: ['Photographer Name', 'Portfolio Albums', 'Shoot Rates', 'Instagram Feed'],
-    liveDemoUrl: 'https://example.com/demo/photographer',
+    liveDemoUrl: '/demo/shuttercraft-studio',
   },
   {
     id: 'web-devcraft-freelance',
@@ -317,7 +317,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 179,
     features: ['Case Studies', 'Tech Stack Icons', 'Client Recommendations', 'Contact Form'],
     customization: ['Developer Name', 'Github / LinkedIn', 'Projects', 'Hourly / Project Rate'],
-    liveDemoUrl: 'https://example.com/demo/freelance',
+    liveDemoUrl: '/demo/devcraft-freelance',
   },
   {
     id: 'web-portfolio-plus',
@@ -331,7 +331,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 179,
     features: ['Project Gallery', 'About Section', 'Skills Display', 'Contact Form', 'Social Links', 'Resume Download'],
     customization: ['Name', 'Bio', 'Projects', 'Skills', 'Contact Details', 'Social Links', 'Resume'],
-    liveDemoUrl: 'https://example.com/demo/portfolio',
+    liveDemoUrl: '/demo/portfolio-plus',
   },
 
   // Startup & Launch
@@ -347,7 +347,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 299,
     features: ['Feature Hero', 'Product Walkthrough', 'Pricing Grid', 'Early Access Waitlist'],
     customization: ['Product Name', 'Pitch Slogan', 'Features List', 'Waitlist Email'],
-    liveDemoUrl: 'https://example.com/demo/startup',
+    liveDemoUrl: '/demo/startup-launchpad',
   },
   {
     id: 'web-nextgen-gadget-launch',
@@ -361,7 +361,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 299,
     features: ['360 Product Showcase', 'Technical Specs', 'Launch Countdown', 'Pre-Order CTA'],
     customization: ['Product Title', 'Launch Date', 'Specs Sheet', 'Order Link'],
-    liveDemoUrl: 'https://example.com/demo/product-launch',
+    liveDemoUrl: '/demo/nextgen-gadget-launch',
   },
 
   // Events & Project
@@ -377,7 +377,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 249,
     features: ['Multi-Track Agenda', 'Keynote Speakers', 'Pass Tiers', 'Sponsors Carousel'],
     customization: ['Conference Title', 'Dates', 'Speakers List', 'Venue'],
-    liveDemoUrl: 'https://example.com/demo/summit',
+    liveDemoUrl: '/demo/summit-global-conference',
   },
   {
     id: 'web-event-hub',
@@ -391,7 +391,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 249,
     features: ['Schedule', 'Speaker Profiles', 'Registration', 'Venue Info', 'Sponsors', 'Contact'],
     customization: ['Event Name', 'Dates', 'Speakers', 'Schedule', 'Venue', 'Registration Form', 'Sponsors'],
-    liveDemoUrl: 'https://example.com/demo/event',
+    liveDemoUrl: '/demo/event-hub',
   },
   {
     id: 'web-project-capstone-demo',
@@ -405,7 +405,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 179,
     features: ['System Architecture', 'Live Embedded Demo', 'Tech Stack Badges', 'Documentation PDF'],
     customization: ['Project Title', 'Authors', 'Github URL', 'Demo Link'],
-    liveDemoUrl: 'https://example.com/demo/project',
+    liveDemoUrl: '/demo/project-capstone-demo',
   },
 
   // Personal & Celebration
@@ -421,7 +421,7 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Hero Avatar', 'Social Link Tree', 'Resume Timeline', 'Newsletter Box'],
     customization: ['Your Name', 'Bio Blurb', 'Social Handles', 'Contact'],
-    liveDemoUrl: 'https://example.com/demo/personal',
+    liveDemoUrl: '/demo/creative-identity',
   },
   {
     id: 'web-grand-celebration-gala',
@@ -435,6 +435,6 @@ export const DEFAULT_WEBSITES: WebsiteTemplate[] = [
     startingPrice: 149,
     features: ['Gala Schedule', 'Chief Guests', 'Pass Registration', 'Location Map'],
     customization: ['Gala Name', 'Event Date', 'Venue', 'Special Guests'],
-    liveDemoUrl: 'https://example.com/demo/gala',
+    liveDemoUrl: '/demo/grand-celebration-gala',
   },
 ]

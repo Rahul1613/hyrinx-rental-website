@@ -328,17 +328,15 @@ export default async function Home() {
                   </div>
 
                   <div className="flex gap-3">
-                    {website.liveDemoUrl && (
-                      <a
-                        href={website.liveDemoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 border-2 border-slate-200 rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
-                        title="Live Demo"
-                      >
-                        <ExternalLink className="h-5 w-5" />
-                      </a>
-                    )}
+                    <Link
+                      href={`/demo/${website.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 border-2 border-slate-200 rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
+                      title="Live Demo"
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                    </Link>
                     <Link
                       href={`/websites/${website.slug}`}
                       className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-2"
