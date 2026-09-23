@@ -79,7 +79,7 @@ function OrderSuccessContent() {
                 {copied ? 'Copied!' : 'Copy Order ID'}
               </button>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/919730213645"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-colors"
