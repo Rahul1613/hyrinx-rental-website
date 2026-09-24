@@ -37,14 +37,19 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-2.5 sm:space-x-3 group">
+            <img
+              src="/icon.png"
+              alt="Hyrinx"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-contain shadow-xs border border-slate-200/60"
+            />
             <div className="flex flex-col">
-              <span className="text-2xl md:text-3xl font-black tracking-tight bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300">
+              <span className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300">
                 HYRINX
               </span>
-              <span className="text-[10px] uppercase font-bold text-blue-600 tracking-widest -mt-1 group-hover:text-indigo-600 transition-colors">
+              <span className="text-[9px] sm:text-[10px] uppercase font-bold text-blue-600 tracking-widest -mt-1 group-hover:text-indigo-600 transition-colors">
                 Rental Websites
               </span>
             </div>
@@ -74,7 +79,8 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-3 rounded-xl hover:bg-slate-100 transition-all duration-300 group"
+            className="lg:hidden p-2 sm:p-3 rounded-xl hover:bg-slate-100 transition-all duration-300 group"
+            aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6 text-slate-700 group-hover:scale-110 transition-transform" />

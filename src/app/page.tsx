@@ -236,11 +236,11 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {featuredWebsites.map((website) => (
               <div
                 key={website.id}
-                className="bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-300 transition-all duration-500 group flex flex-col justify-between hover:-translate-y-2"
+                className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 sm:border-2 sm:border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-300 transition-all duration-500 group flex flex-col justify-between hover:-translate-y-1 sm:hover:-translate-y-2 shadow-sm sm:shadow-none"
               >
                 <div>
                   <div className="relative aspect-video overflow-hidden">
@@ -253,50 +253,50 @@ export default async function Home() {
                     ) : (
                       <HomepageCardMockup website={website} />
                     )}
-                    <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-slate-800 shadow-lg border border-slate-200">
+                    <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm px-3 py-1 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold text-slate-800 shadow-md border border-slate-200">
                       {website.category}
                     </span>
                     {website.featured && (
-                      <span className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-bold px-3 py-1 rounded-full text-xs shadow-lg flex items-center gap-1">
-                        <Star className="h-3.5 w-3.5 fill-white" />
+                      <span className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs shadow-md flex items-center gap-1">
+                        <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-white" />
                         Featured
                       </span>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
-                  <div className="p-7">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  <div className="p-4 sm:p-7">
+                    <h3 className="text-lg sm:text-2xl font-bold text-slate-900 mb-1.5 sm:mb-3 group-hover:text-blue-600 transition-colors">
                       {website.name}
                     </h3>
-                    <p className="text-slate-600 text-base line-clamp-2 mb-5 leading-relaxed">
+                    <p className="text-slate-600 text-xs sm:text-base line-clamp-2 mb-2 sm:mb-5 leading-relaxed">
                       {website.shortDesc || website.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="px-5 sm:px-7 pb-5 sm:pb-7 pt-4 border-t-2 border-slate-100 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 sm:gap-4">
+                <div className="px-4 sm:px-7 py-3 sm:py-5 border-t border-slate-100 flex items-center justify-between gap-2 sm:gap-4 bg-slate-50/60">
                   <div>
-                    <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Starting from</span>
-                    <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
+                    <span className="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase tracking-wider block">From</span>
+                    <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
                       {formatPrice(website.startingPrice || lowestPrice)}
-                      <span className="text-xs sm:text-sm font-normal text-slate-500">/day</span>
+                      <span className="text-[10px] sm:text-sm font-normal text-slate-500">/day</span>
                     </span>
                   </div>
 
-                  <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+                  <div className="flex items-center gap-1.5 sm:gap-2.5">
                     <Link
                       href={`/demo/${website.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 sm:p-3 border-2 border-slate-200 rounded-xl sm:rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300 flex items-center justify-center"
+                      className="p-2 sm:p-2.5 border border-slate-200 sm:border-2 rounded-lg sm:rounded-xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all flex items-center justify-center bg-white shadow-xs"
                       title="Live Demo"
                     >
-                      <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <ExternalLink className="h-4 w-4" />
                     </Link>
                     <Link
                       href={`/websites/${website.slug}`}
-                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 shadow-md shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap"
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-1 whitespace-nowrap"
                     >
                       Rent Now
                     </Link>
