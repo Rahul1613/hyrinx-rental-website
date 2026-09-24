@@ -58,41 +58,41 @@ export default function WebsitesPage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <Navbar />
       
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 sm:pt-28 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-2 sm:mb-4 leading-tight">
               Choose Your Website
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto">
               Pick a design, preview it live and rent it for exactly as long as you need.
             </p>
           </div>
 
           {/* Search and Filters */}
-          <div className="mb-8 space-y-4">
+          <div className="mb-6 sm:mb-8 space-y-3 sm:space-y-4">
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search websites..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-11 sm:pl-12 pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-xs"
               />
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
                     selectedCategory === category
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
                   }`}
                 >
@@ -166,7 +166,7 @@ function WebsiteCard({ website }: { website: any }) {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-2">
           <div>
             <h3 className="text-xl font-semibold text-slate-900 mb-1">{website.name}</h3>

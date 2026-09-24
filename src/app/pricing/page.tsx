@@ -39,14 +39,14 @@ export default function PricingPage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <Navbar />
       
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 sm:pt-28 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-10 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 sm:mb-4 leading-tight">
               Flexible Plans For Every Need
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto">
               Rent for one day or keep your website for as long as your project needs it.
             </p>
           </div>
@@ -59,11 +59,11 @@ export default function PricingPage() {
           </div>
 
           {/* Features Comparison */}
-          <div className="mt-20">
-            <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
+          <div className="mt-14 sm:mt-20">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8 sm:mb-12">
               What's Included
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
               {[
                 'Full website customization',
                 'Mobile-responsive design',
@@ -75,26 +75,26 @@ export default function PricingPage() {
                 'Analytics dashboard',
                 '24/7 support',
               ].map((feature, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span className="text-slate-700">{feature}</span>
+                <div key={i} className="flex items-center gap-2.5 sm:gap-3 bg-white sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-200 sm:border-0 shadow-xs sm:shadow-none">
+                  <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                  <span className="text-xs sm:text-base text-slate-700 font-medium">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* CTA */}
-          <div className="mt-20 text-center">
-            <div className="bg-blue-600 rounded-2xl p-12 max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-white mb-4">
+          <div className="mt-14 sm:mt-20 text-center">
+            <div className="bg-blue-600 rounded-2xl p-6 sm:p-12 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-4">
                 Ready to Get Started?
               </h2>
-              <p className="text-blue-100 mb-8">
+              <p className="text-sm sm:text-base text-blue-100 mb-6 sm:mb-8">
                 Browse our collection of beautiful, ready-to-use websites
               </p>
               <Link
                 href="/websites"
-                className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+                className="w-full sm:w-auto inline-block bg-white text-blue-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold hover:bg-blue-50 transition-colors shadow-md text-sm sm:text-base"
               >
                 Browse Websites
               </Link>

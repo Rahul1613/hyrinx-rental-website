@@ -154,7 +154,7 @@ export default async function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-6 sm:px-8 lg:px-12 overflow-hidden">
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 -z-10" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl -z-10 animate-pulse" />
@@ -163,27 +163,27 @@ export default async function Home() {
 
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-5xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-500/30 animate-bounce">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-md sm:shadow-lg shadow-blue-500/30">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
               {hero.badgeText}
             </div>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent mb-8 leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent mb-5 sm:mb-8 leading-tight tracking-tight">
               {hero.headline}
             </h1>
-            <p className="text-xl sm:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-base sm:text-xl md:text-2xl text-slate-600 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
               {hero.subheadline}
             </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center max-w-md sm:max-w-none mx-auto">
               <Link
                 href={hero.primaryCtaLink}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base sm:text-lg shadow-lg sm:shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1"
               >
                 {hero.primaryCtaText}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
               <Link
                 href={hero.secondaryCtaLink}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:-translate-y-1"
+                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base sm:text-lg shadow-md sm:shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
                 {hero.secondaryCtaText}
               </Link>
@@ -192,16 +192,16 @@ export default async function Home() {
 
           {/* Dynamic Categories Showcase */}
           {categories.length > 0 && (
-            <div className="mt-20 max-w-5xl mx-auto">
-              <div className="text-center mb-6 text-sm font-bold uppercase tracking-widest text-slate-400">
+            <div className="mt-12 sm:mt-20 max-w-5xl mx-auto">
+              <div className="text-center mb-4 sm:mb-6 text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-400">
                 Explore Popular Categories
               </div>
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
                 {categories.map((cat) => (
                   <Link
                     key={cat.id}
                     href={`/websites?category=${cat.name}`}
-                    className="bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-slate-700 hover:text-blue-600 border-2 border-slate-200 hover:border-blue-300 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
+                    className="bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-slate-700 hover:text-blue-600 border border-slate-200 sm:border-2 hover:border-blue-300 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm sm:shadow-md hover:shadow-lg hover:-translate-y-1"
                   >
                     {cat.name}
                   </Link>
@@ -213,23 +213,23 @@ export default async function Home() {
       </section>
 
       {/* Featured Websites Section (Managed via Admin) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16">
             <div>
-              <span className="text-blue-600 text-sm font-bold uppercase tracking-widest block mb-2">
+              <span className="text-blue-600 text-xs sm:text-sm font-bold uppercase tracking-widest block mb-2">
                 Admin Curated Collection
               </span>
-              <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent leading-tight">
                 Featured Ready-Made Websites
               </h2>
-              <p className="text-slate-600 mt-3 max-w-xl text-lg">
+              <p className="text-slate-600 mt-2 sm:mt-3 max-w-xl text-sm sm:text-lg">
                 Choose a professionally created template, test the live demo, and launch in minutes.
               </p>
             </div>
             <Link
               href="/websites"
-              className="mt-6 md:mt-0 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 text-sm flex items-center gap-2"
+              className="mt-5 md:mt-0 w-fit bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold transition-all duration-300 shadow-md sm:shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 text-xs sm:text-sm flex items-center gap-2"
             >
               View All Websites ({DEFAULT_WEBSITES.filter(w => w.published).length}+)
               <ArrowRight className="h-4 w-4" />
@@ -583,9 +583,9 @@ export default async function Home() {
       </section>
 
       {/* Trust Strip */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 border-y border-blue-800">
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-10 sm:py-16 border-y border-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 lg:gap-8">
             {[
               { icon: Tag, text: `Starting at ₹${lowestPrice}/day` },
               { icon: Clock, text: 'No long-term contracts' },
@@ -594,9 +594,9 @@ export default async function Home() {
               { icon: Zap, text: 'Fast setup & launch' },
               { icon: Settings, text: 'Customisation included' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20">
-                <item.icon className="h-6 w-6 text-white flex-shrink-0" />
-                <span className="text-sm font-bold text-white">{item.text}</span>
+              <div key={i} className="flex items-center space-x-2.5 sm:space-x-3 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20">
+                <item.icon className="h-4 w-4 sm:h-6 sm:w-6 text-white flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-bold text-white leading-tight">{item.text}</span>
               </div>
             ))}
           </div>
@@ -604,21 +604,21 @@ export default async function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+      <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <span className="text-blue-600 text-sm font-bold uppercase tracking-widest block mb-3">
+          <div className="text-center mb-10 sm:mb-20">
+            <span className="text-blue-600 text-xs sm:text-sm font-bold uppercase tracking-widest block mb-2 sm:mb-3">
               Simple Process
             </span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-5">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-3 sm:mb-5 leading-tight">
               How It Works
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
+            <p className="text-sm sm:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
               Get your temporary website live in five simple steps
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 relative">
             <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-400 to-indigo-400 -z-10 rounded-full" />
             {[
               { step: '01', title: 'Choose', desc: 'Browse ready-made websites' },
@@ -627,12 +627,12 @@ export default async function Home() {
               { step: '04', title: 'Rent', desc: 'Select rental period' },
               { step: '05', title: 'Go Live', desc: 'Your website goes live' },
             ].map((item, i) => (
-              <div key={i} className="text-center group">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-5 border-4 border-white shadow-xl shadow-blue-500/30 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-blue-500/40 transition-all duration-300">
+              <div key={i} className="text-center group bg-white/60 sm:bg-transparent p-4 sm:p-0 rounded-2xl sm:rounded-none border border-slate-200/60 sm:border-0 shadow-sm sm:shadow-none">
+                <div className="w-12 h-12 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-xl sm:rounded-2xl flex items-center justify-center text-lg sm:text-2xl font-bold mx-auto mb-3 sm:mb-5 border-2 sm:border-4 border-white shadow-md sm:shadow-xl shadow-blue-500/30 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h3>
-                <p className="text-sm text-slate-600 font-medium">{item.desc}</p>
+                <h3 className="text-base sm:text-xl font-bold text-slate-900 mb-1 sm:mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-snug">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -640,21 +640,21 @@ export default async function Home() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white">
+      <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-blue-400 text-sm font-bold uppercase tracking-widest block mb-3">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-blue-400 text-xs sm:text-sm font-bold uppercase tracking-widest block mb-2 sm:mb-3">
               Versatile Solutions
             </span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-5">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight">
               Perfect For Every Occasion
             </h2>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto font-medium">
+            <p className="text-sm sm:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
               From college events to business launches, we've got you covered
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { icon: GraduationCap, title: 'College Events', desc: 'Fest, farewell, fresher, hackathon, sports and seminars' },
               { icon: PartyPopper, title: 'Birthdays', desc: 'Personal birthday websites with galleries, wishes and memories' },
@@ -665,12 +665,12 @@ export default async function Home() {
               { icon: Palette, title: 'Creators', desc: 'Personal portfolios and campaign websites' },
               { icon: Calendar, title: 'Celebrations', desc: 'Anniversaries, parties, and special moments' },
             ].map((item, i) => (
-              <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-700/50 hover:border-blue-500/50 hover:from-slate-750 hover:to-indigo-900 transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="h-7 w-7 text-white" />
+              <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-700/50 hover:border-blue-500/50 hover:from-slate-750 hover:to-indigo-900 transition-all duration-300 group hover:-translate-y-1 sm:hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{item.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-400 transition-colors">{item.title}</h3>
+                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -678,28 +678,28 @@ export default async function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
+      <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 -z-10" />
         <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -z-10" />
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight">
             Need a Website Designed Specially For You?
           </h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
+          <p className="text-sm sm:text-lg md:text-xl text-blue-100 mb-8 sm:mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
             Can't find the exact template you want? Submit a custom website request and our team will build it.
           </p>
-          <div className="flex flex-wrap gap-5 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center">
             <Link
               href="/custom-website"
-              className="inline-flex items-center bg-white text-blue-700 hover:bg-blue-50 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1"
+              className="inline-flex items-center justify-center bg-white text-blue-700 hover:bg-blue-50 px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-sm sm:text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto"
             >
               Request Custom Website
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 hover:border-white/50 px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg backdrop-blur-sm hover:-translate-y-1"
+              className="inline-flex items-center justify-center bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 hover:border-white/50 px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-sm sm:text-lg backdrop-blur-sm hover:-translate-y-1 w-full sm:w-auto"
             >
               View Pricing Plans
             </Link>
@@ -708,16 +708,16 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-20 px-4 sm:px-6 lg:px-8 text-slate-400 border-t border-slate-800">
+      <footer className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 text-slate-400 border-t border-slate-800">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div>
-              <h3 className="text-3xl font-black text-white mb-2 tracking-wider">{businessName}</h3>
-              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">Rental Websites</p>
-              <p className="text-slate-400 text-base leading-relaxed mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
+            <div className="col-span-2 md:col-span-1">
+              <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-wider">{businessName}</h3>
+              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-3 sm:mb-4">Rental Websites</p>
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">
                 {businessTagline}
               </p>
-              <div className="text-sm text-slate-500 space-y-2">
+              <div className="text-xs sm:text-sm text-slate-500 space-y-2">
                 <p className="flex items-center gap-2">
                   <span className="text-blue-400">✉</span> {businessEmail}
                 </p>
@@ -728,8 +728,8 @@ export default async function Home() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Explore</h4>
-              <ul className="space-y-3 text-base">
+              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Explore</h4>
+              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
                 <li><Link href="/websites" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">All Websites</Link></li>
                 <li><Link href="/pricing" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Rental Pricing</Link></li>
                 <li><Link href="/how-it-works" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">How It Works</Link></li>
@@ -738,27 +738,27 @@ export default async function Home() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Services</h4>
-              <ul className="space-y-3 text-base">
-                <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Custom Website Request</Link></li>
-                <li><Link href="/websites?category=College" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">College Fests & Tech</Link></li>
-                <li><Link href="/websites?category=Wedding" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Wedding Celebrations</Link></li>
-                <li><Link href="/websites?category=Business" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Business Campaigns</Link></li>
+              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Services</h4>
+              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
+                <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Custom Website</Link></li>
+                <li><Link href="/websites?category=College" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">College Fests</Link></li>
+                <li><Link href="/websites?category=Wedding" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Weddings</Link></li>
+                <li><Link href="/websites?category=Business" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Businesses</Link></li>
               </ul>
             </div>
 
-            <div>
-              <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Portal & Help</h4>
-              <ul className="space-y-3 text-base">
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Portal & Help</h4>
+              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
                 <li><Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Contact Support</Link></li>
                 <li><Link href="/faq" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Frequently Asked Questions</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-800 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-slate-500">
+          <div className="border-t border-slate-800 pt-8 sm:pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-xs sm:text-sm text-slate-500 text-center sm:text-left">
             <p>© {new Date().getFullYear()} {businessName}. All rights reserved.</p>
-            <div className="flex gap-8">
+            <div className="flex gap-6 sm:gap-8">
               <Link href="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
             </div>

@@ -86,13 +86,13 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t-2 border-slate-200 bg-white/95 backdrop-blur-xl">
-            <div className="flex flex-col space-y-3">
+          <div className="lg:hidden py-4 sm:py-6 border-t-2 border-slate-200 bg-white/95 backdrop-blur-xl max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div className="flex flex-col space-y-2 sm:space-y-3 pb-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-slate-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-xl font-bold text-sm transition-all duration-300"
+                  className="text-slate-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2.5 sm:py-3 rounded-xl font-bold text-sm transition-all duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -101,7 +101,7 @@ export default function Navbar() {
 
               <Link
                 href="/websites"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-4 rounded-xl font-bold transition-all duration-300 text-center text-sm mt-2 shadow-lg"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 text-center text-sm mt-2 shadow-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Browse Websites
