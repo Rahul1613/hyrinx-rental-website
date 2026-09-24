@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Hyrinx Rental Websites',
+  description: 'Learn how Hyrinx collects, protects, and uses customer data when renting temporary websites.',
+  alternates: {
+    canonical: 'https://hyrinx.in/privacy',
+  },
+}
 
 export default function PrivacyPage() {
   return (

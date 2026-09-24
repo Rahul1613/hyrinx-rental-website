@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions & User Agreement | Hyrinx Rental Websites',
+  description: 'Read the official Terms of Service, User Agreement, and Rules of Usage for renting websites on Hyrinx.',
+  alternates: {
+    canonical: 'https://hyrinx.in/terms',
+  },
+}
 
 export default function TermsPage() {
   return (

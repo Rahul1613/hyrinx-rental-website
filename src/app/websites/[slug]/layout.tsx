@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
+import { DEFAULT_WEBSITES } from '@/lib/templates-data'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,30 +11,55 @@ interface WebsiteLayoutProps {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const website = await prisma.website.findUnique({
-    where: { slug },
-  })
+  let website: any = null
+
+  try {
+    website = await prisma.website.findUnique({
+      where: { slug },
+    })
+  } catch (e) {
+    // DB query fallback
+  }
+
+  if (!website) {
+    website = DEFAULT_WEBSITES.find((w) => w.slug === slug)
+  }
 
   if (!website) {
     return {
       title: 'Website Not Found | Hyrinx',
       description: 'The website you are looking for does not exist or is no longer available.',
+      robots: {
+        index: false,
+        follow: false,
+      },
     }
   }
 
+  const title = `${website.name} — Rent from ₹${website.startingPrice || 149}/day | Hyrinx`
+  const description =
+    website.shortDesc ||
+    website.description ||
+    `Rent ${website.name} website template starting at ₹${website.startingPrice || 149}/day. Fast deployment, customisation included, zero hosting fees.`
+  const url = `https://hyrinx.in/websites/${slug}`
+
   return {
-    title: `${website.name} | Hyrinx Rental Websites`,
-    description: website.shortDesc || website.description,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: website.name,
-      description: website.shortDesc || website.description,
+      title,
+      description,
+      url,
       images: website.thumbnail ? [{ url: website.thumbnail }] : [],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: website.name,
-      description: website.shortDesc || website.description,
+      title,
+      description,
       images: website.thumbnail ? [website.thumbnail] : [],
     },
   }

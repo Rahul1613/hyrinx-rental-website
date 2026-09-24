@@ -1,9 +1,23 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
 import { HelpCircle, ArrowRight } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions (FAQ) | Hyrinx Rental Websites',
+  description: 'Got questions about renting a website? Find clear answers regarding rental durations, deployment time, payments, customization, and domains.',
+  alternates: {
+    canonical: 'https://hyrinx.in/faq',
+  },
+  openGraph: {
+    title: 'FAQ | Hyrinx Rental Websites',
+    description: 'Everything you need to know about renting a website with Hyrinx.',
+    url: 'https://hyrinx.in/faq',
+  },
+}
 
 async function getFAQs() {
   const faqs = await prisma.fAQ.findMany({

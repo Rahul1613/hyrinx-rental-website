@@ -1,11 +1,16 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Hyrinx Rental Websites',
-  description: 'Get in touch with Hyrinx for custom website requests, support, or any questions about our website rental services.',
+  title: 'Contact Support & Founders | Hyrinx Rental Websites',
+  description: 'Get in touch with Hyrinx for custom website requests, support, or questions. Reach founders Rahul Sisode & Harshal on WhatsApp or email.',
+  keywords: ['contact Hyrinx', 'website rental support', 'Hyrinx phone number', 'Hyrinx WhatsApp'],
+  alternates: {
+    canonical: 'https://hyrinx.in/contact',
+  },
   openGraph: {
-    title: 'Contact Us | Hyrinx',
+    title: 'Contact Us | Hyrinx Rental Websites',
     description: 'Get in touch with Hyrinx for custom website requests and support.',
+    url: 'https://hyrinx.in/contact',
   },
 }
 
