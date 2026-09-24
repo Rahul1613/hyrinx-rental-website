@@ -49,13 +49,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon.ico?v=2', sizes: 'any' },
+      { url: '/icon-48.png?v=2', type: 'image/png', sizes: '48x48' },
+      { url: '/icon-96.png?v=2', type: 'image/png', sizes: '96x96' },
+      { url: '/icon-192.png?v=2', type: 'image/png', sizes: '192x192' },
+      { url: '/icon.png?v=2', type: 'image/png', sizes: '32x32' },
     ],
     apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-icon.png?v=2', sizes: '180x180', type: 'image/png' },
     ],
+    shortcut: '/favicon.ico?v=2',
   },
+  manifest: '/site.webmanifest',
   verification: {
     google: '9K0fkU1vwbqIAbGqoTVeZUjFn_wVGpZagpS58UhhLLA',
   },
@@ -115,6 +120,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/icon-48.png?v=2" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-192.png?v=2" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-icon.png?v=2" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
