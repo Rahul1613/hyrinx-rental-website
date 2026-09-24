@@ -12,20 +12,28 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://hyrinx.in'),
   title: {
-    default: 'Hyrinx - Rental Websites | Rent Websites Starting at ₹149/day',
-    template: '%s | Hyrinx Rental Websites',
+    default: 'Hyrinx — Website Renting & Developer Platform | Rent Websites from ₹149/day',
+    template: '%s | Hyrinx Website Renting',
   },
   description:
-    'Why Buy a Website? Rent One Instead. Professional, ready-to-launch websites for events, weddings, businesses, portfolios, celebrations, and college student projects.',
+    'Why Buy a Website? Rent One Instead. India’s premier website renting and temporary developer platform. Rent verified, ready-to-launch websites for events, weddings, businesses, and college student projects starting at ₹149/day.',
   keywords: [
+    'hyrinx',
+    'hyrinx.in',
+    'website renting',
+    'website renting India',
     'rent website',
-    'website rental India',
-    'wedding website rental',
-    'birthday website',
+    'website rental',
+    'rent a website',
+    'rent a website developer',
+    'temporary website developer',
+    'website developer for rent',
     'projects for college students',
+    'wedding website rental',
+    'birthday website rent',
     'temporary event website',
-    'Hyrinx',
     'affordable website rental',
+    'website rental services',
   ],
   authors: [{ name: 'Rahul Sisode' }, { name: 'Harshal' }],
   creator: 'Hyrinx',
@@ -33,14 +41,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: 'https://hyrinx.in',
-    siteName: 'Hyrinx Rental Websites',
-    title: 'Hyrinx - Rental Websites | Starting at ₹149/day',
+    siteName: 'Hyrinx Website Renting',
+    title: 'Hyrinx — Website Renting & Temporary Developer Services | Starting at ₹149/day',
     description:
-      'Why Buy a Website? Rent One Instead. Ready-to-use websites for events, weddings, startups, businesses & college capstones.',
+      'Why Buy a Website? Rent One Instead. Rent verified websites for events, weddings, startups, businesses & college capstones.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hyrinx - Rental Websites',
+    title: 'Hyrinx — Website Renting Platform',
     description:
       'Rent a website for days, weeks, or months starting at ₹149/day. Zero maintenance, instant setup.',
   },
@@ -109,10 +117,54 @@ export default function RootLayout({
         '@type': 'WebSite',
         '@id': 'https://hyrinx.in/#website',
         url: 'https://hyrinx.in',
-        name: 'Hyrinx Rental Websites',
+        name: 'Hyrinx Website Renting',
+        alternateName: ['Hyrinx', 'Hyrinx.in', 'Hyrinx Rental Websites'],
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://hyrinx.in/websites?search={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
         publisher: {
           '@id': 'https://hyrinx.in/#organization',
         },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://hyrinx.in/#faq',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is website renting and how does Hyrinx work?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Website renting allows you to rent a professionally built, fully functional website for days, weeks, or months starting at ₹149/day. Hyrinx provides instant deployment, customisation, free hosting, and custom domain setup.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How can I rent a website or hire a website developer on Hyrinx?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Browse through 30+ ready-to-use website templates on hyrinx.in, preview the live demo, pick your rental plan (from 1 day to 1 year), and go live within 2 to 6 hours. For tailored needs, request a custom website from our developers.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Can college students rent projects for academic and semester submissions?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes! Hyrinx provides verified full-stack and AI capstone projects for college students with complete source code, live demos, architecture documentation, and viva presentations.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is included in the website rental price?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'All Hyrinx rental plans include fast cloud hosting, customisation with your content and logo, mobile-responsive layout, SEO setup, 24/7 technical support, and subdomain or custom domain mapping.',
+            },
+          },
+        ],
       },
     ],
   };
