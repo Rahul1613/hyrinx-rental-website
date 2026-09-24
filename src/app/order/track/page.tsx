@@ -171,7 +171,7 @@ function TrackContent() {
                 {/* Progress Steps (if not cancelled) */}
                 {order.status !== 'cancelled' ? (
                   <div className="pt-2">
-                    <div className="grid grid-cols-4 gap-2 text-center">
+                    <div className="grid grid-cols-4 gap-1 sm:gap-2 text-center">
                       {steps.map((st, idx) => {
                         const currentIdx = getStepIndex(order.status)
                         const isDone = idx <= currentIdx
@@ -180,16 +180,16 @@ function TrackContent() {
                         return (
                           <div key={st.key} className="flex flex-col items-center">
                             <div
-                              className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs mb-2 transition-all ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-[11px] sm:text-xs mb-1.5 sm:mb-2 transition-all ${
                                 isDone
                                   ? 'bg-blue-500 text-white shadow-md shadow-blue-500/50'
                                   : 'bg-slate-800 text-slate-500'
-                              } ${isCurrent ? 'ring-4 ring-blue-500/30' : ''}`}
+                              } ${isCurrent ? 'ring-2 sm:ring-4 ring-blue-500/30' : ''}`}
                             >
                               {idx + 1}
                             </div>
                             <span
-                              className={`text-[11px] font-medium leading-tight ${
+                              className={`text-[9px] sm:text-[11px] font-medium leading-tight px-0.5 ${
                                 isDone ? 'text-white' : 'text-slate-500'
                               }`}
                             >

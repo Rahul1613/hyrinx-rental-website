@@ -157,30 +157,30 @@ function CheckoutContent() {
         <div className="max-w-5xl mx-auto">
 
           {/* Progress Steps */}
-          <div className="mb-16">
-            <div className="flex items-center justify-between">
+          <div className="mb-10 sm:mb-16">
+            <div className="flex items-center justify-between max-w-lg mx-auto px-2">
               {steps.map((s, i) => (
                 <div
                   key={s.number}
-                  className="flex items-center"
+                  className="flex items-center flex-1 last:flex-none"
                 >
                   <div className="flex flex-col items-center">
                     <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center border-2 transition-all duration-300 ${
+                      className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border-2 transition-all duration-300 ${
                         step >= s.number
-                          ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white border-blue-500 shadow-lg shadow-blue-500/30'
+                          ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white border-blue-500 shadow-md sm:shadow-lg shadow-blue-500/30'
                           : 'bg-slate-100 text-slate-400 border-slate-200'
                       }`}
                     >
                       {step > s.number ? (
-                        <Check className="h-6 w-6" />
+                        <Check className="h-4 w-4 sm:h-6 sm:w-6" />
                       ) : (
-                        <s.icon className="h-6 w-6" />
+                        <s.icon className="h-4 w-4 sm:h-6 sm:w-6" />
                       )}
                     </div>
 
                     <span
-                      className={`text-sm mt-3 font-bold transition-colors ${
+                      className={`text-[11px] sm:text-sm mt-2 sm:mt-3 font-bold transition-colors ${
                         step >= s.number
                           ? 'text-slate-900'
                           : 'text-slate-400'
@@ -191,46 +191,46 @@ function CheckoutContent() {
                   </div>
 
                   {i < steps.length - 1 && (
-                    <div className="w-20 h-1 bg-slate-200 mx-3 rounded-full" />
+                    <div className="flex-1 h-0.5 sm:h-1 bg-slate-200 mx-2 sm:mx-3 rounded-full" />
                   )}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
 
             {/* Main Content */}
             <div className="lg:col-span-2">
 
               {/* STEP 1 */}
               {step === 1 && (
-                <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-slate-200">
-                  <h2 className="text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-8">
+                <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-slate-200">
+                  <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-6 sm:mb-8">
                     Review Your Selection
                   </h2>
 
-                  <div className="space-y-8">
+                  <div className="space-y-6 sm:space-y-8">
 
-                    <div className="flex items-start gap-6 p-6 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-slate-200">
+                    <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border-2 border-slate-200">
                       {website.thumbnail && (
                         <img
                           src={website.thumbnail}
                           alt={website.name}
-                          className="w-32 h-24 object-cover rounded-xl shadow-md"
+                          className="w-full sm:w-32 h-40 sm:h-24 object-cover rounded-xl shadow-md"
                         />
                       )}
 
                       <div>
-                        <h3 className="text-xl font-bold text-slate-900">
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-900">
                           {website.name}
                         </h3>
 
-                        <p className="text-base text-slate-600 font-medium">
+                        <p className="text-sm sm:text-base text-slate-600 font-medium">
                           {website.category}
                         </p>
 
-                        <p className="text-base text-slate-600 mt-2">
+                        <p className="text-xs sm:text-base text-slate-600 mt-2">
                           {website.shortDesc}
                         </p>
                       </div>

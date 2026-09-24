@@ -146,7 +146,7 @@ export default async function Home() {
 
   const businessName = settings.business_name || 'HYRINX'
   const businessEmail = settings.business_email || 'contact@hyrinx.com'
-  const businessPhone = settings.business_phone || '+91 98765 43210'
+  const businessPhone = settings.business_phone || '+91 97302 13645'
   const businessTagline = settings.business_tagline || 'Ideas Online. Moments Forever.'
 
   return (
@@ -275,28 +275,28 @@ export default async function Home() {
                   </div>
                 </div>
 
-                <div className="px-7 pb-7 pt-4 border-t-2 border-slate-100 flex items-center justify-between gap-4">
+                <div className="px-5 sm:px-7 pb-5 sm:pb-7 pt-4 border-t-2 border-slate-100 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 sm:gap-4">
                   <div>
                     <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Starting from</span>
-                    <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
+                    <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent">
                       {formatPrice(website.startingPrice || lowestPrice)}
-                      <span className="text-sm font-normal text-slate-500">/day</span>
+                      <span className="text-xs sm:text-sm font-normal text-slate-500">/day</span>
                     </span>
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-end">
                     <Link
                       href={`/demo/${website.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 border-2 border-slate-200 rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
+                      className="p-2.5 sm:p-3 border-2 border-slate-200 rounded-xl sm:rounded-2xl text-slate-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 transition-all duration-300 flex items-center justify-center"
                       title="Live Demo"
                     >
-                      <ExternalLink className="h-5 w-5" />
+                      <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
                     </Link>
                     <Link
                       href={`/websites/${website.slug}`}
-                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-2"
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 shadow-md shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/40 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap"
                     >
                       Rent Now
                     </Link>
@@ -332,8 +332,9 @@ export default async function Home() {
             </Link>
           </div>
 
-          {/* Structured Projects Table & Cards */}
-          <div className="bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+          {/* Responsive View: Desktop/Tablet Table + Mobile Cards */}
+          {/* 1. Desktop & Tablet Table (md and up) */}
+          <div className="hidden md:block bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-slate-300">
                 <thead className="bg-slate-900/80 text-xs uppercase font-bold text-slate-400 border-b border-slate-800">
@@ -430,11 +431,11 @@ export default async function Home() {
                             className="inline-flex items-center gap-1.5 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
-                            ✅ Yes (Live Demo)
+                            Live Demo
                           </a>
                         ) : (
                           <span className="text-xs text-slate-500 font-medium italic">
-                            ❌ No live link shown
+                            Private
                           </span>
                         )}
                       </td>
@@ -446,7 +447,7 @@ export default async function Home() {
                           className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
                         >
                           <Code className="h-3.5 w-3.5 text-indigo-400" />
-                          ✅ Yes
+                          Code
                         </a>
                       </td>
                       <td className="py-4 px-6 text-right whitespace-nowrap">
@@ -462,6 +463,121 @@ export default async function Home() {
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* 2. Mobile Cards (sm and below) */}
+          <div className="md:hidden space-y-4">
+            {[
+              {
+                id: 1,
+                name: 'Scalnex — Business Growth & Job SaaS',
+                slug: 'scalnex-business-saas',
+                desc: 'Full-stack AI business growth & talent matching recruitment engine.',
+                status: 'Live',
+                liveDemoUrl: 'https://scalnex-businessgrowthplatform.netlify.app',
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+              {
+                id: 2,
+                name: 'AI Phishing Detection Engine',
+                slug: 'ai-phishing-detection-engine',
+                desc: 'Real-time cybersecurity ML engine for detecting phishing URLs & email threats.',
+                status: 'Live',
+                liveDemoUrl: 'https://phishing-detection-ai-powered.netlify.app',
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+              {
+                id: 3,
+                name: 'SecurePass AI — Password Security Analyzer',
+                slug: 'securepass-ai-analyzer',
+                desc: 'Entropy calculation engine and AI credential vulnerability analyzer.',
+                status: 'Live',
+                liveDemoUrl: 'https://securepass-ai.netlify.app',
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+              {
+                id: 4,
+                name: 'Aptitude Assessment Platform',
+                slug: 'aptitude-assessment-platform',
+                desc: 'Campus placement examination portal with timer & analytics dashboard.',
+                status: 'Live',
+                liveDemoUrl: null,
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+              {
+                id: 5,
+                name: 'AI Voice Assistant',
+                slug: 'ai-voice-assistant',
+                desc: 'Voice-controlled desktop & web assistant with NLP intent recognition.',
+                status: 'Live',
+                liveDemoUrl: null,
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+              {
+                id: 6,
+                name: 'Image Steganography Tool',
+                slug: 'image-steganography-tool',
+                desc: 'LSB image steganography and AES-256 encrypted payload concealing application.',
+                status: 'Live',
+                liveDemoUrl: null,
+                github: 'https://github.com/Rahul1613',
+                price: 199,
+              },
+            ].map((proj) => (
+              <div
+                key={proj.id}
+                className="bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between space-y-4"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="font-mono text-xs text-slate-500 font-bold">#{proj.id}</span>
+                    <span className="inline-flex items-center gap-1.5 bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2.5 py-0.5 rounded-full text-[11px] font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      {proj.status}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-white text-base leading-snug">{proj.name}</h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">{proj.desc}</p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    {proj.liveDemoUrl && (
+                      <a
+                        href={proj.liveDemoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/40 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        Demo
+                      </a>
+                    )}
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
+                    >
+                      <Code className="h-3 w-3 text-indigo-400" />
+                      Code
+                    </a>
+                  </div>
+
+                  <Link
+                    href={`/websites/${proj.slug}`}
+                    className="inline-flex items-center justify-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md shadow-blue-500/20"
+                  >
+                    Rent · ₹{proj.price}/day
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

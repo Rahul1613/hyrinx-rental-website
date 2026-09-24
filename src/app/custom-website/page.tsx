@@ -85,22 +85,22 @@ export default function CustomWebsitePage() {
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <span className="text-blue-600 text-sm font-bold uppercase tracking-widest block mb-3">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-blue-600 text-xs sm:text-sm font-bold uppercase tracking-widest block mb-2 sm:mb-3">
               Custom Request
             </span>
-            <h1 className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-slate-900 to-blue-800 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
               Can't Find What You're Looking For?
             </h1>
-            <p className="text-xl text-slate-600 font-medium">
+            <p className="text-base sm:text-xl text-slate-600 font-medium">
               Tell us what you need and we'll create a website around your requirements.
             </p>
           </div>
 
           {/* Form */}
-          <div className="bg-white rounded-3xl shadow-2xl p-10 border-2 border-slate-200">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-6 sm:p-10 border-2 border-slate-200">
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-3">
                     Name *

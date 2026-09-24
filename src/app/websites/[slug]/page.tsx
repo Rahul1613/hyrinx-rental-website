@@ -164,8 +164,8 @@ export default function WebsiteDetailPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl font-bold text-slate-900 mb-2">{website.name}</h1>
-              <p className="text-lg text-slate-600 mb-4">{website.category} Website</p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 leading-tight">{website.name}</h1>
+              <p className="text-base sm:text-lg text-slate-600 mb-4">{website.category} Website</p>
 
               <div className="flex items-center gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
