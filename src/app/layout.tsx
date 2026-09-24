@@ -83,12 +83,24 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
+        '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
         '@id': 'https://hyrinx.in/#organization',
-        name: 'Hyrinx',
+        name: 'Hyrinx — Website Rentals',
+        alternateName: ['Hyrinx', 'Hyrinx Website Rentals', 'Hyrinx.in'],
         url: 'https://hyrinx.in',
-        logo: 'https://hyrinx.in/favicon.ico',
-        description: 'Why Buy a Website? Rent One Instead. Temporary website rentals for weddings, businesses, celebrations, and college projects.',
+        logo: 'https://hyrinx.in/icon-512.png',
+        image: 'https://hyrinx.in/icon-512.png',
+        description: 'Why Buy a Website? Rent One Instead. India’s premier verified temporary website rental and custom developer service.',
+        priceRange: '₹149 - ₹14999',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'IN',
+        },
+        sameAs: [
+          'https://business.google.com/n/2389805557553069926/profile?fid=69944810972127816',
+          'https://www.instagram.com/_rahulsisode/',
+          'https://www.instagram.com/hxrshxl_07/',
+        ],
         founder: [
           {
             '@type': 'Person',
