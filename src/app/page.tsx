@@ -20,7 +20,9 @@ import {
   Building2,
   ExternalLink,
   ShieldCheck,
-  Code
+  Code,
+  BookOpen,
+  Sparkles
 } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
@@ -174,19 +176,28 @@ export default async function Home() {
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
               {hero.subheadline}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center max-w-md sm:max-w-none mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto items-center">
               <Link
                 href={hero.primaryCtaLink}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base sm:text-lg shadow-lg sm:shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-lg shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1 w-full sm:w-auto"
               >
                 {hero.primaryCtaText}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
               <Link
                 href={hero.secondaryCtaLink}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-6 sm:px-10 py-3.5 sm:py-5 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base sm:text-lg shadow-md sm:shadow-lg hover:shadow-xl hover:-translate-y-1"
+                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-md hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto"
               >
                 {hero.secondaryCtaText}
+              </Link>
+              <Link
+                href="/hyrinx-services-demo"
+                className="inline-flex items-center justify-center bg-slate-950 hover:bg-slate-900 text-amber-300 hover:text-white border-2 border-amber-500/40 hover:border-amber-400 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-lg shadow-amber-500/10 hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto group"
+                title="Enter 3D Library Room with 13 Living Service Volumes"
+              >
+                <BookOpen className="mr-2 h-5 w-5 text-amber-400 group-hover:scale-110 transition-transform" />
+                <span>Other Services of Hyrinx</span>
+                <ArrowRight className="ml-2 h-4 w-4 text-amber-400" />
               </Link>
             </div>
           </div>
@@ -210,6 +221,36 @@ export default async function Home() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Other Services of Hyrinx Showcase Banner */}
+      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white border-y border-amber-500/20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-neutral-900/95 via-[#120e0a] to-neutral-950 border border-amber-500/30 shadow-2xl">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0 shadow-inner">
+              <BookOpen className="w-7 h-7 text-amber-400" />
+            </div>
+            <div>
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-mono uppercase tracking-widest mb-1">
+                <Sparkles className="w-3 h-3 text-amber-400" />
+                13 Living Volumes • 3D Study Room
+              </div>
+              <h3 className="text-xl sm:text-2xl font-serif text-white font-light">
+                Beyond Websites: Explore Hyrinx Enterprise Divisions
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-xl">
+                Step inside our private 3D library room. 13 physical volumes covering Custom Software, AI Automations, Luxury Branding, WhatsApp Commerce, and Cyber Defense.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/hyrinx-services-demo"
+            className="whitespace-nowrap inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all duration-300 text-sm sm:text-base shadow-xl shadow-amber-500/20 hover:-translate-y-0.5 shrink-0"
+          >
+            <span>Other Services of Hyrinx</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
@@ -741,6 +782,7 @@ export default async function Home() {
             <div>
               <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Services</h4>
               <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
+                <li><Link href="/hyrinx-services-demo" className="text-amber-400 hover:text-amber-300 font-semibold hover:translate-x-1 transition-all duration-300 inline-block">★ Other Services of Hyrinx</Link></li>
                 <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Custom Website</Link></li>
                 <li><Link href="/websites?category=College" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">College Fests</Link></li>
                 <li><Link href="/websites?category=Wedding" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Weddings</Link></li>

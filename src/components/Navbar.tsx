@@ -69,10 +69,19 @@ export default function Navbar() {
 
             <Link
               href="/websites"
-              className="whitespace-nowrap inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2.5 rounded-xl font-bold transition-all duration-300 text-sm shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5 ml-2"
+              className="whitespace-nowrap inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 xl:px-5 py-2.5 rounded-xl font-bold transition-all duration-300 text-xs xl:text-sm shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5 ml-1"
             >
               Browse Websites
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            </Link>
+
+            <Link
+              href="/hyrinx-services-demo"
+              className="whitespace-nowrap inline-flex items-center gap-1.5 bg-slate-950 hover:bg-slate-900 text-amber-300 hover:text-white px-3.5 py-2.5 rounded-xl font-bold transition-all duration-300 text-xs xl:text-sm border border-amber-500/40 hover:border-amber-400 shadow-md hover:shadow-amber-500/10 hover:-translate-y-0.5 ml-1"
+              title="Explore 13 Hyrinx Divisions in 3D Library Room"
+            >
+              <span>📚</span>
+              <span>Other Services of Hyrinx</span>
             </Link>
           </div>
 
@@ -112,6 +121,15 @@ export default function Navbar() {
               >
                 Browse Websites
                 <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+
+              <Link
+                href="/hyrinx-services-demo"
+                className="inline-flex items-center justify-center gap-2 bg-slate-950 text-amber-300 hover:text-white px-5 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 text-center text-sm border border-amber-500/40 shadow-lg mt-1"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span>📚 Other Services of Hyrinx</span>
+                <ArrowRight className="ml-2 h-4 w-4 text-amber-400" />
               </Link>
             </div>
           </div>
