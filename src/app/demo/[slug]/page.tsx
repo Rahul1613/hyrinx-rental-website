@@ -35,6 +35,13 @@ import {
   Check,
 } from 'lucide-react'
 import { DEFAULT_WEBSITES } from '@/lib/templates-data'
+import MarriageDemo from '@/components/demos/marriage/MarriageDemo'
+import BirthdayDemo from '@/components/demos/birthday/BirthdayDemo'
+import CollegeFestDemo from '@/components/demos/college-fest/CollegeFestDemo'
+import NavratriDemo from '@/components/demos/navratri/NavratriDemo'
+import BusinessDemo from '@/components/demos/business/BusinessDemo'
+import TravelDemo from '@/components/demos/travel/TravelDemo'
+import TechProjectDemo from '@/components/demos/tech-project/TechProjectDemo'
 
 export default function DemoPage() {
   const params = useParams()
@@ -120,102 +127,75 @@ function renderCategoryDemo(
   formInput: string,
   setFormInput: (v: string) => void
 ) {
-  const category = website.category
+  const slug = (website?.slug || '').toLowerCase()
+  const category = website?.category || ''
+  const name = (website?.name || '').toLowerCase()
 
-  // 0. COLLEGE STUDENT FINAL YEAR PROJECTS
+  // 1. Royal Wedding Demo (From projects/marriage)
+  if (
+    slug === 'royal-wedding' ||
+    slug === 'eternal-moments' ||
+    slug === 'royal-union' ||
+    slug === 'soulmates-forever' ||
+    category === 'Wedding' ||
+    name.includes('wedding')
+  ) {
+    return <MarriageDemo />
+  }
+
+  // 2. Birthday Bash Demo (From projects/birthday)
+  if (slug === 'birthday-bash' || category === 'Birthday' || name.includes('birthday')) {
+    return <BirthdayDemo />
+  }
+
+  // 3. College Fest Pro Demo (From projects/collage event page)
+  if (
+    slug === 'college-fest-pro' ||
+    slug.includes('fest') ||
+    slug.includes('hackathon') ||
+    name.includes('fest')
+  ) {
+    return <CollegeFestDemo />
+  }
+
+  // 4. Navratri Dandiya Utsav Demo (From projects/navratri invatation)
+  if (
+    slug === 'navratri-utsav' ||
+    slug === 'quickinvite-rsvp' ||
+    slug.includes('navratri') ||
+    name.includes('navratri') ||
+    name.includes('garba') ||
+    name.includes('dandiya')
+  ) {
+    return <NavratriDemo />
+  }
+
+  // 5. Tech Capstone / AeroCinematic Demo (From projects/project website)
+  if (slug === 'project-capstone-demo' || slug.includes('capstone') || name.includes('aerocinematic')) {
+    return <TechProjectDemo />
+  }
+
+  // 6. Wanderlust Travel Planner Demo (From projects/travel planner)
+  if (slug === 'wanderlust-travel' || slug.includes('travel') || name.includes('travel')) {
+    return <TravelDemo />
+  }
+
+  // 7. Startup & Business Demo (From projects/business)
+  if (
+    slug === 'startup-launchpad' ||
+    slug === 'business-showcase' ||
+    name.includes('startup & business') ||
+    name.includes('business launchpad')
+  ) {
+    return <BusinessDemo />
+  }
+
+  // 8. Projects for College Students
   if (category === 'Projects for College Students' || category === 'Project') {
     return <CollegeProjectDemo website={website} />
   }
 
-  // 1. WEDDING THEME
-  if (category === 'Wedding') {
-    return (
-      <div className="bg-[#FAF7F2] text-stone-800 min-h-screen">
-        {/* Hero */}
-        <section className="py-24 px-4 text-center border-b border-stone-200">
-          <span className="text-stone-500 uppercase tracking-widest text-xs font-semibold mb-3 block">
-            Together with their families
-          </span>
-          <h1 className="text-5xl sm:text-6xl font-serif text-stone-900 mb-4 tracking-tight">
-            Aarav &amp; Meera
-          </h1>
-          <p className="text-stone-600 text-lg max-w-xl mx-auto italic font-serif mb-6">
-            &ldquo;We invite you to celebrate our union as we begin our new journey together.&rdquo;
-          </p>
-          <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-stone-300 rounded-full px-6 py-2 shadow-sm text-sm text-stone-700">
-            <Calendar className="h-4 w-4 text-amber-700" />
-            <span>December 18, 2026</span>
-            <span>•</span>
-            <MapPin className="h-4 w-4 text-amber-700" />
-            <span>The Leela Palace, Udaipur</span>
-          </div>
-        </section>
-
-        {/* Story & Details */}
-        <section className="py-16 max-w-4xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center">
-            <Heart className="h-8 w-8 text-rose-500 mx-auto mb-3" />
-            <h3 className="font-serif text-xl font-bold mb-2">Our Story</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              From college library coffee breaks to 7 years of shared dreams, we are getting married!
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center">
-            <Clock className="h-8 w-8 text-amber-600 mx-auto mb-3" />
-            <h3 className="font-serif text-xl font-bold mb-2">Ceremony</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Baraat: 4:00 PM • Varmala: 6:00 PM • Royal Dinner Reception: 8:00 PM onwards.
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center">
-            <MapPin className="h-8 w-8 text-emerald-600 mx-auto mb-3" />
-            <h3 className="font-serif text-xl font-bold mb-2">Venue Guide</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Lake Pichola, Udaipur, Rajasthan. Valet parking &amp; guest accommodation available.
-            </p>
-          </div>
-        </section>
-
-        {/* RSVP Form */}
-        <section className="py-16 bg-white border-t border-stone-200 text-center px-4">
-          <div className="max-w-md mx-auto">
-            <h2 className="font-serif text-3xl font-bold mb-3">RSVP to the Wedding</h2>
-            <p className="text-stone-600 text-sm mb-6">
-              Kindly confirm your presence by November 30 so we can seat you warmly.
-            </p>
-            {rsvpSent ? (
-              <div className="bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 text-sm font-bold flex items-center justify-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-                Thank you! Your RSVP has been received.
-              </div>
-            ) : (
-              <form onSubmit={handleDemoSubmit} className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="Your Full Name"
-                  required
-                  value={formInput}
-                  onChange={(e) => setFormInput(e.target.value)}
-                  className="w-full px-4 py-3 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
-                />
-                <select className="w-full px-4 py-3 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-stone-700">
-                  <option>Attending all celebrations (2 Guests)</option>
-                  <option>Attending Reception only (1 Guest)</option>
-                  <option>Attending all celebrations (Family)</option>
-                </select>
-                <button
-                  type="submit"
-                  className="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-3 rounded-xl transition-colors text-sm"
-                >
-                  Send RSVP Confirmation
-                </button>
-              </form>
-            )}
-          </div>
-        </section>
-      </div>
-    )
-  }
+  // Fallback: Celebration & other general templates
 
   // 2. BIRTHDAY & CELEBRATION
   if (category === 'Birthday' || category === 'Celebration') {

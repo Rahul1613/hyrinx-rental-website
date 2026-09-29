@@ -30,7 +30,7 @@ import { DEFAULT_WEBSITES, DEFAULT_CATEGORIES, DEFAULT_PRICING_PLANS } from '@/l
 export const dynamic = 'force-dynamic'
 
 // Static featured websites — always the guaranteed base
-const STATIC_FEATURED = DEFAULT_WEBSITES.filter(w => w.featured && w.published).slice(0, 6)
+const STATIC_FEATURED = DEFAULT_WEBSITES.filter(w => w.featured && w.published).slice(0, 8)
 
 async function getHomepageData() {
   let heroContentRaw: any = null
@@ -66,14 +66,15 @@ async function getHomepageData() {
     lowestPlan = results[3]
     settingsList = results[4]
 
-    // Always merge: static featured is the base, DB overrides matching slugs
-    const dbSlugs = new Set(dbWebsites.map((w: any) => w.slug))
-    const staticOnly = STATIC_FEATURED.filter(w => !dbSlugs.has(w.slug))
-    featuredWebsites = [...dbWebsites, ...staticOnly.map(w => ({
+    // Prioritize the real interactive featured projects on the homepage
+    const staticFormatted = STATIC_FEATURED.map(w => ({
       ...w,
       features: JSON.stringify(w.features),
       customization: JSON.stringify(w.customization),
-    }))].slice(0, 6)
+    }))
+    const staticSlugs = new Set(STATIC_FEATURED.map(w => w.slug))
+    const nonDupeDb = dbWebsites.filter((w: any) => !staticSlugs.has(w.slug))
+    featuredWebsites = [...staticFormatted, ...nonDupeDb].slice(0, 8)
 
   } catch (error) {
     console.warn('Failed to load DB data on homepage, using static fallback:', error)

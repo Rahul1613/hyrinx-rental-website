@@ -46,3 +46,171 @@ video {
 a {
   word-break: break-word;
 }
+
+/* Typography Helpers for Interactive Live Demos */
+.font-serif {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.font-calligraphy {
+  font-family: "Alex Brush", cursive;
+}
+
+.font-cinzel {
+  font-family: "Cinzel", serif;
+}
+
+.font-cinzel-dec {
+  font-family: "Cinzel Decorative", serif;
+}
+
+.font-devanagari {
+  font-family: "Rozha One", "Yatra One", serif;
+}
+
+.font-caveat {
+  font-family: "Caveat", cursive;
+}
+
+.font-baloo {
+  font-family: "Baloo 2", cursive;
+}
+
+.font-playfair {
+  font-family: "Playfair Display", serif;
+}
+
+/* Auspicious & Regal Gradients */
+.text-gold-divine {
+  background: linear-gradient(135deg, #996515 0%, #d4af37 40%, #f3e5ab 70%, #aa7a1e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(180, 130, 40, 0.25));
+}
+
+.text-crimson-divine {
+  background: linear-gradient(135deg, #70111f 0%, #9e1b32 50%, #c42b47 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.divine-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 16px 40px rgba(180, 140, 80, 0.1), 0 2px 10px rgba(180, 140, 80, 0.05);
+}
+
+.divine-card:hover {
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow: 0 20px 50px rgba(180, 140, 80, 0.18);
+}
+
+.divine-border {
+  border: 2px solid #d4af37;
+  outline: 1px dashed #b8860b;
+  outline-offset: 4px;
+}
+
+/* Animations for Royal Wedding, Birthday, Fest, Travel */
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -10%, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(70px, 105vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal {
+  animation: petalFall 11s linear infinite;
+}
+
+@keyframes holyDiya {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 10px #f59e0b) drop-shadow(0 0 20px #ef4444);
+  }
+  50% {
+    transform: scale(1.1, 0.95) rotate(2deg);
+    filter: drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 28px #ea580c);
+  }
+}
+
+.animate-diya {
+  animation: holyDiya 2.5s ease-in-out infinite;
+}
+
+@keyframes balloonSway {
+  0%, 100% {
+    transform: translateY(0px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+  }
+}
+
+.animate-balloon {
+  animation: balloonSway 3.5s ease-in-out infinite;
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px #f59e0b) drop-shadow(0 0 16px #ef4444);
+  }
+  25% {
+    transform: scale(1.08, 0.92) rotate(2deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #fbbf24) drop-shadow(0 0 22px #f97316);
+  }
+  50% {
+    transform: scale(0.95, 1.05) rotate(-2deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px #f59e0b) drop-shadow(0 0 14px #dc2626);
+  }
+  75% {
+    transform: scale(1.05, 0.98) rotate(1deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #fbbf24) drop-shadow(0 0 18px #ea580c);
+  }
+}
+
+.animate-flame {
+  animation: flameFlicker 1.4s ease-in-out infinite;
+}
+
+@keyframes routePulse {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-route-flow {
+  animation: routePulse 1.8s linear infinite;
+}
+
+@keyframes malharMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-malhar-marquee {
+  display: flex;
+  width: 200%;
+  animation: malharMarquee 35s linear infinite;
+}
+

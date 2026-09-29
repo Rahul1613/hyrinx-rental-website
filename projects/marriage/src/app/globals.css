@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-calligraphy: "Alex Brush", cursive;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-devanagari: "Rozha One", "Yatra One", "Cinzel Decorative", serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fdfbf7;
+  color: #2b1f1d;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(245, 230, 200, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(254, 226, 226, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(254, 243, 199, 0.35) 0%, transparent 60%);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-calligraphy {
+  font-family: var(--font-calligraphy);
+}
+
+/* Sacred Temple Gold Foil Text */
+.text-gold-divine {
+  background: linear-gradient(135deg, #996515 0%, #d4af37 40%, #f3e5ab 70%, #aa7a1e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(180, 130, 40, 0.25));
+}
+
+.text-crimson-divine {
+  background: linear-gradient(135deg, #70111f 0%, #9e1b32 50%, #c42b47 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Opulent Pearl & Gold Cards */
+.divine-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 16px 40px rgba(180, 140, 80, 0.1), 0 2px 10px rgba(180, 140, 80, 0.05);
+}
+
+.divine-card:hover {
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow: 0 20px 50px rgba(180, 140, 80, 0.18);
+}
+
+/* Ornate Gilded Gold Border */
+.divine-border {
+  border: 2px solid #d4af37;
+  outline: 1px dashed #b8860b;
+  outline-offset: 4px;
+}
+
+/* Soft Auspicious Flower Petal Falling */
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -10%, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(70px, 105vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal {
+  animation: petalFall 11s linear infinite;
+}
+
+/* Diya Holy Flame Animation */
+@keyframes holyDiya {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 10px #f59e0b) drop-shadow(0 0 20px #ef4444);
+  }
+  50% {
+    transform: scale(1.1, 0.95) rotate(2deg);
+    filter: drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 28px #ea580c);
+  }
+}
+
+.animate-holy-flame {
+  animation: holyDiya 1.2s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Floating upwards divine blessings */
+@keyframes floatUpFade {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(-85vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: floatUpFade 4s ease-out forwards;
+}
+
+/* Custom Temple Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf5ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8860b;
+}

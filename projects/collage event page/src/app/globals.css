@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif-title: "Cinzel Decorative", serif;
+  --font-serif-sub: "Cinzel", serif;
+  --font-sans: "Montserrat", "Plus Jakarta Sans", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  --malhar-ink: #060407;
+  --malhar-ink-card: #0e0a12;
+  --malhar-gold: #d9a94e;
+  --malhar-gold-light: #f7e3ab;
+  --malhar-gold-dark: #8a5a1d;
+  --malhar-parchment: #f4ead8;
+  --malhar-magenta: #f405f9;
+  --malhar-border: rgba(217, 169, 78, 0.25);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--malhar-ink);
+  color: var(--malhar-parchment);
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(217, 169, 78, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 15% 30%, rgba(244, 5, 249, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(217, 169, 78, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Malhar Typography Classes */
+.font-cinzel-dec {
+  font-family: "Cinzel Decorative", serif;
+}
+
+.font-cinzel {
+  font-family: "Cinzel", serif;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Malhar Chunky 3D Gilded Button with Spinning Conic Glow Aura (Iconic Malharfest signature) */
+.btn-enter-wrap {
+  position: relative;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 9999px;
+}
+
+.btn-enter-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, #d9a94e, #f405f9, #38bdf8, #d9a94e);
+  filter: blur(10px);
+  opacity: 0.75;
+  animation: spinGlow 8s linear infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.btn-enter-wrap:hover .btn-enter-glow {
+  opacity: 1;
+  filter: blur(14px);
+}
+
+@keyframes spinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-enter-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(180deg, #1b1324 0%, #0d0714 100%);
+  border: 1.5px solid #d9a94e;
+  border-bottom: 4px solid #8a5a1d;
+  color: #f7e3ab;
+  padding: 0.85rem 2.25rem;
+  border-radius: 9999px;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 25px -5px rgba(217, 169, 78, 0.25), inset 0 1px 0 rgba(247, 227, 171, 0.4);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-enter-inner:hover {
+  transform: translateY(-2px);
+  border-color: #f7e3ab;
+  border-bottom-width: 5px;
+  box-shadow: 0 15px 35px -5px rgba(244, 5, 249, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+}
+
+.btn-enter-inner:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+}
+
+/* Malhar Gilded Glass Surface */
+.malhar-card {
+  background: linear-gradient(135deg, rgba(22, 15, 30, 0.75) 0%, rgba(10, 6, 15, 0.85) 100%);
+  border: 1px solid rgba(217, 169, 78, 0.25);
+  backdrop-filter: blur(14px);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.malhar-card:hover {
+  border-color: rgba(217, 169, 78, 0.6);
+  box-shadow: 0 12px 30px -10px rgba(217, 169, 78, 0.15), 0 0 20px -5px rgba(244, 5, 249, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Ornamental Corner Accent */
+.ornament-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #d9a94e;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.ornament-tl { top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid; }
+.ornament-tr { top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid; }
+.ornament-bl { bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid; }
+.ornament-br { bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Gold Shimmer Text */
+.gold-shimmer {
+  background: linear-gradient(90deg, #d9a94e 0%, #ffffff 30%, #f7e3ab 60%, #d9a94e 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShine 6s linear infinite;
+}
+
+@keyframes goldShine {
+  to { background-position: 200% center; }
+}
+
+/* Gilded Marquee Bar */
+@keyframes malharMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-malhar-marquee {
+  display: flex;
+  width: 200%;
+  animation: malharMarquee 35s linear infinite;
+}
+
+.animate-malhar-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Floating Monsoon Clouds / Stardust */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+/* Custom Gilded Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060407;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a1f33;
+  border-radius: 9999px;
+  border: 1px solid rgba(217, 169, 78, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d9a94e;
+}

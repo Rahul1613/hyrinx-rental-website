@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --hud-cyan: #00f0ff;
+  --hud-cyan-glow: rgba(0, 240, 255, 0.25);
+  --hud-amber: #f59e0b;
+  --hud-bg-dark: #05070b;
+  --hud-card: #090d14;
+  --hud-border: #161e2e;
+  --hud-border-active: #00f0ff;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--hud-bg-dark);
+  color: #f1f5f9;
+  overflow-x: hidden;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.04) 0%, transparent 60%);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+}
+
+/* Aerospace HUD Typography */
+.font-display {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.font-mono-spec {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: -0.01em;
+}
+
+/* Aerospace Technical HUD Border */
+.hud-card {
+  background: linear-gradient(135deg, rgba(9, 13, 20, 0.95) 0%, rgba(15, 21, 34, 0.9) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  backdrop-filter: blur(12px);
+  position: relative;
+  transition: all 0.25s ease-out;
+}
+
+.hud-card:hover {
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.15);
+}
+
+/* HUD Corner Marks */
+.hud-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  border-color: var(--hud-cyan);
+  opacity: 0.6;
+}
+
+.hud-corner-tl { top: 3px; left: 3px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.hud-corner-tr { top: 3px; right: 3px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.hud-corner-bl { bottom: 3px; left: 3px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.hud-corner-br { bottom: 3px; right: 3px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+/* Avionics Glowing Button */
+.btn-aerospace {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, #00f0ff 0%, #00b4d8 100%);
+  color: #05070b;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.6rem;
+  border-radius: 4px;
+  border: 1px solid #70f8ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-aerospace:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  filter: brightness(1.08);
+}
+
+.btn-stealth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(15, 21, 34, 0.8);
+  color: #e2e8f0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.btn-stealth:hover {
+  border-color: var(--hud-cyan);
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.05);
+}
+
+/* Radar Pulse Animation */
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radarSweep 12s linear infinite;
+}
+
+/* Signal Pulse traveling through architecture line */
+@keyframes signalPulse {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2232;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}

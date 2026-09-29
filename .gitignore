@@ -1,5 +1,6 @@
 # ─── Dependencies ────────────────────────────────────────────────────────────
-/node_modules
+node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,7 +10,8 @@
 !.yarn/versions
 
 # ─── Next.js Build Output ────────────────────────────────────────────────────
-/.next/
+.next
+**/.next
 /out/
 /build
 
