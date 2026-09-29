@@ -9,7 +9,7 @@ const CSS_STYLES = `
   100% { stroke-dasharray: 1200; stroke-dashoffset: 0; opacity: 1; }
 }
 .hx-frame-trace {
-  animation: hyrinxFrameTrace 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: hyrinxFrameTrace 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes hyrinxDotIn {
@@ -18,7 +18,7 @@ const CSS_STYLES = `
   100% { transform: scale(1); opacity: 1; }
 }
 .hx-dot-in {
-  animation: hyrinxDotIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: hyrinxDotIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @keyframes hyrinxBarDraw {
@@ -26,16 +26,16 @@ const CSS_STYLES = `
   100% { opacity: 1; transform: scaleX(1); }
 }
 .hx-bar-draw {
-  animation: hyrinxBarDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: hyrinxBarDraw 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
 @keyframes hyrinxSkelFade {
-  0% { opacity: 0; transform: translateY(10px) scale(0.96); }
+  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-.hx-skel-1 { animation: hyrinxSkelFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
-.hx-skel-2 { animation: hyrinxSkelFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both; }
-.hx-skel-3 { animation: hyrinxSkelFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both; }
+.hx-skel-1 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+.hx-skel-2 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+.hx-skel-3 { animation: hyrinxSkelFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both; }
 
 @keyframes hyrinxRentalBadge {
   0% { opacity: 0; transform: translate(30px, -15px) scale(0.6); }
@@ -43,7 +43,7 @@ const CSS_STYLES = `
   100% { opacity: 1; transform: translate(0, 0) scale(1); }
 }
 .hx-rental-badge {
-  animation: hyrinxRentalBadge 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.25s both;
+  animation: hyrinxRentalBadge 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
 }
 
 @keyframes hyrinxTagFlip {
@@ -51,7 +51,7 @@ const CSS_STYLES = `
   100% { opacity: 0; transform: rotateX(90deg); }
 }
 .hx-tag-flip {
-  animation: hyrinxTagFlip 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1.85s forwards;
+  animation: hyrinxTagFlip 0.35s cubic-bezier(0.16, 1, 0.3, 1) 1.35s forwards;
 }
 
 @keyframes hyrinxLiveMorph {
@@ -59,7 +59,7 @@ const CSS_STYLES = `
   100% { opacity: 1; transform: rotateX(0deg) scale(1); }
 }
 .hx-live-morph {
-  animation: hyrinxLiveMorph 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s forwards;
+  animation: hyrinxLiveMorph 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 1.35s forwards;
 }
 
 @keyframes hyrinxGlowPulse {
@@ -68,23 +68,23 @@ const CSS_STYLES = `
   100% { opacity: 0.5; transform: scale(1); }
 }
 .hx-glow-pulse {
-  animation: hyrinxGlowPulse 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  animation: hyrinxGlowPulse 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
 }
 
 @keyframes hyrinxScaleOut {
-  0%, 85% { transform: scale(1); }
+  0%, 80% { transform: scale(1); }
   100% { transform: scale(1.04); }
 }
 .hx-scale-out {
-  animation: hyrinxScaleOut 1s cubic-bezier(0.16, 1, 0.3, 1) 5s forwards;
+  animation: hyrinxScaleOut 0.7s cubic-bezier(0.16, 1, 0.3, 1) 3.3s forwards;
 }
 
 @keyframes hyrinxScreenExit {
-  0%, 83% { opacity: 1; pointer-events: auto; }
+  0%, 82% { opacity: 1; pointer-events: auto; }
   100% { opacity: 0; pointer-events: none; }
 }
 .hx-screen-exit {
-  animation: hyrinxScreenExit 6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: hyrinxScreenExit 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes hyrinxQuickFade {
@@ -118,7 +118,7 @@ export default function LoadingScreen() {
 
     const timer = setTimeout(() => {
       setVisible(false);
-    }, isReduced ? 350 : 6000);
+    }, isReduced ? 350 : 4000);
 
     return () => clearTimeout(timer);
   }, []);
