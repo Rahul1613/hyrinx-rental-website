@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 import { Heart, Camera, MapPin, Calendar, Sparkles, X } from "lucide-react";
 
 interface PolaroidItem {

@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { DEFAULT_WEBSITES } from '@/lib/templates-data'
+import { generateTemplateMetadata } from '@/lib/seo-helpers'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!website) {
     return {
-      title: 'Website Not Found | Hyrinx',
+      title: 'Website Not Found | Hyrinx Rental',
       description: 'The website you are looking for does not exist or is no longer available.',
       robots: {
         index: false,
@@ -36,33 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
-  const title = `${website.name} — Rent from ₹${website.startingPrice || 149}/day | Hyrinx`
-  const description =
-    website.shortDesc ||
-    website.description ||
-    `Rent ${website.name} website template starting at ₹${website.startingPrice || 149}/day. Fast deployment, customisation included, zero hosting fees.`
-  const url = `https://hyrinx.in/websites/${slug}`
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title,
-      description,
-      url,
-      images: website.thumbnail ? [{ url: website.thumbnail }] : [],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: website.thumbnail ? [website.thumbnail] : [],
-    },
-  }
+  return generateTemplateMetadata(website)
 }
 
 export default function WebsiteLayout({ children }: { children: React.ReactNode }) {

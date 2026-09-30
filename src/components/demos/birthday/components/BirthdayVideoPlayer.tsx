@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX, Maximize2, Film, Sparkles, Heart } from "lucide-react";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 
 interface VideoMoment {
   id: string;

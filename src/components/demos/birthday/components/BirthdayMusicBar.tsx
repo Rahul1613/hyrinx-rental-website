@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 import { Volume2, VolumeX, Sparkles, Sliders } from "lucide-react";
 
 interface BirthdayMusicBarProps {

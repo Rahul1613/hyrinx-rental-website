@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Film, Image as ImageIcon, X, Maximize2, Sparkles } from "lucide-react";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 interface VideoHighlight {
   id: string;

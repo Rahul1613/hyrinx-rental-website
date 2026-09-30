@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 
 interface FloatingItem {
   id: number;

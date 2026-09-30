@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import { Calendar, Briefcase, Heart, GraduationCap, Store, Globe, ArrowRight } from 'lucide-react'
 

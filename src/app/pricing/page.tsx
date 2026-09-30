@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import { Check, Star } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
@@ -44,10 +44,10 @@ export default function PricingPage() {
           {/* Header */}
           <div className="text-center mb-10 sm:mb-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 sm:mb-4 leading-tight">
-              Flexible Plans For Every Need
+              Website Rental Pricing in India — Plans from ₹149/Day
             </h1>
             <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto">
-              Rent for one day or keep your website for as long as your project needs it.
+              Transparent daily micro-rentals with zero maintenance liabilities. Rent for one day or keep your website active as long as your project needs.
             </p>
           </div>
 
@@ -78,6 +78,52 @@ export default function PricingPage() {
                 <div key={i} className="flex items-center gap-2.5 sm:gap-3 bg-white sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-slate-200 sm:border-0 shadow-xs sm:shadow-none">
                   <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
                   <span className="text-xs sm:text-base text-slate-700 font-medium">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pricing FAQ Section */}
+          <div className="mt-16 sm:mt-24 max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                Transparent Pricing Questions
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                Frequently Asked Questions About Website Rentals
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: "What is included in the website rental price?",
+                  a: "Every Hyrinx rental plan includes high-speed cloud hosting, SSL encryption, custom domain or clean subdomain mapping, complete personalization with your photos and text, mobile responsiveness, and 24/7 technical support."
+                },
+                {
+                  q: "Are there any hidden setup fees or cancellation charges?",
+                  a: "No. The price you see is the exact total price you pay. There are zero upfront setup fees, zero recurring server hosting charges, and zero cancellation penalties."
+                },
+                {
+                  q: "Can I extend my rental if my event lasts longer?",
+                  a: "Yes! You can extend your rental period anytime before expiration by contacting our team or renewing directly through your order tracking portal at standard daily plan rates."
+                },
+                {
+                  q: "What happens after the rental period concludes?",
+                  a: "When your rental duration finishes, the website is safely archived. We maintain a secure backup of your customized content for 30 days should you wish to reactivate it."
+                },
+                {
+                  q: "Can I connect my own custom domain (e.g. myevent.com)?",
+                  a: "Yes. By default, your rental includes a clean Hyrinx subdomain (e.g. yourname.hyrinx.com). If you wish to connect your own domain, our engineering team configures DNS mapping for you at zero extra charge."
+                }
+              ].map((faq, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                    {faq.q}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    {faq.a}
+                  </p>
                 </div>
               ))}
             </div>

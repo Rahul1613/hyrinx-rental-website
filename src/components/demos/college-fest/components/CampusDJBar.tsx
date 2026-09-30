@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Volume2, VolumeX, Sparkles, Feather, Music2 } from "lucide-react";
 import confetti from "canvas-confetti";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 export default function CampusDJBar() {
   const [isPlaying, setIsPlaying] = useState(false);

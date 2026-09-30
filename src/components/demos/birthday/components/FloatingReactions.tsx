@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 
 interface FloatingEmoji {
   id: number;

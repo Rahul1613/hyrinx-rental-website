@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import { ArrowRight, Check, Clock, Palette, Zap, Globe, Share, Eye } from 'lucide-react'
 

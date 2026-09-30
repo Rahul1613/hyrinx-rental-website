@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown, MapPin, Feather, Sparkles, Compass } from "lucide-react";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface FAQ {
   q: string;

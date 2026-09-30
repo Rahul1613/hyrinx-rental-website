@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import {
   Search,

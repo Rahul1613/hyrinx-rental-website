@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Volume2, VolumeX, Flower2, Scroll, HeartHandshake, Sparkles, MapPin, Calendar } from "lucide-react";
 import confetti from "canvas-confetti";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 
 interface TimeLeft {
   days: number;

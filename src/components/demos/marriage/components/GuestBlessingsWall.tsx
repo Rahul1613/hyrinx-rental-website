@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 import { Heart, Sparkles, Send, Flower2 } from "lucide-react";
 
 interface Blessing {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Hyrinx Rental Websites',

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Award, Feather, Heart, Sparkles, Trophy } from "lucide-react";
 import confetti from "canvas-confetti";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface ContingentStanding {
   rank: string;

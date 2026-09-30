@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
+import { BreadcrumbJsonLd, PersonJsonLd } from '@/components/seo/JsonLd'
 import {
   ArrowRight,
   BadgeCheck,
@@ -91,6 +92,24 @@ const values = [
 export default function FoundersPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: 'https://hyrinx.in' },
+          { name: 'Founders', url: 'https://hyrinx.in/founders' },
+        ]}
+      />
+      <PersonJsonLd
+        name="Rahul Sisode"
+        jobTitle="Founder & CEO"
+        image="https://hyrinx.in/rahul.png"
+        sameAs={['https://www.instagram.com/_rahulsisode/']}
+      />
+      <PersonJsonLd
+        name="Harshal"
+        jobTitle="Founder & Creative Strategist"
+        image="https://hyrinx.in/harshal.png"
+        sameAs={['https://www.instagram.com/hxrshxl_07/']}
+      />
       <Navbar />
 
       <main className="pt-28 pb-24">

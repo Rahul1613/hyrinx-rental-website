@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 import { Mail, Sparkles, Heart, Feather, RefreshCw } from "lucide-react";
 
 interface InteractiveLoveLetterProps {

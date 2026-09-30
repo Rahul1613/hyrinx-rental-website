@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Rent Websites — Browse Ready-Made Templates Starting at ₹149/day | Hyrinx',
@@ -21,13 +22,24 @@ export const metadata: Metadata = {
     description:
       'Choose a professionally designed website, preview the live demo, and launch in 60 seconds.',
     url: 'https://hyrinx.in/websites',
+    images: [{ url: 'https://hyrinx.in/icon-512.png', width: 1200, height: 630 }],
   },
 }
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://hyrinx.in' },
+  { name: 'Websites', url: 'https://hyrinx.in/websites' },
+]
 
 export default function WebsitesLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <BreadcrumbJsonLd items={breadcrumbs} />
+      {children}
+    </>
+  )
 }

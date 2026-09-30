@@ -39,6 +39,6 @@
   "exclude": [
     "node_modules",
     "prisma.config.ts",
-    "projects"
+    "templates-source"
   ]
 }

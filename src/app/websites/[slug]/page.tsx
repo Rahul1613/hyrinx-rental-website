@@ -1,122 +1,172 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import Navbar from '@/components/Navbar'
+import React from 'react'
 import Link from 'next/link'
-import { ExternalLink, Star, Check, ArrowRight } from 'lucide-react'
+import { notFound } from 'next/navigation'
+import Navbar from '@/components/layout/Navbar'
+import {
+  ExternalLink,
+  Check,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Sparkles,
+  HelpCircle,
+  Layers,
+  ChevronRight,
+  Zap,
+} from 'lucide-react'
+import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
+import { DEFAULT_WEBSITES, DEFAULT_PRICING_PLANS } from '@/lib/templates-data'
+import { getTemplateEditorialContent } from '@/lib/seo-helpers'
+import {
+  BreadcrumbJsonLd,
+  TemplateProductJsonLd,
+  FAQJsonLd,
+} from '@/components/seo/JsonLd'
+import WebsiteRentalForm from '@/components/websites/WebsiteRentalForm'
+import DetailMockup from '@/components/websites/DetailMockup'
 
-export default function WebsiteDetailPage() {
-  const params = useParams()
-  const router = useRouter()
-  const [website, setWebsite] = useState<any>(null)
-  const [pricingPlans, setPricingPlans] = useState<any[]>([])
-  const [selectedPlan, setSelectedPlan] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+export const dynamic = 'force-dynamic'
 
-  useEffect(() => {
-    if (params.slug) {
-      fetchWebsite(params.slug as string)
-      fetchPricingPlans()
-    }
-  }, [params.slug])
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
 
-  const fetchWebsite = async (slug: string) => {
-    try {
-      const response = await fetch(`/api/websites/${slug}`)
-      const data = await response.json()
-      if (response.ok) {
-        setWebsite(data.website)
-        // Select the first plan by default
-        if (data.pricingPlans && data.pricingPlans.length > 0) {
-          setSelectedPlan(data.pricingPlans[0])
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching website:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
+export default async function WebsiteDetailPage({ params }: PageProps) {
+  const { slug } = await params
 
-  const fetchPricingPlans = async () => {
-    try {
-      const response = await fetch('/api/pricing-plans')
-      const data = await response.json()
-      if (response.ok) {
-        setPricingPlans(data.plans || [])
-      }
-    } catch (error) {
-      console.error('Error fetching pricing plans:', error)
-    }
-  }
+  let website: any = null
+  let pricingPlans: any[] = []
 
-  const handleRentNow = () => {
-    if (selectedPlan) {
-      router.push(`/checkout?website=${website.id}&plan=${selectedPlan.id}`)
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-        <Navbar />
-        <div className="pt-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="animate-pulse">
-              <div className="h-8 bg-slate-200 rounded w-1/3 mb-4" />
-              <div className="aspect-video bg-slate-200 rounded-xl mb-8" />
-              <div className="h-6 bg-slate-200 rounded w-1/2 mb-4" />
-              <div className="h-4 bg-slate-200 rounded w-3/4 mb-8" />
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+  try {
+    const results = await Promise.all([
+      prisma.website.findUnique({
+        where: { slug },
+      }),
+      prisma.pricingPlan.findMany({
+        where: { active: true },
+        orderBy: { price: 'asc' },
+      }),
+    ])
+    website = results[0]
+    pricingPlans = results[1] || []
+  } catch (error) {
+    // Database fallback
   }
 
   if (!website) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-        <Navbar />
-        <div className="pt-24 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-2xl font-semibold text-slate-900 mb-4">Website not found</h1>
-            <Link href="/websites" className="text-blue-600 hover:text-blue-700">
-              Browse all websites
-            </Link>
-          </div>
-        </div>
-      </div>
+    website = DEFAULT_WEBSITES.find((w) => w.slug === slug)
+  }
+
+  if (!website) {
+    notFound()
+  }
+
+  if (!pricingPlans || pricingPlans.length === 0) {
+    pricingPlans = DEFAULT_PRICING_PLANS.filter((p) => p.active).sort(
+      (a, b) => a.durationDays - b.durationDays
     )
   }
 
-  const features = website.features ? JSON.parse(website.features) : []
+  const editorial = getTemplateEditorialContent(website)
+  const features: string[] = website.features
+    ? typeof website.features === 'string'
+      ? JSON.parse(website.features)
+      : website.features
+    : []
+  const customization: string[] = website.customization
+    ? typeof website.customization === 'string'
+      ? JSON.parse(website.customization)
+      : website.customization
+    : []
+  const galleryImages: string[] = website.galleryImages
+    ? typeof website.galleryImages === 'string'
+      ? JSON.parse(website.galleryImages)
+      : website.galleryImages
+    : []
+
+  // Related templates in the same category or overall catalog
+  const relatedTemplates = DEFAULT_WEBSITES.filter(
+    (w) => w.slug !== slug && (w.category === website.category || w.featured)
+  ).slice(0, 3)
+
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://hyrinx.in' },
+    { name: 'Websites', url: 'https://hyrinx.in/websites' },
+    {
+      name: website.category || 'Templates',
+      url: `https://hyrinx.in/websites?category=${encodeURIComponent(website.category || '')}`,
+    },
+    { name: website.name, url: `https://hyrinx.in/websites/${slug}` },
+  ]
+
+  const offerList = pricingPlans.map((plan) => ({
+    name: plan.name,
+    price: plan.price,
+    priceCurrency: 'INR',
+    duration: `${plan.durationDays || 1} Days`,
+  }))
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
       <Navbar />
-      
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Breadcrumb */}
-          <div className="mb-6">
-            <Link href="/websites" className="text-slate-600 hover:text-slate-900 text-sm">
-              ← Back to Websites
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left - Preview */}
+      {/* Structured Data (JSON-LD) for Googlebot */}
+      <BreadcrumbJsonLd items={breadcrumbs} />
+      <TemplateProductJsonLd
+        name={website.name}
+        description={website.description || website.shortDesc || ''}
+        category={website.category || 'Website Template'}
+        slug={website.slug}
+        image={website.thumbnail}
+        startingPrice={website.startingPrice || 149}
+        offers={offerList}
+      />
+      <FAQJsonLd faqs={editorial.faqs} />
+
+      <div className="pt-24 sm:pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumbs Navigation */}
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-1.5 text-xs text-slate-500 mb-6 flex-wrap"
+          >
+            <Link href="/" className="hover:text-blue-600 transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <Link href="/websites" className="hover:text-blue-600 transition-colors">
+              Websites
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <Link
+              href={`/websites?category=${encodeURIComponent(website.category || '')}`}
+              className="hover:text-blue-600 transition-colors"
+            >
+              {website.category}
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <span className="font-semibold text-slate-900 truncate">
+              {website.name}
+            </span>
+          </nav>
+
+          {/* Top Section: Visual Preview & Rental Order Box */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+            {/* Left Column: Visual Mockup / Thumbnail & Live Demo CTA */}
             <div>
-              <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-lg">
+              <div className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm sticky top-24">
                 {website.thumbnail ? (
-                  <img
-                    src={website.thumbnail}
-                    alt={website.name}
-                    className="w-full aspect-video object-cover"
-                  />
+                  <div className="relative aspect-video bg-slate-900 group">
+                    <img
+                      src={website.thumbnail}
+                      alt={editorial.imageAlt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                    <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">
+                      Preview: {website.name}
+                    </div>
+                  </div>
                 ) : (
                   <div className="aspect-video">
                     <DetailMockup website={website} />
@@ -124,135 +174,120 @@ export default function WebsiteDetailPage() {
                 )}
 
                 {website.liveDemoUrl && (
-                  <div className="p-4 border-t border-slate-200">
+                  <div className="p-4 sm:p-5 border-t border-slate-200 bg-slate-50/70 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold text-slate-900">Experience Live Website</p>
+                      <p className="text-[11px] text-slate-500">Test all animations, sound, and RSVP flows</p>
+                    </div>
                     <a
                       href={website.liveDemoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-5 rounded-xl text-sm font-bold shadow-sm transition-all"
                     >
-                      <ExternalLink className="h-5 w-5" />
-                      View Live Demo
+                      <ExternalLink className="h-4 w-4" />
+                      <span>View Live Demo</span>
                     </a>
                   </div>
                 )}
-              </div>
 
-              {/* Gallery */}
-              {website.galleryImages && (
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Gallery</h3>
-                  <div className="grid grid-cols-3 gap-4">
-                    {JSON.parse(website.galleryImages).map((image: string, i: number) => (
-                      <img
-                        key={i}
-                        src={image}
-                        alt={`${website.name} gallery ${i + 1}`}
-                        className="rounded-lg border border-slate-200 aspect-video object-cover"
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Right - Details */}
-            <div>
-              <div className="mb-4">
-                <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                  {website.category}
-                </span>
-              </div>
-
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 leading-tight">{website.name}</h1>
-              <p className="text-base sm:text-lg text-slate-600 mb-4">{website.category} Website</p>
-
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                ))}
-                <span className="text-slate-600 ml-2">5.0 (12 reviews)</span>
-              </div>
-
-              <p className="text-slate-700 mb-8">{website.description}</p>
-
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Starting at</h3>
-                <p className="text-3xl font-bold text-slate-900">
-                  {formatPrice(website.startingPrice || 149)}/day
-                </p>
-              </div>
-
-              {/* Pricing Calculator */}
-              <div className="bg-white rounded-xl border border-slate-200 p-6 mb-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                  How long do you need your website?
-                </h3>
-
-                <div className="space-y-3 mb-6">
-                  {pricingPlans.filter(p => p.active).map((plan) => (
-                    <button
-                      key={plan.id}
-                      onClick={() => setSelectedPlan(plan)}
-                      className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
-                        selectedPlan?.id === plan.id
-                          ? 'border-blue-600 bg-blue-50'
-                          : 'border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-semibold text-slate-900">{plan.name}</span>
-                            {plan.popular && (
-                              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
-                                Popular
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-slate-600">{plan.description}</p>
-                        </div>
-                        <span className="text-xl font-bold text-slate-900">
-                          {formatPrice(plan.price)}
-                        </span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-
-                {selectedPlan && (
-                  <div className="border-t border-slate-200 pt-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-slate-600">Selected duration:</span>
-                      <span className="font-semibold text-slate-900">{selectedPlan.name}</span>
+                {/* Additional Gallery Thumbnails */}
+                {galleryImages.length > 0 && (
+                  <div className="p-4 border-t border-slate-200">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+                      Template Gallery Previews
+                    </h4>
+                    <div className="grid grid-cols-3 gap-2">
+                      {galleryImages.map((image: string, i: number) => (
+                        <img
+                          key={i}
+                          src={image}
+                          alt={`${website.name} screenshot preview ${i + 1} - Hyrinx Rental`}
+                          className="rounded-lg border border-slate-200 aspect-video object-cover"
+                        />
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center mb-6">
-                      <span className="text-slate-600">Price:</span>
-                      <span className="text-2xl font-bold text-slate-900">
-                        {formatPrice(selectedPlan.price)}
-                      </span>
-                    </div>
-
-                    <button
-                      onClick={handleRentNow}
-                      className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-                    >
-                      Rent This Website
-                      <ArrowRight className="h-5 w-5" />
-                    </button>
                   </div>
                 )}
               </div>
+            </div>
 
-              {/* Features */}
+            {/* Right Column: Title, Primary H1, Key Selling Points, and Rental Calculator */}
+            <div>
+              <div className="mb-3 flex items-center gap-2 flex-wrap">
+                <span className="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">
+                  {website.category}
+                </span>
+                <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Verified Template
+                </span>
+                <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200/80 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                  <Clock className="w-3.5 h-3.5 text-amber-600" /> Live in 2–6 Hours
+                </span>
+              </div>
+
+              {/* Primary H1 with Target Keyword */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-tight tracking-tight">
+                {website.name}
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-600 mb-5 leading-relaxed">
+                {website.shortDesc || website.description}
+              </p>
+
+              {/* Starting at price banner */}
+              <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 mb-6 flex items-center justify-between">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Rental Price Starts At</span>
+                  <div className="text-3xl font-black text-slate-900 mt-0.5">
+                    {formatPrice(website.startingPrice || 149)}
+                    <span className="text-sm font-semibold text-slate-500 font-normal"> / day</span>
+                  </div>
+                </div>
+                <div className="text-right text-xs text-slate-600">
+                  <p className="font-semibold text-slate-900">Zero Agency Fees</p>
+                  <p>Hosting + Subdomain Included</p>
+                </div>
+              </div>
+
+              {/* Client Interactive Rental Form */}
+              <WebsiteRentalForm
+                websiteId={website.id}
+                websiteSlug={website.slug}
+                pricingPlans={pricingPlans}
+                startingPrice={website.startingPrice || 149}
+              />
+
+              {/* Features List */}
               {features.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Features</h3>
-                  <div className="grid grid-cols-2 gap-3">
+                <div className="mb-6 bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-blue-600" />
+                    Built-in Template Features
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {features.map((feature: string, i: number) => (
-                      <div key={i} className="flex items-center gap-2 text-slate-700">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
+                      <div key={i} className="flex items-center gap-2 text-slate-700 text-sm">
+                        <Check className="h-4 w-4 text-emerald-600 shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Customization Options */}
+              {customization.length > 0 && (
+                <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-indigo-600" />
+                    Included Customization Options
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {customization.map((item: string, i: number) => (
+                      <div key={i} className="flex items-center gap-2 text-slate-700 text-sm">
+                        <Check className="h-4 w-4 text-blue-600 shrink-0" />
+                        <span>{item}</span>
                       </div>
                     ))}
                   </div>
@@ -260,128 +295,180 @@ export default function WebsiteDetailPage() {
               )}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
-function DetailMockup({ website }: { website: any }) {
-  const cat = website.category || ''
+          {/* ========================================================================= */}
+          {/* SEO SECTION 1: Deep Editorial Information (Who It's For & What's Included) */}
+          {/* ========================================================================= */}
+          <div className="border-t border-slate-200 pt-12 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Who It's For */}
+              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-6 bg-blue-600 rounded-full inline-block"></span>
+                  Who Is {website.name} Best For?
+                </h2>
+                <ul className="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+                  {editorial.whoItsFor.map((point, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="font-bold text-blue-600 text-base mt-0.5">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-  if (cat === 'Wedding') {
-    return (
-      <div className="w-full h-full bg-[#FAF5EE] text-stone-800 p-8 flex flex-col justify-between">
-        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
-          <span className="text-xs font-serif font-bold uppercase tracking-widest text-amber-900">
-            Royal Wedding Celebration
-          </span>
-          <span className="text-xs text-stone-500 font-serif">Dec 2026 &bull; Udaipur Palace</span>
-        </div>
-        <div className="text-center py-4">
-          <h2 className="font-serif text-3xl font-bold text-stone-900">
-            {website.name}
-          </h2>
-          <p className="text-sm text-stone-600 font-serif italic mt-1">
-            &ldquo;A celebration of eternal love and timeless traditions&rdquo;
-          </p>
-          <div className="mt-4 inline-flex items-center gap-3 bg-amber-900/10 text-amber-900 border border-amber-900/20 text-xs font-serif px-4 py-1.5 rounded-full">
-            <span>Online RSVP</span>
-            <span>&bull;</span>
-            <span>Digital Itinerary</span>
-            <span>&bull;</span>
-            <span>Photo Story</span>
+              {/* What's Included */}
+              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+                  What Is Included in Your Rental?
+                </h2>
+                <ul className="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+                  {editorial.whatsIncluded.map((point, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="flex justify-between items-center pt-3 border-t border-stone-200 text-xs text-stone-500 font-serif">
-          <span>✨ Full Interactive Experience</span>
-          <span>Click &apos;View Live Demo&apos; below</span>
-        </div>
-      </div>
-    )
-  }
 
-  if (cat === 'Birthday' || cat === 'Celebration') {
-    return (
-      <div className="w-full h-full bg-gradient-to-br from-pink-50 via-purple-50 to-amber-50 text-slate-800 p-8 flex flex-col justify-between">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-100 px-3 py-1 rounded-md">
-            Party Live Invitation
-          </span>
-          <span className="text-xs text-purple-600 font-bold">🎉 Live Countdown Active</span>
-        </div>
-        <div className="text-center py-4">
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-            {website.name}
-          </h2>
-          <p className="text-sm text-slate-600 font-medium mt-1">
-            Music, Dance, Photo Booth &amp; Delicious Cake
-          </p>
-          <div className="mt-4 flex justify-center gap-3 text-xs font-bold text-slate-700">
-            <span className="bg-white shadow-xs px-3 py-1 rounded-lg border border-pink-200">08 Days</span>
-            <span className="bg-white shadow-xs px-3 py-1 rounded-lg border border-pink-200">14 Hours</span>
-            <span className="bg-white shadow-xs px-3 py-1 rounded-lg border border-pink-200">30 Mins</span>
+          {/* ========================================================================= */}
+          {/* SEO SECTION 2: How Renting Works Step-by-Step                              */}
+          {/* ========================================================================= */}
+          <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 mb-16 shadow-xl">
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <span className="text-blue-400 uppercase tracking-widest text-xs font-extrabold">
+                Seamless Deployment
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold mt-2 mb-3">
+                How Renting {website.name} Works
+              </h2>
+              <p className="text-slate-400 text-sm sm:text-base">
+                No complex server configurations, no long developer contracts. Get your site live in 4 simple steps.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {editorial.rentalProcessSteps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-2xl font-black text-blue-400 mb-2 block">
+                      0{idx + 1}
+                    </span>
+                    <h3 className="font-bold text-base text-white mb-2">{step.title}</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="text-xs text-center text-pink-700 font-semibold bg-white/80 py-1.5 rounded-xl border border-pink-100">
-          Skyline Rooftop Lounge &bull; RSVP &amp; Wishes Active
-        </div>
-      </div>
-    )
-  }
 
-  if (cat === 'Projects for College Students' || cat === 'Project') {
-    return (
-      <div className="w-full h-full bg-[#0a0f1d] text-slate-100 p-8 flex flex-col justify-between font-mono">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <span className="text-xs font-bold text-indigo-400 bg-indigo-950 px-3 py-1 rounded border border-indigo-800/40">
-            College Capstone &bull; Final Year Engineering Project
-          </span>
-          <span className="text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-1 rounded border border-emerald-800/40">
-            ● Full Working Code Included
-          </span>
-        </div>
-        <div className="text-center py-4 font-sans">
-          <h2 className="text-3xl font-black text-white tracking-tight">
-            {website.name}
-          </h2>
-          <p className="text-sm text-slate-400 mt-1 max-w-lg mx-auto">
-            {website.shortDesc || website.description}
-          </p>
-          <div className="mt-4 inline-flex items-center gap-3 bg-slate-900 border border-slate-800 text-xs text-indigo-300 font-mono px-4 py-1.5 rounded-full">
-            <span>Verified System Architecture</span>
-            <span>&bull;</span>
-            <span>Viva &amp; PPT Guide</span>
-            <span>&bull;</span>
-            <span>Complete GitHub Code</span>
+          {/* ========================================================================= */}
+          {/* SEO SECTION 3: FAQ Block (Direct-Answer Snippet Optimized)                 */}
+          {/* ========================================================================= */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="text-center mb-8">
+              <span className="text-blue-600 font-extrabold text-xs uppercase tracking-wider">
+                Clear Answers
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                Frequently Asked Questions About {website.name}
+              </h2>
+              <p className="text-sm text-slate-600 mt-2">
+                Everything you need to know about pricing, customization, and rental duration.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {editorial.faqs.map((faq, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs"
+                >
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 flex items-start gap-2">
+                    <HelpCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                    <span>{faq.question}</span>
+                  </h3>
+                  <p className="text-sm text-slate-600 pl-7 leading-relaxed font-normal">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="flex justify-between items-center pt-3 border-t border-slate-800 text-xs text-slate-400">
-          <span>Ready for Semester / Examiner Submission</span>
-          <span className="text-indigo-300 font-bold">Rent for Your Viva Demo</span>
-        </div>
-      </div>
-    )
-  }
 
-  return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-8 flex flex-col justify-between">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/80 px-3 py-1 rounded border border-cyan-800/40">
-          {cat} Edition
-        </span>
-        <span className="text-xs text-blue-200">🚀 Ready to Rent</span>
-      </div>
-      <div className="text-center py-4">
-        <h2 className="text-3xl font-black text-white tracking-tight">
-          {website.name}
-        </h2>
-        <p className="text-sm text-blue-200 mt-1 max-w-md mx-auto">
-          {website.shortDesc || website.description}
-        </p>
-      </div>
-      <div className="text-xs text-center text-cyan-200 bg-white/10 py-1.5 rounded-xl backdrop-blur-xs border border-white/10">
-        Click &apos;View Live Demo&apos; to interact with this website live
+          {/* ========================================================================= */}
+          {/* SEO SECTION 4: Related Templates (Contextual Internal Links)               */}
+          {/* ========================================================================= */}
+          {relatedTemplates.length > 0 && (
+            <div className="border-t border-slate-200 pt-12">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900">
+                    Explore Related Website Templates
+                  </h2>
+                  <p className="text-sm text-slate-600">
+                    More popular websites in {website.category} ready for rent.
+                  </p>
+                </div>
+                <Link
+                  href="/websites"
+                  className="hidden sm:inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>View All Templates</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedTemplates.map((rel) => (
+                  <Link
+                    key={rel.id}
+                    href={`/websites/${rel.slug}`}
+                    className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-1 transition-all group block"
+                  >
+                    <div className="aspect-video bg-slate-100 overflow-hidden relative">
+                      {rel.thumbnail ? (
+                        <img
+                          src={rel.thumbnail}
+                          alt={`${rel.name} website template preview`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      ) : (
+                        <DetailMockup website={rel} />
+                      )}
+                    </div>
+                    <div className="p-5">
+                      <span className="text-[11px] font-bold text-blue-600 uppercase tracking-wider">
+                        {rel.category}
+                      </span>
+                      <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors mt-1">
+                        {rel.name}
+                      </h3>
+                      <p className="text-xs text-slate-500 line-clamp-2 mt-1">
+                        {rel.shortDesc || rel.description}
+                      </p>
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span className="font-extrabold text-slate-900">
+                          {formatPrice(rel.startingPrice || 149)}/day
+                        </span>
+                        <span className="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
+                          Rent Now <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

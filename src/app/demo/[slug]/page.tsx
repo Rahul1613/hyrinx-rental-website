@@ -131,7 +131,7 @@ function renderCategoryDemo(
   const category = website?.category || ''
   const name = (website?.name || '').toLowerCase()
 
-  // 1. Royal Wedding Demo (From projects/marriage)
+  // 1. Royal Wedding Demo (From templates-source/marriage)
   if (
     slug === 'royal-wedding' ||
     slug === 'eternal-moments' ||
@@ -143,12 +143,12 @@ function renderCategoryDemo(
     return <MarriageDemo />
   }
 
-  // 2. Birthday Bash Demo (From projects/birthday)
+  // 2. Birthday Bash Demo (From templates-source/birthday)
   if (slug === 'birthday-bash' || category === 'Birthday' || name.includes('birthday')) {
     return <BirthdayDemo />
   }
 
-  // 3. College Fest Pro Demo (From projects/collage event page)
+  // 3. College Fest Pro Demo (From templates-source/college-fest)
   if (
     slug === 'college-fest-pro' ||
     slug.includes('fest') ||
@@ -158,7 +158,7 @@ function renderCategoryDemo(
     return <CollegeFestDemo />
   }
 
-  // 4. Navratri Dandiya Utsav Demo (From projects/navratri invatation)
+  // 4. Navratri Dandiya Utsav Demo (From templates-source/navratri-invitation)
   if (
     slug === 'navratri-utsav' ||
     slug === 'quickinvite-rsvp' ||
@@ -170,17 +170,17 @@ function renderCategoryDemo(
     return <NavratriDemo />
   }
 
-  // 5. Tech Capstone / AeroCinematic Demo (From projects/project website)
+  // 5. Tech Capstone / AeroCinematic Demo (From templates-source/tech-project)
   if (slug === 'project-capstone-demo' || slug.includes('capstone') || name.includes('aerocinematic')) {
     return <TechProjectDemo />
   }
 
-  // 6. Wanderlust Travel Planner Demo (From projects/travel planner)
+  // 6. Wanderlust Travel Planner Demo (From templates-source/travel-planner)
   if (slug === 'wanderlust-travel' || slug.includes('travel') || name.includes('travel')) {
     return <TravelDemo />
   }
 
-  // 7. Startup & Business Demo (From projects/business)
+  // 7. Startup & Business Demo (From templates-source/business)
   if (
     slug === 'startup-launchpad' ||
     slug === 'business-showcase' ||

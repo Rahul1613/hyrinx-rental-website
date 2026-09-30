@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import { HelpCircle, ArrowRight } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
+import { BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd'
 
 export const dynamic = 'force-dynamic'
 
@@ -66,6 +67,18 @@ export default async function FAQPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900">
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: 'https://hyrinx.in' },
+          { name: 'FAQ', url: 'https://hyrinx.in/faq' },
+        ]}
+      />
+      <FAQJsonLd
+        faqs={faqs.map((f) => ({
+          question: f.question,
+          answer: f.answer,
+        }))}
+      />
       <Navbar />
 
       <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

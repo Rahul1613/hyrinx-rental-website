@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import InteractiveHero from '@/components/home/InteractiveHero'
 import Link from 'next/link'
 import {
@@ -23,7 +23,9 @@ import {
   ShieldCheck,
   Code,
   BookOpen,
-  Sparkles
+  Sparkles,
+  HelpCircle,
+  CheckCircle2,
 } from 'lucide-react'
 import { prisma } from '@/lib/prisma'
 import { formatPrice } from '@/lib/utils'
@@ -659,6 +661,184 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Entity Definition & E-E-A-T Authority Block (GEO / AEO Optimization) */}
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white border-t border-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+                About Hyrinx Rental & Developer Platform
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                Why Buy an Expensive Website When You Can <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Rent One Instead?</span>
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Founded by Rahul Sisode and Harshal, <strong>Hyrinx Rental</strong> is India’s premier verified website rental and temporary developer platform. Instead of paying ₹25,000 to ₹75,000 to digital agencies for events or campaigns that only last a few days or weeks, Hyrinx gives you complete access to battle-tested, high-conversion website templates starting at just ₹149/day.
+              </p>
+              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                Every rental includes high-speed cloud hosting, SSL certification, mobile-responsive layout, customization with your text and images, and custom domain mapping. Whether you are hosting a royal wedding in Udaipur, organizing an engineering college fest in Pune, or running a flash business campaign in Mumbai, Hyrinx gets you live in 2 to 6 hours.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  href="/vs/rent-vs-custom-website"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-400 hover:text-blue-300 bg-blue-950/60 border border-blue-800/80 px-4 py-2 rounded-xl transition-all"
+                >
+                  <span>Rent vs Custom Website</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
+                  href="/vs/hyrinx-vs-wix"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-indigo-400 hover:text-indigo-300 bg-indigo-950/60 border border-indigo-800/80 px-4 py-2 rounded-xl transition-all"
+                >
+                  <span>Hyrinx vs Wix & WordPress</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
+                  href="/founders"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/80 px-4 py-2 rounded-xl transition-all"
+                >
+                  <span>Meet Our Founders</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="bg-slate-950/80 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-base sm:text-lg mb-3">
+                  ₹149
+                </div>
+                <h3 className="font-bold text-white text-sm sm:text-base mb-1">Starting Price</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Rent websites per day with zero upfront development retainers or hidden server bills.</p>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold text-base sm:text-lg mb-3">
+                  2-6h
+                </div>
+                <h3 className="font-bold text-white text-sm sm:text-base mb-1">Rapid Launch</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Submit your details and your branded website goes live within hours, not weeks.</p>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold text-base sm:text-lg mb-3">
+                  100%
+                </div>
+                <h3 className="font-bold text-white text-sm sm:text-base mb-1">Fully Managed</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Cloud hosting, SSL certificates, speed optimization, and backups included in every tier.</p>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center font-bold text-base sm:text-lg mb-3">
+                  30+
+                </div>
+                <h3 className="font-bold text-white text-sm sm:text-base mb-1">Ready Templates</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Tested designs for weddings, college fests, restaurants, gyms, and portfolios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visible FAQ Section (Matches JSON-LD FAQPage Schema for 100% Rich Result Compliance) */}
+      <section id="faq" className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white border-t border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-blue-400 text-xs sm:text-sm font-bold uppercase tracking-widest block mb-2 sm:mb-3">
+              Help & Clarifications
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm sm:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
+              Everything you need to know about renting website templates with Hyrinx
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  What is website renting and how does Hyrinx work?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                Website renting allows you to rent a professionally built, fully functional website for days, weeks, or months starting at ₹149/day. Hyrinx provides instant deployment, customisation, free hosting, and custom domain setup.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  How can I rent a website or hire a website developer on Hyrinx?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                Browse through 30+ ready-to-use website templates on hyrinx.in, preview the live demo, pick your rental plan (from 1 day to 1 year), and go live within 2 to 6 hours. For tailored needs, request a custom website from our developers.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  Can college students rent projects for academic and semester submissions?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                Yes! Hyrinx provides verified full-stack and AI capstone projects for college students with complete source code, live demos, architecture documentation, and viva presentations.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  What is included in the website rental price?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                All Hyrinx rental plans include fast cloud hosting, customisation with your content and logo, mobile-responsive layout, SEO setup, 24/7 technical support, and subdomain or custom domain mapping.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  Can I connect my own custom domain (e.g. mywedding.com)?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                Yes! By default, your website is instantly deployed on a free clean subdomain (e.g., yourname.hyrinx.com). If you already own or want a custom domain (e.g., rohanwedsneha.in or technofest2026.org), our engineers configure DNS records for you at zero extra charge.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 sm:p-6 transition-all duration-300 space-y-2.5">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                  What happens when my rental duration finishes?
+                </h3>
+              </div>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed pl-8">
+                When your selected rental period ends, your website is safely archived. We maintain a secure backup of all your customized event data for 30 days, allowing you to renew or re-activate your website anytime with a single click.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 sm:mt-12 text-center">
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-400 hover:text-white bg-blue-900/30 hover:bg-blue-800/50 border border-blue-700/60 px-5 py-2.5 rounded-xl transition-all"
+            >
+              <span>View All Frequently Asked Questions</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 -z-10" />
@@ -689,61 +869,94 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Enhanced Footer with Complete Internal Link Architecture */}
       <footer className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 text-slate-400 border-t border-slate-800">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
-            <div className="col-span-2 md:col-span-1">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 mb-12 sm:mb-16">
+            {/* Col 1: Brand & Contact */}
+            <div className="col-span-2 sm:col-span-1">
               <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-wider">{businessName}</h3>
-              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-3 sm:mb-4">Rental Websites</p>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">
+              <p className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-3 sm:mb-4">Rental Websites & Dev</p>
+              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                 {businessTagline}
               </p>
-              <div className="text-xs sm:text-sm text-slate-500 space-y-2">
+              <div className="text-xs text-slate-400 space-y-1.5">
                 <p className="flex items-center gap-2">
                   <span className="text-blue-400">✉</span> {businessEmail}
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-blue-400">📞</span> {businessPhone}
                 </p>
+                <p className="text-slate-500 pt-1 text-[11px]">
+                  Founders: Rahul Sisode &amp; Harshal &bull; India
+                </p>
               </div>
             </div>
 
+            {/* Col 2: Explore */}
             <div>
-              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Explore</h4>
-              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
-                <li><Link href="/websites" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">All Websites</Link></li>
-                <li><Link href="/pricing" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Rental Pricing</Link></li>
-                <li><Link href="/how-it-works" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">How It Works</Link></li>
-                <li><Link href="/use-cases" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Use Cases</Link></li>
+              <h4 className="text-white font-bold mb-3 sm:mb-5 text-xs sm:text-sm uppercase tracking-wider">Explore</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+                <li><Link href="/websites" className="hover:text-white hover:translate-x-1 transition-all inline-block">All 30+ Websites</Link></li>
+                <li><Link href="/pricing" className="hover:text-white hover:translate-x-1 transition-all inline-block">Rental Pricing (₹149/d)</Link></li>
+                <li><Link href="/how-it-works" className="hover:text-white hover:translate-x-1 transition-all inline-block">How Renting Works</Link></li>
+                <li><Link href="/use-cases" className="hover:text-white hover:translate-x-1 transition-all inline-block">Use Cases</Link></li>
+                <li><Link href="/founders" className="hover:text-white hover:translate-x-1 transition-all inline-block">Meet the Founders</Link></li>
+                <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all inline-block">Custom Website</Link></li>
+                <li><Link href="/hyrinx-services-demo" className="text-amber-400 hover:text-amber-300 font-semibold hover:translate-x-1 transition-all inline-block">★ Other Services</Link></li>
               </ul>
             </div>
 
+            {/* Col 3: Categories */}
             <div>
-              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Services</h4>
-              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
-                <li><Link href="/hyrinx-services-demo" className="text-amber-400 hover:text-amber-300 font-semibold hover:translate-x-1 transition-all duration-300 inline-block">★ Other Services of Hyrinx</Link></li>
-                <li><Link href="/custom-website" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Custom Website</Link></li>
-                <li><Link href="/websites?category=College" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">College Fests</Link></li>
-                <li><Link href="/websites?category=Wedding" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Weddings</Link></li>
-                <li><Link href="/websites?category=Business" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Businesses</Link></li>
+              <h4 className="text-white font-bold mb-3 sm:mb-5 text-xs sm:text-sm uppercase tracking-wider">Categories</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+                <li><Link href="/categories/wedding" className="hover:text-white hover:translate-x-1 transition-all inline-block">Royal Wedding Invites</Link></li>
+                <li><Link href="/categories/college-fest" className="hover:text-white hover:translate-x-1 transition-all inline-block">College Fests &amp; Events</Link></li>
+                <li><Link href="/categories/business" className="hover:text-white hover:translate-x-1 transition-all inline-block">Business &amp; SaaS Profiles</Link></li>
+                <li><Link href="/categories/restaurant" className="hover:text-white hover:translate-x-1 transition-all inline-block">Restaurants &amp; Cafes</Link></li>
+                <li><Link href="/categories/photographer" className="hover:text-white hover:translate-x-1 transition-all inline-block">Photographer Portfolios</Link></li>
+                <li><Link href="/categories/birthday" className="hover:text-white hover:translate-x-1 transition-all inline-block">Birthday Celebrations</Link></li>
+                <li><Link href="/categories/gym-fitness" className="hover:text-white hover:translate-x-1 transition-all inline-block">Gym &amp; Fitness Studios</Link></li>
               </ul>
             </div>
 
+            {/* Col 4: Free Tools & Comparison */}
+            <div>
+              <h4 className="text-white font-bold mb-3 sm:mb-5 text-xs sm:text-sm uppercase tracking-wider">Free Tools &amp; Guides</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+                <li><Link href="/tools" className="text-cyan-400 hover:text-cyan-300 font-semibold hover:translate-x-1 transition-all inline-block">Free Planning Tools Hub</Link></li>
+                <li><Link href="/tools/wedding-website-checklist" className="hover:text-white hover:translate-x-1 transition-all inline-block">Wedding Website Checklist</Link></li>
+                <li><Link href="/tools/college-fest-planner" className="hover:text-white hover:translate-x-1 transition-all inline-block">College Fest Planner</Link></li>
+                <li><Link href="/tools/website-cost-calculator" className="hover:text-white hover:translate-x-1 transition-all inline-block">Website Cost Calculator</Link></li>
+                <li><Link href="/tools/qr-code-invitation-generator" className="hover:text-white hover:translate-x-1 transition-all inline-block">QR Code Generator</Link></li>
+                <li><Link href="/vs/rent-vs-custom-website" className="hover:text-white hover:translate-x-1 transition-all inline-block">Rent vs Custom Website</Link></li>
+                <li><Link href="/vs/hyrinx-vs-wix" className="hover:text-white hover:translate-x-1 transition-all inline-block">Hyrinx vs Wix &amp; WordPress</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 5: City Rentals & Support */}
             <div className="col-span-2 sm:col-span-1">
-              <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">Portal & Help</h4>
-              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
-                <li><Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Contact Support</Link></li>
-                <li><Link href="/faq" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Frequently Asked Questions</Link></li>
+              <h4 className="text-white font-bold mb-3 sm:mb-5 text-xs sm:text-sm uppercase tracking-wider">City Hubs &amp; Help</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
+                <li><Link href="/rent" className="hover:text-white hover:translate-x-1 transition-all inline-block">All Indian City Hubs</Link></li>
+                <li><Link href="/rent/wedding-invitation-website-mumbai" className="hover:text-white hover:translate-x-1 transition-all inline-block">Wedding Websites Mumbai</Link></li>
+                <li><Link href="/rent/college-fest-website-pune" className="hover:text-white hover:translate-x-1 transition-all inline-block">Fest Websites Pune</Link></li>
+                <li><Link href="/rent/business-website-delhi" className="hover:text-white hover:translate-x-1 transition-all inline-block">Business Websites Delhi</Link></li>
+                <li><Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all inline-block">Contact Support</Link></li>
+                <li><Link href="/faq" className="hover:text-white hover:translate-x-1 transition-all inline-block">Frequently Asked Questions</Link></li>
+                <li><Link href="/order/track" className="hover:text-white hover:translate-x-1 transition-all inline-block">Track Rental Order</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-800 pt-8 sm:pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-xs sm:text-sm text-slate-500 text-center sm:text-left">
+          <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
             <p>© {new Date().getFullYear()} {businessName}. All rights reserved.</p>
-            <div className="flex gap-6 sm:gap-8">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
               <Link href="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
               <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
+              <Link href="/sitemap.xml" className="hover:text-slate-400 transition-colors">XML Sitemap</Link>
+              <Link href="/llms.txt" className="hover:text-slate-400 transition-colors">llms.txt</Link>
             </div>
           </div>
         </div>

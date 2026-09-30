@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Sparkles, Send, MessageSquare, Check, RefreshCw } from "lucide-react";
 import confetti from "canvas-confetti";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 interface BlessingMessage {
   id: string;

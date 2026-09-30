@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Heart } from "lucide-react";
-import { weddingAudio } from "@/lib/weddingAudio";
+import { weddingAudio } from '@/lib/audio/weddingAudio';
 
 export default function RingExchangeCeremony() {
   const [vowsExchanged, setVowsExchanged] = useState(false);

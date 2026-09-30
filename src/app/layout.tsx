@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from '@/components/layout/LoadingScreen';
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Rahul Sisode' }, { name: 'Harshal' }],
   creator: 'Hyrinx',
-  openGraph: {
+    openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: 'https://hyrinx.in',
@@ -45,12 +45,21 @@ export const metadata: Metadata = {
     title: 'Hyrinx — Website Renting & Temporary Developer Services | Starting at ₹149/day',
     description:
       'Why Buy a Website? Rent One Instead. Rent verified websites for events, weddings, startups, businesses & college capstones.',
+    images: [
+      {
+        url: 'https://hyrinx.in/icon-512.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hyrinx — India Premier Website Rental Platform',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hyrinx — Website Renting Platform',
     description:
       'Rent a website for days, weeks, or months starting at ₹149/day. Zero maintenance, instant setup.',
+    images: ['https://hyrinx.in/icon-512.png'],
   },
   alternates: {
     canonical: 'https://hyrinx.in',
@@ -91,11 +100,40 @@ export default function RootLayout({
         logo: 'https://hyrinx.in/icon-512.png',
         image: 'https://hyrinx.in/icon-512.png',
         description: 'Why Buy a Website? Rent One Instead. India’s premier verified temporary website rental and custom developer service.',
+        telephone: '+91-9730213645',
+        email: 'hyrinxofficial@gmail.com',
         priceRange: '₹149 - ₹14999',
+        currenciesAccepted: 'INR',
+        paymentAccepted: 'UPI, Credit Card, Debit Card, Net Banking',
         address: {
           '@type': 'PostalAddress',
+          streetAddress: 'Hyrinx Digital Workspace, FC Road',
+          addressLocality: 'Pune',
+          addressRegion: 'Maharashtra',
+          postalCode: '411005',
           addressCountry: 'IN',
         },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 18.5204,
+          longitude: 73.8567,
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday',
+              'Sunday',
+            ],
+            opens: '09:00',
+            closes: '22:00',
+          },
+        ],
         sameAs: [
           'https://business.google.com/n/2389805557553069926/profile?fid=69944810972127816',
           'https://www.instagram.com/_rahulsisode/',
@@ -182,7 +220,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en-IN" className="h-full antialiased">
       <head>
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link rel="icon" href="/icon-48.png?v=2" type="image/png" sizes="48x48" />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { X, Sparkles, User, Calendar, Heart } from "lucide-react";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 
 interface PersonalizeModalProps {
   isOpen: boolean;

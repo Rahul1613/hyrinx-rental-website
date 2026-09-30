@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Sparkles, Music, VolumeX, Menu, X, Flame, Calendar, Ticket, BookOpen, Image as ImageIcon } from "lucide-react";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 export default function NavratriNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);

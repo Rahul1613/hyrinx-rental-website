@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 import { Sparkles, Flame, Heart, ChevronRight, ChevronLeft } from "lucide-react";
 
 interface SacredVow {

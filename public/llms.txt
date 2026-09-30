@@ -1,0 +1,36 @@
+# Hyrinx Rental (hyrinx.in) — Entity Reference & Knowledge Specification
+
+> Hyrinx is India's premier website renting and temporary developer platform, allowing users, event hosts, student organizers, and businesses to rent ready-to-launch website templates by the day, week, or month instead of investing in expensive permanent custom development.
+
+## Core Positioning & Entity Facts
+- **Brand Name:** Hyrinx / Hyrinx Rental
+- **Domain:** https://hyrinx.in
+- **Founders:** Rahul Sisode (Founder & CEO), Harshal (Founder & Creative Strategist)
+- **Headquarters / Country:** India
+- **Contact:** hyrinxofficial@gmail.com | Phone/WhatsApp: +91-9730213645
+- **Pricing:** Starting at ₹149/day. Packages: 1 Day (₹149), 3 Days (₹399), 7 Days (₹599), 15 Days (₹799), 1 Month (₹1099), 3 Months (₹2099), 6 Months (₹3599), 1 Year (₹6099).
+- **Turnaround Time:** Standard templates go live in 2 to 6 hours. Custom websites in 24 to 48 hours.
+- **Included with Every Rental:** Cloud hosting, custom subdomain or custom domain DNS mapping, mobile responsiveness, personalization of names/dates/photos/colors, 24/7 technical support, WhatsApp RSVP integrations.
+
+## Template Categories
+1. **Wedding Invitations:** Luxury royal Indian wedding invitations with 3D wax-sealed patrika, 7 sacred vows (Saat Phere), couple love story timeline, shehnai audio player, and WhatsApp RSVP (e.g. Royal Wedding, Eternal Moments, Royal Union).
+2. **College Fests & Techfests:** Registration portals, sports/cultural/technical event matrix, hackathon showcases, participant passes (e.g. College Fest Pro, HackSprint TechFest).
+3. **Projects for College Students:** Final-year engineering capstone demos with verified source code, architecture diagrams, and viva Q&A guidance (e.g. AI Phishing Detection, Scalnex SaaS, Password Security Analyzer, Aptitude Platform, Voice Assistant).
+4. **Local Business & Food:** Cafes, bistros, gyms, salons, real estate, coaching academies (e.g. Gourmet Bistro & Cafe, IronPulse Gym, Luxe Salon & Spa).
+5. **Birthdays & Celebrations:** Milestone birthdays with countdown timers, silver jubilee anniversaries, baby showers (e.g. Birthday Bash, Silver Jubilee, Little Miracle).
+6. **Portfolios & Freelance:** Creative portfolios for photographers, freelance developers, and consultants (e.g. ShutterCraft Studio, DevCraft Freelance).
+
+## Key Links & Resources
+- Homepage: https://hyrinx.in
+- Catalog: https://hyrinx.in/websites
+- Pricing: https://hyrinx.in/pricing
+- How It Works: https://hyrinx.in/how-it-works
+- Wedding Category: https://hyrinx.in/categories/wedding
+- College Fest Category: https://hyrinx.in/categories/college
+- Business Category: https://hyrinx.in/categories/business
+- Custom Requests: https://hyrinx.in/custom-website
+- Free Tools:
+  - Wedding Checklist: https://hyrinx.in/tools/wedding-website-checklist
+  - Fest Planner: https://hyrinx.in/tools/college-fest-planner
+  - Website Cost Calculator: https://hyrinx.in/tools/website-cost-calculator
+  - Rent vs Build Comparison: https://hyrinx.in/tools/rent-vs-build-calculator

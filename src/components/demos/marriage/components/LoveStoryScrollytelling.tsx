@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Sparkles, MapPin } from "lucide-react";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 
 interface StoryChapter {
   id: string;

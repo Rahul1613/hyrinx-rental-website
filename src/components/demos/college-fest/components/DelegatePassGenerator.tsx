@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Sparkles, Award, Check, Printer, QrCode, Shield, Feather } from "lucide-react";
 import confetti from "canvas-confetti";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface PassportRecord {
   name: string;

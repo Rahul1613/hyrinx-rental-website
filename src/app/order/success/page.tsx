@@ -2,7 +2,7 @@
 
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import { Check, Copy, MessageCircle, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 

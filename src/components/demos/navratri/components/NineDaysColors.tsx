@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Calendar, Heart, Shield, Copy, Check, ChevronRight, ChevronLeft, Sun } from "lucide-react";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 interface DayDetails {
   dayNumber: number;

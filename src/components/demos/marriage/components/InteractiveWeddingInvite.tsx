@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { divineAudio } from "@/lib/weddingAudio";
+import { divineAudio } from '@/lib/audio/weddingAudio';
 import { Calendar, MapPin, Sparkles, X, Heart, ExternalLink, Scroll } from "lucide-react";
 
 export default function InteractiveWeddingInvite() {

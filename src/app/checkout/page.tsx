@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import {
   ArrowRight,
   Check,

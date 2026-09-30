@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Ticket, Sparkles, MapPin, Clock, Users, QrCode, ShieldCheck, Download, Share2, Check } from "lucide-react";
 import confetti from "canvas-confetti";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 interface PassDetails {
   name: string;

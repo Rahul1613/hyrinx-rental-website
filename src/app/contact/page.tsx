@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import Link from 'next/link'
 import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle2, Camera } from 'lucide-react'
 

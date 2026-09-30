@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/layout/Navbar'
 import { Search, Filter, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
@@ -63,10 +63,10 @@ export default function WebsitesPage() {
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-2 sm:mb-4 leading-tight">
-              Choose Your Website
+              Rent Ready-to-Use Website Templates in India
             </h1>
             <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto">
-              Pick a design, preview it live and rent it for exactly as long as you need.
+              Browse 30+ verified website templates for weddings, birthdays, college fests, businesses, and student projects starting at ₹149/day. Live demos available.
             </p>
           </div>
 

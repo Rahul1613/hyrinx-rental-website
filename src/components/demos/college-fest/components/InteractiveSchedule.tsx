@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, MapPin, Bookmark, Check, Sparkles, Clock, Feather } from "lucide-react";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface Slot {
   time: string;

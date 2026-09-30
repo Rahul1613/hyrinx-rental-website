@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Sparkles, Calendar, MapPin, Feather, Compass, Award } from "lucide-react";
 import confetti from "canvas-confetti";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface CountdownTime {
   days: number;

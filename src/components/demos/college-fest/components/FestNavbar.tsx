@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Sparkles, Menu, X, Volume2, VolumeX, Compass } from "lucide-react";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 export default function FestNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);

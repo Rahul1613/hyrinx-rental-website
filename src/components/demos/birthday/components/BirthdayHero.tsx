@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Cake, Gift, Film, Mail, Heart, Flame } from "lucide-react";
 import confetti from "canvas-confetti";
-import { celebrationAudio } from "@/lib/celebrationAudio";
+import { celebrationAudio } from '@/lib/audio/celebrationAudio';
 
 interface BirthdayHeroProps {
   name: string;

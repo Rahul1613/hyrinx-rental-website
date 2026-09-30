@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Play, Pause, Volume2, VolumeX, Maximize2, Film, Heart } from "lucide-react";
-import { weddingAudio } from "@/lib/weddingAudio";
+import { weddingAudio } from '@/lib/audio/weddingAudio';
 
 interface VideoClip {
   id: string;

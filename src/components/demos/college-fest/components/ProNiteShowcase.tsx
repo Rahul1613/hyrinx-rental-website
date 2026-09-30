@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Sparkles, Calendar, MapPin, Check, Music2, Users, Feather } from "lucide-react";
-import { festAudio } from "@/lib/festAudio";
+import { festAudio } from '@/lib/audio/festAudio';
 
 interface ProNite {
   id: string;

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Flame, Bell, Heart, RotateCw, Music, Check, Volume2 } from "lucide-react";
 import confetti from "canvas-confetti";
-import { navratriAudio } from "@/lib/navratriAudio";
+import { navratriAudio } from '@/lib/audio/navratriAudio';
 
 const AARTI_VERSES = [
   {
