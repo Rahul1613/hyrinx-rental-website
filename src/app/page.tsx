@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import InteractiveHero from '@/components/home/InteractiveHero'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -157,72 +158,11 @@ export default async function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 -z-10" />
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl -z-10 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/30 to-indigo-100/30 rounded-full blur-3xl -z-10" />
-
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-5xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-md sm:shadow-lg shadow-blue-500/30">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              {hero.badgeText}
-            </div>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-slate-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent mb-5 sm:mb-8 leading-tight tracking-tight">
-              {hero.headline}
-            </h1>
-            <p className="text-base sm:text-xl md:text-2xl text-slate-600 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-              {hero.subheadline}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto items-center">
-              <Link
-                href={hero.primaryCtaLink}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-lg shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:-translate-y-1 w-full sm:w-auto"
-              >
-                {hero.primaryCtaText}
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-              <Link
-                href={hero.secondaryCtaLink}
-                className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-md hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto"
-              >
-                {hero.secondaryCtaText}
-              </Link>
-              <Link
-                href="/hyrinx-services-demo"
-                className="inline-flex items-center justify-center bg-slate-950 hover:bg-slate-900 text-amber-300 hover:text-white border-2 border-amber-500/40 hover:border-amber-400 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold transition-all duration-300 text-base shadow-lg shadow-amber-500/10 hover:shadow-xl hover:-translate-y-1 w-full sm:w-auto group"
-                title="Enter 3D Library Room with 13 Living Service Volumes"
-              >
-                <BookOpen className="mr-2 h-5 w-5 text-amber-400 group-hover:scale-110 transition-transform" />
-                <span>Other Services of Hyrinx</span>
-                <ArrowRight className="ml-2 h-4 w-4 text-amber-400" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Dynamic Categories Showcase */}
-          {categories.length > 0 && (
-            <div className="mt-12 sm:mt-20 max-w-5xl mx-auto">
-              <div className="text-center mb-4 sm:mb-6 text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-400">
-                Explore Popular Categories
-              </div>
-              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.id}
-                    href={`/websites?category=${cat.name}`}
-                    className="bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-slate-700 hover:text-blue-600 border border-slate-200 sm:border-2 hover:border-blue-300 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm sm:shadow-md hover:shadow-lg hover:-translate-y-1"
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+      <InteractiveHero
+        hero={hero}
+        categories={categories}
+        lowestPrice={lowestPrice}
+      />
 
       {/* Other Services of Hyrinx Showcase Banner */}
       <section className="py-6 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white border-y border-amber-500/20">
